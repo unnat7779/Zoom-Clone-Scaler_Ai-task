@@ -16,8 +16,8 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: FRONTEND_ORIGIN
-        value: https://zoom-workplace-clone-tau.vercel.app
+        value: https://frontend-bay-beta-22.vercel.app
       - key: APP_URL
-        value: https://zoom-workplace-clone-tau.vercel.app   # used to build invite links
+        value: https://frontend-bay-beta-22.vercel.app   # used to build invite links
       - key: SEED_ON_START
         value: reset

@@ -4,7 +4,7 @@ A pixel-faithful clone of the **Zoom Workplace web app** (`app.zoom.us`) — das
 
 | | |
 |---|---|
-| **Live app** | https://zoom-workplace-clone-tau.vercel.app |
+| **Live app** | https://frontend-bay-beta-22.vercel.app |
 | **API** | https://zoom-clone-api-gk6q.onrender.com — OpenAPI docs at [`/docs`](https://zoom-clone-api-gk6q.onrender.com/docs) |
 | **Repository** | https://github.com/unnat7779/Zoom-Clone-Scaler_Ai-task |
 | **Spec** | [`PRD.md`](PRD.md) — every screen measured from the real Zoom web app at 1366×768 |
