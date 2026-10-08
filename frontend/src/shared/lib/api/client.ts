@@ -27,7 +27,16 @@ export interface ApiFetchOptions {
 }
 
 export function buildApiUrl(path: string, query?: Record<string, QueryValue>): string {
-  const base = env.apiUrl || (typeof window !== "undefined" ? window.location.origin : "");
+  let base = env.apiUrl;
+  if (typeof window !== "undefined") {
+    if (window.location.hostname && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+      if (!base || base.includes("localhost") || base.includes("127.0.0.1")) {
+        base = window.location.origin;
+      }
+    } else {
+      base = base || window.location.origin;
+    }
+  }
   const url = new URL(
     base ? `${base}/api${path}` : `/api${path}`,
     typeof window !== "undefined" ? window.location.origin : "http://localhost:8000"

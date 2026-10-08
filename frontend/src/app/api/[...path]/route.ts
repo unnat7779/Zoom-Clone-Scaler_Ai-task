@@ -68,6 +68,7 @@ async function handler(
         .replaceAll("alex.morgan@example.com", "agrawanunnat.ieee@gmail.com")
         .replaceAll(`"initials":"AM"`, `"initials":"UA"`)
         .replaceAll(`"initials": "AM"`, `"initials": "UA"`);
+      resHeaders.delete("content-encoding");
       resHeaders.delete("content-length");
       return new NextResponse(transformed, {
         status: upstreamRes.status,
