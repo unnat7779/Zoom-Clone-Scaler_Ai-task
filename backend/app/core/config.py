@@ -26,8 +26,8 @@ class Settings:
     app_url: str = "http://localhost:3000"
     secret_key: str = "dev-only-secret-change-me"
     seed_on_start: SeedMode = "if-empty"
-    seed_user_name: str = "Alex Morgan"
-    seed_user_email: str = "alex.morgan@example.com"
+    seed_user_name: str = "Unnat Agrawal"
+    seed_user_email: str = "agrawanunnat.ieee@gmail.com"
     default_user_id: int = 1
     max_participants: int = 8
     token_max_age_seconds: int = 12 * 60 * 60

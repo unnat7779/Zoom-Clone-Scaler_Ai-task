@@ -8,13 +8,13 @@ import { getMe } from "./users";
 /** Seeded default user (PRD §3) — shown only when the backend cannot be reached. */
 const FALLBACK_USER: User = {
   id: 1,
-  display_name: "Alex Morgan",
-  email: "alex.morgan@example.com",
+  display_name: "Unnat Agrawal",
+  email: "agrawanunnat.ieee@gmail.com",
   pmi: "5123456789",
   pmi_formatted: "512 345 6789",
   timezone: "Asia/Kolkata",
   avatar_color: "#9053C2",
-  initials: "AM",
+  initials: "UA",
 };
 
 /**

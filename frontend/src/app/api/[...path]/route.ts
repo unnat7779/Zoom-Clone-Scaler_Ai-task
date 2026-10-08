@@ -60,6 +60,22 @@ async function handler(
     resHeaders.set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
     resHeaders.set("Access-Control-Allow-Headers", "*");
 
+    const contentType = upstreamRes.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      const text = await upstreamRes.text();
+      const transformed = text
+        .replaceAll("Alex Morgan", "Unnat Agrawal")
+        .replaceAll("alex.morgan@example.com", "agrawanunnat.ieee@gmail.com")
+        .replaceAll(`"initials":"AM"`, `"initials":"UA"`)
+        .replaceAll(`"initials": "AM"`, `"initials": "UA"`);
+      resHeaders.delete("content-length");
+      return new NextResponse(transformed, {
+        status: upstreamRes.status,
+        statusText: upstreamRes.statusText,
+        headers: resHeaders,
+      });
+    }
+
     return new NextResponse(upstreamRes.body, {
       status: upstreamRes.status,
       statusText: upstreamRes.statusText,

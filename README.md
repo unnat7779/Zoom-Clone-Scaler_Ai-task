@@ -98,7 +98,7 @@ To try a real call, start a meeting in one browser and join it from a **differen
 
 ## Assumptions
 
-- **No login**: a seeded default user ("Alex Morgan") is always signed in. Because every browser is that user, the **role comes from the entry path**: *New meeting* / *Start* → host; *Join* / invite link → attendee.
+- **No login**: a seeded default user ("Unnat Agrawal") is always signed in. Because every browser is that user, the **role comes from the entry path**: *New meeting* / *Start* → host; *Join* / invite link → attendee.
 - Data is seeded on first start (upcoming meetings relative to "today", past meetings with participants). On free hosting the SQLite file is ephemeral, so data resets on redeploy.
 - Video uses a WebRTC **mesh** (best for ≤ 8 people) with public STUN only; very restrictive networks would need a TURN server.
 - The UI mimics a Zoom **Pro** account's schedule form (hours selectable) so the Duration field is fully usable.
