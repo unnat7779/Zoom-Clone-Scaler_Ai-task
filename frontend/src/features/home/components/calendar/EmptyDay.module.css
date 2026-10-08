@@ -1,0 +1,21 @@
+/* Empty day (`.no__events--*`, PRD §7.1.8, 01-shell-home §10.7). */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 16px;
+  font: 400 14px/20px var(--font-app);
+  text-align: center;
+}
+
+/* `svg.sidebar-beach-empty` (89×90, margin-bottom 24) is inline in Zoom, so the line's strut adds
+ * 3px below it: the text starts 117px under the illustration's top [M]. A block svg with a 27px
+ * margin gives exactly that, whatever the font's descent. */
+.beach {
+  display: block;
+  width: 89px;
+  height: 90px;
+  margin-bottom: 27px;
+}
+
+.text { color: var(--home-cal-empty-fg); }

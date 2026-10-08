@@ -1,0 +1,30 @@
+/* `.mainBodyRight` (PRD §6.1, 01-shell-home §2): 328×694 at (1032,68), white, radius 12, no
+ * border or shadow. Its width follows the resize handle. */
+.panel {
+  display: flex;
+  flex: 0 0 var(--activity-panel-width);
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--shell-activity-panel-radius);
+  background: var(--color-bg-surface);
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ≤768: a full-screen sheet over the shell, like the profile menu (§11.1) [D] */
+@media (max-width: 768px) {
+  .panel {
+    position: fixed;
+    inset: 0;
+    z-index: var(--shell-activity-sheet-z);
+    padding: var(--shell-safe-top) var(--shell-safe-right) var(--shell-safe-bottom) var(--shell-safe-left);
+    border-radius: 0;
+  }
+
+  .body { overscroll-behavior: contain; }
+}

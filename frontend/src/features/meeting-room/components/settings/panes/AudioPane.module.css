@@ -1,0 +1,80 @@
+/* Settings › Audio (spec 05 §12; geometry measured on room-18: test button ≈120 wide, the select fills
+   the rest; label→row centre 38, row→level 32, groups 18 apart, checkboxes 28 apart). */
+.pane { --settings-section-gap: 18px; }
+
+.deviceRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px; /* collapses with the 8px under the label */
+}
+
+.test {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 32px;
+  border: 1px solid var(--room-invite-input-border);
+  border-radius: var(--radius-8);
+  color: var(--room-settings-text);
+  font: 400 13px/30px var(--font-app);
+  cursor: default;
+}
+.test:disabled { color: var(--room-settings-tab-text); }
+.test:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+/* "Output level:" / "Input level:" + a line aligned with the select */
+.levelRow {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  margin-top: 4px;
+  font: 400 13px/25px var(--font-app);
+}
+
+.level {
+  height: 2px;
+  border-radius: var(--radius-2);
+  background: var(--room-settings-level);
+}
+
+.text {
+  margin: 0;
+  font: 400 13px/25px var(--font-app);
+}
+
+.hint { color: var(--mr-text-4); }
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 0 24px;
+}
+
+.withInfo {
+  display: flex;
+  align-items: center;
+}
+
+/* Zoom's SvgHelp: a 14px circled "?" in rgba(255,255,255,.54) */
+.info {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--room-settings-tab-text);
+}
+
+.divider {
+  height: 1px;
+  margin: 19px 0 22px;
+  background: var(--mr-divider);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

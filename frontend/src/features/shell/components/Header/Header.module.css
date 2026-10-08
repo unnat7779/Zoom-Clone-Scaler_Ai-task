@@ -1,0 +1,57 @@
+/* Workplace header layout (PRD §6.2, §11.1). 64px; phones 56px [D] (`--shell-header-height`).
+ * Under a notch it grows by the safe area (0 on desktop). */
+.header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  height: calc(var(--shell-header-height) + var(--shell-safe-top));
+  padding: var(--shell-safe-top) calc(16px + var(--shell-safe-right)) 0 calc(16px + var(--shell-safe-left));
+  border-bottom: 1px solid var(--shell-header-border);
+  background: var(--shell-header-bg);
+}
+
+.right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-width: 0;
+}
+
+.slots {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Always rendered (empty below 1440px) so the 24px slot gap stays, as in Zoom. */
+.leading {
+  display: flex;
+  flex: none;
+}
+
+.searchArea {
+  display: flex;
+  flex: 1 1;
+  justify-content: center;
+  min-width: 160px;
+  overflow: hidden;
+}
+
+.searchCluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* ≤1080: search collapses to an icon, right-aligned. Nothing can overflow any more, so the area stops
+ * clipping: the icon's invisible 44px touch area (touch.module.css) is not cut to 32px. */
+@media (max-width: 1080px) {
+  .searchArea { justify-content: flex-end; min-width: 32px; overflow: visible; }
+}

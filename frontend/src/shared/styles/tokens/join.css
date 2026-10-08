@@ -1,0 +1,106 @@
+/* tokens/join.css — owned by JOIN (phase 2).
+ * Join flows: in-shell web-client panel, invalid-link pages, dark pre-join page,
+ * waiting-for-host state and the /j launch page (PRD §7.2.8, §7.9, §7.10).
+ * Components reference these variables, never raw values.
+ */
+:root {
+  /* ---- In-shell web-client panel (PRD §7.2.8) ---- */
+  --join-webclient-bg: #FFFFFF;
+  --join-webclient-back-fg: #0E71EB;
+  --join-webclient-layer-z: 30;
+  --join-webclient-spin: 1.5s;
+  /* `.pwa-webclient__loading-icon` (pwa-main.css): Zoom's inline 32×32 blue #0D71EB gradient ring */
+  --join-webclient-loading-icon: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAt1BMVEUAAAAMcO4LcewLdfEMb+0Kbe0NcesNcOoAbeYNcesNce0LbugOcOwNcesNcesSbOsPceYOcesOcewNcesNcOsNcesOcesOcOwNbuoOcewNcewOcesNcesNcewNcOsOcOsNcOwNcesPcewQcOcNcesOcesNcesNcesOcesNcesOcesNcOsNcOsLcOoOcOsOceoNcOwNb+0McewLcOkNcesOcesOcewNcOsNcesOcOwOcOwNceoOceuwGjKuAAAAPHRSTlMADx0HJxdINwSfPyCHbUwKCd29rnVxXkQT79fNxKOaaFlULA3p4rOpkox+ZWEZg3pPOzAu+PXHuJUzI9Iyz54PAAABiklEQVQ4y32T13KDMBBFVwgEyPTebKoLzb2k+P+/K8Qpjg3kvEjMPXPZZQa4o/FOtRLFmRRTFfqgrbR6mc1EcTpdLk2Ze4qxUparb6HLzcUifmhBliSVpWS7e5ZlidXli8v0TwlnryVpTbSfZ9UVLxfjbiC5Wq8VDH/gLMMwlt8GljdVReEJx4giM79d3c1mQ6FHE0Vn+2tAy1JgAPl8DtvuJLZdoyEhN8LQ+pzAtjMYJA7DKAdWlmU8LOTR+/sWaBwTGEEMAgnSOs7GBCcITHDquh0TXF0PoWkabkzgdV0Hx3HGhfl8DmmSMP8IAZAkYceEuigM4NOUjq5ZFCuYpKkiDOeM7xcJCMp2O/KOxPd9BJApChEGC4KT/9KdqkLIYMXseDrdFmQJcSf9vLoej+XtJuxcl/a+Bb1erzr6+aUo3b3hh1xouvy3N+d3O/7g3UfFquZNzf3dx688/7o/MJ6mYawiD+UqFh4bmS7PMvZtwjAc5yGk9jbHzCFjb0LbCRoMIKB20tE+xh8sHSPM7ZpgKAAAAABJRU5ErkJggg==);
+  --join-webclient-radius: var(--radius-8);                     /* `.pwa-webclient` inline radius */
+  --join-webclient-phone-z: 900;                                /* [D] full-viewport panel on phones, above the shell */
+  --join-sheet-z: 1000;                                         /* [D] device-menu bottom sheet on phones */
+
+  /* ---- Invalid meeting link (PRD §7.10.1, 04-join.md §5) ---- */
+  --join-invalid-fg: #232333;
+  --join-portal-page-bg: #FFFFFF;
+
+  /* ---- Dark pre-join page (PRD §7.10.2, 08-prejoin-and-live-media.md) ---- */
+  --join-prejoin-bg: #1D1E20;
+  --join-preview-bg: #313235;
+  --join-avatar-fg: rgba(255, 255, 255, 0.15);                  /* person cut out: the card shows through */
+  --join-control-bg: #040506;
+  --join-control-fg: #F7F9FA;
+  --join-control-hover: rgba(255, 255, 255, 0.09);
+  --join-bg-button-fg: rgba(255, 255, 255, 0.8);
+  --join-text: #FFFFFF;
+  --join-text-muted: #939BA4;
+  --join-link: #1890FF;
+  --join-input-border: #555B62;
+  --join-input-hover-bg: #2A2B2D;
+  --join-input-focus-border: #0E71EB;
+  --join-input-error-border: #B10E2C;
+  --join-input-placeholder: #596069;
+  --join-error-fg: #E02828;
+  --join-check-border: #196BE6;
+  --join-check-bg: linear-gradient(to bottom, #609BFB, #3A80E9);
+  --join-check-off-border: #A8A8A8;                             /* zm-checkbox has no dark override here */
+  --join-check-off-bg: linear-gradient(to bottom, #EEEDEE, #FFFFFF 30%);
+  --join-check-mark: #FFFFFF;
+  --join-btn-bg: #0E72ED;
+  --join-btn-fg: #FFFFFF;
+  --join-btn-disabled-bg: rgba(255, 255, 255, 0.06);
+  --join-btn-disabled-fg: #ADB1B8;
+  --join-footer-underline: rgba(255, 255, 255, 0.33);
+  --join-footer-link-hover: #DFE3E8;
+
+  /* ---- /j/{n} launch page (PRD §7.9) ---- */
+  --join-launch-bg: #FFFFFF;
+  --join-launch-header-bg: rgba(255, 255, 255, 0.97);
+  --join-launch-header-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  --join-launch-logo: #0B5CFF;
+  --join-launch-link: #0E71EB;
+  --join-launch-title: #232333;
+  --join-launch-text: #232333;
+  --join-launch-text-link: #0E72ED;
+  --join-launch-footer-fg: rgba(4, 4, 19, 0.56);
+  --join-launch-primary: #0D6BDE;
+  --join-launch-primary-hover: #0C60C8;
+  --join-launch-primary-press: #084085;
+  --join-launch-secondary-border: #939BA4;
+  --join-launch-secondary-fg: #222325;
+  --join-launch-spinner-head: #0E72ED;
+  --join-launch-spinner-bg: #FFFFFF;
+  --join-launch-spin: 1.4s;
+  --join-launch-or: #909096;                                    /* [D] phone page "Or" (critic-join-05) */
+  --join-launch-or-line: #DFE3E8;
+
+  /* ---- Pre-join controls, device menus, Join (wc_meeting.css `.preview__*`) ---- */
+  --join-controls-z: 10;
+  --join-preview-error-z: 100;                                  /* `.preview-error` banner */
+  --join-preview-error-bg: rgba(0, 0, 0, 0.6);
+  --join-preview-error-fg: rgba(255, 255, 255, 0.8);
+  --join-caret-fg: #FFFFFF;
+  --join-caret-hover: rgba(255, 255, 255, 0.18);
+  --join-caret-focus: rgba(255, 255, 255, 0.33);
+  --join-focus-ring: 2px solid #0E71EB;
+  --join-spinner-rotate: 1.5s;
+  --join-menu-bg: #1A1A1A;
+  --join-menu-fg: #F5F5F5;
+  --join-menu-divider: #747487;
+  --join-menu-scrollbar-thumb: #4A4A4A;
+  --join-bg-icon: #FFFFFF;
+  --join-btn-loading-opacity: 0.6;
+  --join-btn-transition: all var(--dur-200) var(--ease-in);
+  --join-check-focus-border: #79ADFB;
+  --join-check-focus-ring: inset 0 0 0 1px #196BE6;
+  --join-check-radius: 3.6px;                                   /* .2em of the 18px zm-checkbox */
+  --join-check-focus-radius: 4.6px;                             /* calc(.2em + 1px) */
+
+  /* ---- Waiting for the host (`.meeting-on-hold--dark .wr-*`) ---- */
+  --join-hold-date: rgba(235, 235, 245, 0.6);
+  --join-hold-tip: #FFFFFF;
+  --join-hold-content-bg: #3A3A3C;                              /* `.wr-main-content.wr-content-default` (dark) */
+  --join-hold-preview-z: 2;                                     /* `.waiting-room-preview` */
+  --join-hold-mobile-bg: #1A1A1A;                               /* `.mobile-waiting-room--dark` */
+  --join-hold-mobile-date: #9DA5B5;
+  --join-danger: #DE2828;                                       /* phone waiting room "Leave" (prism danger) */
+  /* `.wr-loading-icon` sprite cell (48px @2x): alpha .07 → 1 clockwise from 150°, 3px band */
+  --join-hold-ring: conic-gradient(from 150deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.25) 33%, rgba(255, 255, 255, 0.5) 58%, #FFFFFF 89%);
+  --join-hold-ring-mask: radial-gradient(farthest-side, transparent calc(100% - 3.25px), #000000 calc(100% - 2.75px));
+  --join-loading-white: brightness(0) invert(1);                /* filter: grey sprite → white */
+}

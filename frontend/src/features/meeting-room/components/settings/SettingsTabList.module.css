@@ -1,0 +1,69 @@
+/* Settings tab rail (spec 05 §12 [M]): 211 wide, padding 16, border-right 1px rgba(255,255,255,.09);
+   tab 178×32, radius 12, padding-left 8, margin-bottom 8, 14px/32px; chip 24×24, radius 8, margin-right 12. */
+.rail {
+  flex: none;
+  width: 211px;
+  padding: 16px;
+  border-right: 1px solid var(--mr-divider);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  border-radius: var(--radius-12);
+  color: var(--room-settings-tab-text);
+  font: 400 14px/32px var(--font-app);
+  text-align: left;
+  white-space: nowrap;
+}
+.tab:focus-visible { outline: var(--room-focus-ring); outline-offset: -2px; }
+
+.selected {
+  background: var(--room-settings-tab-active);
+  color: var(--room-settings-text);
+}
+
+.chip {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border-radius: var(--radius-8);
+  color: var(--mr-white);
+}
+.chip svg { width: 16px; height: 16px; }
+
+.general { background: var(--room-settings-chip-general); }
+.video { background: var(--room-settings-chip-video); }
+.audio { background: var(--room-settings-chip-audio); }
+.background { background: var(--room-settings-chip-background); }
+.statistics { background: var(--room-settings-chip-statistics); }
+.about { background: var(--room-settings-chip-about); }
+/* the selected tab shows the bare white glyph on its blue row (room-16 / room-17) */
+.selected .chip { background: transparent; }
+
+/* phones [D]: the rail becomes a scrollable strip above the pane */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .rail {
+    display: flex;
+    width: auto;
+    padding: 8px;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--mr-divider);
+  }
+
+  .tab {
+    flex: none;
+    width: auto;
+    margin: 0 8px 0 0;
+    padding-right: 12px;
+  }
+}

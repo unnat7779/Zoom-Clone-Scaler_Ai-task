@@ -1,0 +1,94 @@
+/* `.preview-video.preview-video-resizable` (PRD §7.10.2). Zoom does not clip the card, so the
+ * device menus can grow past its top edge; the video gets the radius itself. */
+.card {
+  position: relative;
+  flex: 0 1 700px;
+  min-width: 0;
+  aspect-ratio: 700 / 394;
+  container: preview-card / inline-size;
+  border-radius: var(--radius-14);
+  background: var(--join-preview-bg);
+}
+
+/* mirrored self view */
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+/* camera off: `.preview-video__default-avatar svg` 200×200, centred on the card */
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 200px;
+  height: 200px;
+  color: var(--join-avatar-fg);
+  transform: translate(-50%, -50%);
+}
+
+/* ---- "Backgrounds" (static) ---- */
+.bgButton {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: var(--radius-8);
+  background: var(--join-control-bg);
+  color: var(--join-bg-button-fg);
+  font: 400 12px/15px var(--font-app);
+  white-space: nowrap;
+}
+.bgButton:hover {
+  background: linear-gradient(var(--join-control-hover), var(--join-control-hover)), var(--join-control-bg);
+}
+
+.bgIcon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--join-bg-icon);
+}
+
+/* stacked layout (≤900): Zoom's 448px card; phones in portrait: full width 16:9 [D] */
+@container prejoin (max-width: 900px) {
+  .card { flex: none; width: 448px; max-width: 100%; }
+}
+@media (max-width: 767px) {
+  @container prejoin (max-width: 900px) {
+    .card { width: auto; max-width: none; }
+  }
+}
+
+/* landscape phones: next to the form, as wide as the form leaves (PreJoinLayout) */
+@media (max-height: 500px) and (max-width: 1023px) {
+  @container prejoin (max-width: 900px) {
+    .card { flex: 1 1 0; width: auto; max-width: 700px; }
+  }
+}
+
+/* small card [D]: the placeholder shrinks to fit above the control pill (its squircle is ¾ of the
+ * svg height), and "Backgrounds" moves to the top-right so it never covers the pill (R6-13). */
+@container preview-card (max-width: 480px) {
+  .placeholder {
+    top: calc((100% - 64px) / 2);
+    width: auto;
+    height: min(200px, calc((100% - 88px) * 4 / 3));
+    aspect-ratio: 1;
+  }
+  .bgButton {
+    top: 10px;
+    bottom: auto;
+  }
+}

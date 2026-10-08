@@ -1,0 +1,36 @@
+/* Right container `#wc-container-right` (PRD §8.7 [M]): 400 wide, #040506, padding 0 2px 4px 0. */
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: var(--room-z-panel);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  padding: 0 2px 4px 0;
+  background: var(--mr-panel-gutter);
+}
+
+/* Narrow rooms (tablets in portrait, the in-shell room at 768): Zoom's 400×508 pop-out window
+   (`common-window--dark`, spec 05 §8.1) floats over the stage, below the header and above the
+   toolbar, and drags by its header; the panel shell keeps its radius-15 frame. */
+.floating {
+  top: calc(var(--room-header-height) + 8px + var(--safe-top));
+  right: calc(8px + var(--safe-right));
+  width: min(400px, calc(100% - 16px));
+  height: min(508px, calc(100% - var(--room-header-height) - var(--room-toolbar-height) - 16px - var(--safe-top) - var(--safe-bottom)));
+  padding: 0;
+  border-radius: var(--radius-15);
+  background: transparent;
+  box-shadow: var(--shadow-room-window);
+}
+.floating header { cursor: move; touch-action: none; }
+
+/* Phones: a full-screen sheet over the stage (DV10), clear of the notch and the home indicator */
+.sheet {
+  z-index: var(--room-z-sheet);
+  width: 100%;
+  padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+  background: var(--mr-panel);
+}

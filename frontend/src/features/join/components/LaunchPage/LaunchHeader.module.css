@@ -1,0 +1,63 @@
+/* `#header_container` of zoom.us/j (04-join.md §4.1) */
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-portal-header);
+  height: 64px;
+  background: var(--join-launch-header-bg);
+  box-shadow: var(--join-launch-header-shadow);
+}
+
+/* 1200px container (1400px from 1400px wide: logo x 80 at 1512); the logo sits at x=107 on a 1366 screen */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (min-width: 1400px) {
+  .container { max-width: 1400px; }
+}
+
+.logo {
+  display: flex;
+  color: var(--join-launch-logo);
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+}
+
+/* 12px/64px: the whole header height is the hit area; "English", a space, then the caret 2px on */
+.link {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-launch-link);
+  font: 400 12px/64px var(--font-launch);
+}
+.link:hover { text-decoration: underline; }
+
+/* phones: Zoom's 60px mobile header (links 12px/60px) */
+@media (max-width: 767px) {
+  .header { height: 60px; }
+  .link { line-height: 60px; }
+}
+
+.caret {
+  display: inline-block;
+  margin-left: 2px;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  border-top: 4px solid currentColor;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}

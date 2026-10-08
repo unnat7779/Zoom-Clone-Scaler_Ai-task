@@ -1,0 +1,28 @@
+/* Row "More options" menu `.new-dropdown-menu` (PRD §8.8 [M]). */
+.menu {
+  min-width: 160px;
+  padding: 5px 0;
+  border: 1px solid var(--mr-panel-border);
+  border-radius: var(--radius-8);
+  background: var(--mr-pill);
+  box-shadow: var(--room-row-menu-shadow);
+}
+
+.item {
+  display: block;
+  width: 100%;
+  padding: 3px 20px;
+  color: var(--mr-text);
+  font: 400 12px/17.14px var(--font-app);
+  text-align: left;
+  white-space: nowrap;
+}
+.item:hover,
+.item:focus-visible { background: var(--mr-btn-hover); outline: none; }
+.item:disabled { color: var(--room-disabled-text); background: transparent; }
+
+.divider {
+  height: 1px;
+  margin: 9px 0;
+  background: var(--mr-divider);
+}

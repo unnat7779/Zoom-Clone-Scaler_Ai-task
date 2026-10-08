@@ -1,0 +1,11 @@
+/* `.advanced-options-0::before`: 827px rule under Security, aligned with the controls, 32px above Encryption */
+.divider {
+  width: var(--schedule-divider-width);
+  max-width: calc(100% - var(--schedule-label-width));
+  margin: 0 0 32px var(--schedule-label-width);
+  border-top: 1px solid var(--schedule-divider);
+}
+
+@media (max-width: 767px) {
+  .divider { margin-left: 0; max-width: 100%; }
+}

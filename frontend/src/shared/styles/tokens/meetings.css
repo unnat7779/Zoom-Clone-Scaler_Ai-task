@@ -1,0 +1,59 @@
+/* tokens/meetings.css — owned by MEET (phase 2).
+ * Meetings tab (list, PMI card, detail, z-buttons) and portal meeting detail.
+ * Add ONLY area-specific tokens here (raw colours, shadows, radii, z-index,
+ * durations that are not already in tokens/base.css). Name them --meetings-*.
+ * Components must reference variables, never raw values.
+ */
+:root {
+  /* ---- Workplace Meetings tab (PRD §7.4, 02-meetings.md App. 1) ---- */
+  --meetings-left-width: 360px;
+  --meetings-v-divider-width: 2px;
+  --meetings-title-fg: var(--zc-text-dark);               /* #131619 header title */
+  --meetings-muted-fg: var(--zc-text-muted-legacy);       /* #747487 list text, group labels */
+  --meetings-strong-fg: var(--zc-text-legacy);            /* #232333 topic, PMI number, detail rows */
+  --meetings-detail-topic-fg: var(--zc-topic-dark);       /* #39394D */
+  --meetings-item-hover: var(--zc-hover-blue);            /* #E7F1FD */
+  --meetings-item-selected: var(--zc-blue-action);        /* #0E71EB */
+  --meetings-divider: var(--zc-divider-legacy);           /* #EDEDF4 */
+  --meetings-v-divider: var(--zc-v-divider);              /* #7D7D8821 */
+  --meetings-empty-fg: var(--zc-text-day);                /* rgba(4,4,19,.56) */
+  --meetings-link-fg: var(--zc-blue-link);                /* #0E72ED add-calendar, invitation link, notices */
+  --meetings-link-fg-hover: var(--zc-blue-action);        /* #0E71EB */
+  --meetings-notice-now: var(--zc-now-red);               /* #FD4C4C */
+  --meetings-pre-fg: var(--color-text-black);             /* #000 invitation <pre> */
+  --meetings-focus-ring: 2px solid var(--zc-focus-legacy); /* #2D8CFF, offset 1 */
+  --meetings-scrollbar-track: var(--scrollbar-legacy-track);   /* #0000000F */
+  --meetings-scrollbar-thumb: var(--scrollbar-legacy-thumb);   /* #0000001F */
+  --meetings-scrollbar-track-shadow: inset 0 0 5px #00000014;
+  --meetings-scrollbar-thumb-shadow: inset 0 0 10px #00000033;
+  --meetings-scrollbar-radius: var(--scrollbar-legacy-radius); /* 3px */
+  /* DV3 segmented header (clone-only) [D] */
+  --meetings-tab-bar: var(--zc-blue-action);              /* 2px bar under the active segment */
+  /* Delete Meeting confirm (PRD §7.4.8) */
+  --meetings-confirm-text: var(--color-text-black);       /* #000 body copy */
+  /* phones / touch (PRD §11.5, MOBILE-MEET) [D] */
+  --meetings-touch-target: 44px;                          /* minimum tap height on phones */
+  --meetings-phone-button-min-width: 160px;               /* detail z-buttons: 2 per row from ≈332px */
+  --meetings-invitation-min-height: 160px;                /* the invitation keeps room on short screens */
+
+  /* ---- Portal meeting detail (PRD §7.8, 02-meetings.md §C) ---- */
+  --meetings-detail-label-width: 160px;
+  --meetings-add-google: #0E71EB;
+  --meetings-add-outlook: #3171BB;
+  --meetings-add-yahoo: #952BCE;
+  --meetings-invitation-border: #444B53;                  /* Copy Meeting Invitation textarea */
+  --meetings-textarea-focus-ring: 0 0 0 2px #FFFFFF, 0 0 0 4px #0E72ED; /* .zm-textarea__inner:focus */
+  --meetings-textarea-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+  --meetings-copy-icon: var(--zc-text-grey);              /* #6E7680 */
+  --meetings-sticky-z: 10;                                /* .zm-sticky-fixed */
+  --meetings-tooltip-shadow: var(--shadow-portal-dropdown); /* portal light tooltip */
+  --meetings-tooltip-fg: var(--portal-tooltip-fg);        /* #6E7680 */
+  --meetings-success-check: var(--portal-value);          /* ✓ 14px #232333 */
+
+  /* ---- portal Meetings page head on /meeting/{pmi} (02-meetings.md §B.4, §C.2) ---- */
+  --meetings-portal-tab-fg: var(--zc-text-grey);          /* #6E7680 */
+  --meetings-portal-tab-active: var(--zc-blue-action);    /* #0E71EB text + 2px bar */
+  --meetings-portal-tab-rule: var(--portal-plain-border); /* #DFE3E8 */
+  --meetings-capsule-bg: var(--zc-hover-blue);            /* #E7F1FD "Details" */
+  --meetings-capsule-fg: #0862D1;
+}

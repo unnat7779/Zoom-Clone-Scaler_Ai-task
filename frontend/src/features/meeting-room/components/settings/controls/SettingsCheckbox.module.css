@@ -1,0 +1,51 @@
+/* Settings checkbox (spec 05 §12 [M]): box 16px, border 1px #707070, radius 4, bg #1D1E20;
+   checked bg/border #0E71EB + white check; label 13px (spec 13px/25px, but rows measure 24px apart on room-16 / room-17),
+   ≈8px after the box. */
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  color: var(--room-settings-text);
+  font: 400 13px/24px var(--font-app);
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.box {
+  position: relative;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--mr-checkbox-border);
+  border-radius: var(--radius-4);
+  background: var(--mr-panel);
+}
+
+.input:checked + .box {
+  border-color: var(--mr-primary);
+  background: var(--mr-primary);
+}
+
+.input:checked + .box::after {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 6px;
+  height: 3px;
+  border-bottom: 2px solid var(--mr-white);
+  border-left: 2px solid var(--mr-white);
+  transform: rotate(-45deg);
+  content: "";
+}
+
+.input:focus-visible + .box { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.label { margin-left: 8px; }

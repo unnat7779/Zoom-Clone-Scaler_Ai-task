@@ -1,0 +1,8 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* zoom-ui banner, schedule-page width (PRD §5.8.12) */
+.error { max-width: var(--schedule-banner-max); }

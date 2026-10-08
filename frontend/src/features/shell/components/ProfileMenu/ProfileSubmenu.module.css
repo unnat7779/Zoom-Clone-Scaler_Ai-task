@@ -1,0 +1,61 @@
+/* `.common-header-profile__submenu` (PRD §6.6, 01-shell-home §7.2–7.3): zoom-ui floating menu. */
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--shell-submenu-width);
+  border: var(--menu-border);
+  border-radius: var(--menu-radius);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+  animation: fadeIn var(--dur-300) var(--ease-linear);
+}
+
+.sheetHeader { display: none; }
+
+/* `.common-header-profile__submenu-header`: back button (icon #222325 + 16px #686F79 title) */
+.back {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font: 400 16px/20px var(--font-app);
+  cursor: pointer;
+}
+
+.backIcon { flex: none; color: var(--color-text-primary); }
+.backLabel { margin-left: 8px; }
+
+/* ≤768: `.common-header-profile__submenu-floating-content` becomes a full-screen sheet */
+@media (max-width: 768px) {
+  .panel {
+    inset: 0;
+    width: 100%;
+    padding: var(--shell-safe-top) var(--shell-safe-right) var(--shell-safe-bottom) var(--shell-safe-left);
+    overflow-y: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overscroll-behavior: contain;
+  }
+
+  .sheetHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+}
+
+/* Phones [D]: 44px touch rows and back button */
+@media (max-width: 767px) {
+  .panel.panel [role="menuitem"] { height: var(--touch-target-size); }
+
+  .back { min-height: var(--touch-target-size); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

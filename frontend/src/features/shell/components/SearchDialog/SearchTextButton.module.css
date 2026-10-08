@@ -1,0 +1,17 @@
+/* Search dialog text buttons ("Clear" 50×24, "Clear all" 67×24): ui-Button tertiary small with a
+ * neutral label; `:active` bg #F7F9FA [M], hover the same [D]. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--shell-search-muted);
+  font: 400 13px/16px var(--font-app);
+  white-space: nowrap;
+}
+/* nx-chat's `!important` tertiary rules beat `._searchClearAllBtn:active{background:#F7F9FA}` [M CSS] */
+.button:hover { background: var(--shell-search-button-bg-hover); color: var(--shell-search-button-fg-hover); }
+.button:active { background: var(--shell-search-button-bg-press); color: var(--shell-search-button-fg-press); }

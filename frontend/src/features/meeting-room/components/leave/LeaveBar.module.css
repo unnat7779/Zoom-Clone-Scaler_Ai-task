@@ -1,0 +1,55 @@
+/* Bar that replaces the toolbar while leaving (PRD §8.14 [M]). */
+.bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-room-bars);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: calc(var(--room-toolbar-height) + var(--safe-bottom));
+  padding: 0 var(--safe-right) var(--safe-bottom) var(--safe-left);
+  background: var(--mr-leave-bar);
+  backdrop-filter: var(--room-leave-blur);
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mr-text-menu-header);
+  font: 400 13px/19.5px var(--font-app);
+  cursor: pointer;
+}
+
+.box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--mr-text-menu-header);
+  border-radius: var(--radius-3);
+  appearance: none;
+  cursor: pointer;
+}
+.box:checked {
+  border-color: var(--room-check-on-border);
+  background: url("/zoom/room-sprite-check@2x.png") center / 9px 8px no-repeat, var(--room-check-on);
+}
+
+.cancel {
+  height: 32px;
+  margin: 0 16px 0 32px;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  background: var(--room-leave-cancel);
+  color: var(--mr-text-menu-header);
+  font: 400 14px/18px var(--font-app);
+}
+.cancel:hover { background: var(--room-leave-cancel-hover); }
+
+/* touch screens: 44px Cancel and a taller feedback label */
+@media (pointer: coarse) {
+  .cancel { height: 44px; padding: 0 20px; }
+  .feedback { min-height: 44px; }
+}

@@ -1,0 +1,50 @@
+/* `.zoom-form-item__row` (PRD §7.6.2): 160px label column + 10px gap + controls, 25px below. */
+.row {
+  display: flex;
+  gap: var(--schedule-row-gap);
+  margin-bottom: var(--schedule-row-spacing);
+}
+
+.labelWrapper {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  width: var(--schedule-label-width);
+  /* base `.zoom-form-item__label-wrapper{margin-bottom:4px}` still applies: rows are ≥ 30 tall */
+  margin-bottom: 4px;
+  padding: 4px 0;
+  line-height: 1;
+}
+
+.label {
+  color: var(--schedule-label-fg);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+}
+.requiredLabel { color: var(--portal-topic-label); }
+
+.asterisk {
+  margin-left: 4px;
+  color: var(--color-text-error);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.labelSuffix {
+  display: flex;
+  margin-left: 4px;
+  padding-top: 1px;
+}
+
+.widgets {
+  flex: 1;
+  min-width: 0;
+  line-height: 1;
+}
+
+/* ≤767 (PRD §11.1): rows stack, the label takes the full width */
+@media (max-width: 767px) {
+  .row { display: block; margin-bottom: 20px; }
+  .labelWrapper { width: 100%; }
+}

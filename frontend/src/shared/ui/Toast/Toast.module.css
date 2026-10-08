@@ -1,0 +1,89 @@
+/* Toasts (PRD §5.8.13). */
+
+/* ---- Workplace light toast (react-toastify look) ---- */
+.workplaceContainer {
+  position: fixed;
+  top: var(--toast-top);
+  left: 50%;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: var(--toast-width);
+  max-width: calc(100vw - 16px);
+  padding: 4px;
+  transform: translateX(-50%);
+}
+
+.workplace {
+  display: flex;
+  align-items: center;
+  min-height: var(--toast-min-h);
+  padding: 8px;
+  border: var(--toast-border);
+  border-radius: var(--toast-radius);
+  background: var(--toast-bg);
+  box-shadow: var(--toast-shadow);
+  backdrop-filter: var(--toast-blur);
+  color: var(--toast-fg);
+}
+
+.workplace .icon { display: flex; flex: none; padding: 0 15px 0 6px; }
+.workplace.success .icon { color: var(--toast-icon-success); }
+.workplace.info .icon { color: var(--toast-icon-info); }
+.workplace.warning .icon { color: var(--toast-icon-warn); }
+.workplace.error .icon { color: var(--toast-icon-failure); }
+
+.text { flex: 1; min-width: 0; padding: 2px; }
+.title { margin-bottom: 4px; font: var(--toast-title); }
+.workplace .message { font: 400 14px/20px var(--font-app); }
+
+.close {
+  display: flex;
+  flex: none;
+  align-self: flex-start;
+  margin-right: 8px;
+  color: var(--toast-fg);
+}
+.close:hover { opacity: 0.8; }
+
+/* ---- portal message (zm-message) ---- */
+.portalContainer {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.portal {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 10px 32px 10px 16px;
+  border-radius: var(--radius-8);
+  box-shadow: var(--shadow-portal-toast);
+  color: var(--portal-toast-fg);
+  font: 400 14px/24px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  animation: portalEnter var(--dur-400) var(--ease-standard);
+}
+.portal .icon { display: flex; flex: none; margin-right: 8px; }
+.portal .text { padding: 0; }
+.portal.success { background: var(--portal-toast-success-bg); }
+.portal.success .icon { color: var(--portal-toast-success-icon); }
+.portal.info { background: var(--portal-toast-info-bg); }
+.portal.info .icon { color: var(--portal-toast-info-icon); }
+.portal.warning { background: var(--portal-toast-warning-bg); }
+.portal.warning .icon { color: var(--portal-toast-warning-icon); }
+.portal.error { background: var(--portal-toast-error-bg); }
+.portal.error .icon { color: var(--portal-toast-error-icon); }
+
+@keyframes portalEnter {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}

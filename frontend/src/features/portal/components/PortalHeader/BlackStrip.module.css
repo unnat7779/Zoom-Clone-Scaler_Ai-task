@@ -1,0 +1,44 @@
+/* zoom.us black strip `nav#black-topbar` (PRD §7.5.1, 03-schedule.md §3.1): items top-aligned, the
+ * 19px links at y=10, right edge 24px from the page edge */
+.strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 20px;
+  height: var(--portal-strip-height);
+  padding-right: 24px;
+  background: var(--portal-strip-bg);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--portal-strip-fg);
+  font: 400 14px/40px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* computed weight 300, but Zoom loads only Almaden 400/600, so it renders at 400 (R3-S19) */
+.link {
+  margin-top: 10px;
+  padding: 2px 0;
+  color: var(--portal-strip-fg);
+  font: 400 14px/15px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* dim 1×16 rule before "Contact Sales": 40px from the phone number (sch-01) [D colour] */
+.separator {
+  width: 1px;
+  height: 16px;
+  margin: 12px -1px 0 0;
+  background: var(--portal-strip-separator);
+}
+.link:hover,
+.search:hover { text-decoration: underline; }
+
+/* no black strip on phones (07-responsive.md §2.4) */
+@media (max-width: 767px) {
+  .strip { display: none; }
+}

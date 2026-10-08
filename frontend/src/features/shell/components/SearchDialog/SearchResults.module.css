@@ -1,0 +1,21 @@
+/* Results list 672×500 + section header `p` 672×40 (01-shell-home §4). */
+.results {
+  flex: 0 1 500px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 8px 12px;
+}
+
+.title { color: var(--color-text-prism); font: 700 14px/21px var(--font-app); }
+
+/* Phones [D]: the list fills the full-screen sheet */
+@media (max-width: 767px) {
+  .results { flex: 1 1 auto; }
+}

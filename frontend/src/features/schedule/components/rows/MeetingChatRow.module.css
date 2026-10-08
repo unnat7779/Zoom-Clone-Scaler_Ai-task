@@ -1,0 +1,2 @@
+/* Meeting chat row is 32 tall in Zoom (checkbox line + 12px) */
+.checkbox { padding: 4px 0 8px; }

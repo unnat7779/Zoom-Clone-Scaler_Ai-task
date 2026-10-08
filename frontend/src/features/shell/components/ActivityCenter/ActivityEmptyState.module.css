@@ -1,0 +1,30 @@
+/* Empty state [D] (`home-03-activity-center.jpg`): art y 201–330, title centred at y≈384,
+ * text lines at y≈406 / 426 (≈300 wide: "…in the" / "Other tab."), link at y≈451. */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 16px 24px;
+  text-align: center;
+}
+
+.title {
+  margin-top: 44px;
+  color: var(--color-text-primary);
+  font: 700 16px/20px var(--font-app);
+}
+.title:first-child { margin-top: 0; }
+
+.text {
+  max-width: 300px;
+  margin-top: 2px;
+  color: var(--shell-activity-body-fg);
+  font: 400 14px/20px var(--font-app);
+}
+
+.link {
+  margin-top: 5px;
+  color: var(--shell-activity-link-fg);
+  font: 400 14px/20px var(--font-app);
+}
+.link:hover { color: var(--shell-activity-link-fg-hover); }

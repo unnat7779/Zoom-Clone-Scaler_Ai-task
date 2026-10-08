@@ -1,0 +1,99 @@
+/* `.preview__dropdown-menu` (wc_meeting.css): anchored to its 88px control, `bottom:60px` = 8px
+ * above the 52px pill; no border, no shadow. */
+.menu {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  width: 300px;
+  max-height: 400px;
+  margin: 0;
+  padding: 8px 0;
+  overflow: auto;
+  border-radius: var(--radius-8);
+  outline: none;
+  background: var(--join-menu-bg);
+  color: var(--join-menu-fg);
+  font-family: var(--font-app);
+}
+.menu:focus-visible { outline: none; }
+.menu::-webkit-scrollbar { width: 10px; }
+.menu::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-10);
+  background-color: var(--join-menu-scrollbar-thumb);
+}
+
+/* `.preview__menu-title` */
+.title {
+  padding-left: 12px;
+  font: 700 14px/32px var(--font-app);
+}
+
+/* `.preview__menu-divider` */
+.divider {
+  height: 1px;
+  margin: 8px 0;
+  background: var(--join-menu-divider);
+}
+
+/* `.preview__dropdown-menuitem` */
+.item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 30px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  color: var(--join-menu-fg);
+  font: 400 14px/32px var(--font-app);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item:focus-visible {
+  outline: var(--join-focus-ring);
+  outline-offset: -2px;
+}
+
+/* `.preview__dropdown-menuitem svg{position:absolute;top:4px;left:4px}` — 24×24 */
+.check {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+/* touch screens (tablets) [D]: 44px rows */
+@media (pointer: coarse) {
+  .item { line-height: 44px; }
+  .check { top: 10px; }
+}
+
+/* Phones [D]: a bottom sheet over a dimmed page, full width above the home indicator, 48px rows */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--join-sheet-z);
+  background: var(--overlay-scrim);
+}
+
+.menu.sheet {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--join-sheet-z);
+  width: auto;
+  max-height: 75%;
+  padding: 12px var(--safe-right) calc(12px + var(--safe-bottom)) var(--safe-left);
+  border-radius: var(--radius-12) var(--radius-12) 0 0;
+}
+.sheet .title { padding-left: 20px; font-size: 13px; line-height: 40px; }
+.sheet .item {
+  padding: 0 20px 0 48px;
+  font-size: 15px;
+  line-height: 48px;
+}
+.sheet .check { top: 12px; left: 16px; }

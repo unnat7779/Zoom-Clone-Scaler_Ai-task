@@ -1,0 +1,112 @@
+/* New-meeting options popover + PMI submenu (PRD §7.1.4, 06-design-system B.9). */
+.popover {
+  overflow: visible;
+}
+
+/* `.home-main-new-meeting-option-panel` */
+.panel {
+  padding: 5px 0;
+  color: var(--home-popover-fg);
+  font: 400 14px/18px var(--font-app);
+  text-align: left;
+}
+
+/* `.new-meeting-option-panel-block` (no visible divider between the two rows) */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.row:hover,
+.row[aria-expanded="true"] {
+  background: var(--home-popover-row-bg-hover);
+  color: var(--home-popover-row-fg-hover);
+}
+
+.checkboxText { color: var(--home-popover-fg); }
+.checkboxRow:hover .checkboxText { color: var(--home-popover-row-fg-hover); }
+
+.pmiGroup {
+  position: relative;
+}
+
+.pmiRow {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.pmiRow > svg { flex: none; }
+
+.pmiNumber {
+  margin-right: 25px;
+  padding-left: 8px;
+}
+
+/* `.pmi-submenu-popover`: 5px over the popover's right edge, top aligned with the PMI row */
+.submenu {
+  position: absolute;
+  top: 0;
+  left: calc(100% + var(--home-submenu-overlap));
+  z-index: var(--home-submenu-z);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--home-popover-radius);
+  background: var(--color-bg-surface);
+  box-shadow: var(--home-popover-shadow);
+  animation: fadeIn var(--dur-300) var(--ease-standard);
+}
+
+.submenuItem {
+  height: 32px;
+  padding: 0 24px;
+  border: none;
+  background: transparent;
+  color: var(--home-popover-fg);
+  font: 400 14px/32px var(--font-app);
+  white-space: nowrap;
+  text-align: left;
+  cursor: pointer;
+}
+
+.submenuItem:hover,
+.submenuItem:focus {
+  background: var(--home-popover-row-bg-hover);
+  color: var(--home-popover-row-fg-hover);
+}
+
+/* Phones [D]: no room on the right, so the submenu drops below the PMI row (right-aligned), with
+ * 44px touch rows. */
+@media (max-width: 767px) {
+  .submenu {
+    top: calc(100% - 4px);
+    right: 8px;
+    left: auto;
+  }
+
+  .submenuItem { height: var(--touch-target-size); line-height: var(--touch-target-size); }
+}
+
+/* Short (landscape) viewports [D]: the submenu grows upwards from the PMI row's bottom edge, or
+ * sits above the row on a phone, so it stays on screen. */
+@media (max-height: 540px) {
+  .submenu { top: auto; bottom: 0; }
+}
+
+@media (max-height: 540px) and (max-width: 767px) {
+  .submenu { bottom: calc(100% - 4px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,54 @@
+/* zoom.us portal zm-button (PRD §5.8.3, 02-meetings.md App. CSS). */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  white-space: nowrap;
+  font-family: var(--font-portal);
+  font-weight: 500; /* `all.min.css`: `.zm-button{font-weight:500!important}` (C4-9) */
+  letter-spacing: var(--ls-portal);
+  color: var(--portal-plain-fg);
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  transition: all var(--dur-100);
+}
+
+.button:hover { background: var(--portal-plain-border); }
+.button:active { background: var(--portal-default-active); }
+
+/* icon-font glyphs: 16px in a 20px line box, 8px before the label (`[class*=zm-icon-]+span`) —
+ * a plain small button with an icon is 34 tall (Copy Invitation 155×34) */
+.button > svg { flex: none; width: 16px; height: 16px; margin: 2px 0; }
+
+.small { min-width: 32px; padding: 6px 16px; border-radius: var(--radius-8); font-size: 14px; line-height: 20px; }
+.large { min-width: 40px; padding: 8px 16px; border-radius: var(--radius-10); font-size: 16px; line-height: 24px; }
+
+.default {}
+
+.primary { background: var(--portal-primary); color: var(--color-text-inverse); font-weight: 500; }
+.primary:hover { background: var(--portal-primary-hover); }
+.primary:active { background: var(--portal-primary-active); }
+
+.plain { border: 1px solid var(--portal-plain-border); background: var(--color-bg-surface); color: var(--portal-plain-fg); font-weight: 500; }
+.plain:hover { background: var(--portal-plain-hover); }
+.plain:active { background: var(--portal-plain-active); }
+/* `.zm-button--small.zm-button--plain{line-height:18px}` + the 1px border: 32 tall (Edit 61×32, Cancel 82×32) */
+.small.plain { line-height: 18px; }
+.large.plain { padding: 7px 15px; }
+
+.danger { background: var(--portal-danger); color: var(--color-text-inverse); }
+.danger:hover { background: var(--portal-danger-hover); }
+.danger:active { background: var(--portal-danger-active); }
+
+.link { padding-left: 0; padding-right: 0; background: transparent; color: var(--portal-link); font-weight: 500; }
+.link:hover,
+.link:active { background: transparent; }
+
+.button:disabled,
+.button:disabled:hover {
+  background: var(--portal-disabled-bg);
+  color: var(--portal-disabled-fg);
+  cursor: not-allowed;
+}

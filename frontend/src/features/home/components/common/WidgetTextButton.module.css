@@ -1,0 +1,16 @@
+/* `.no__events--schedule` (PRD §7.1.8 DV2): 14px/20px #0956B5, 4px under the text. */
+.button {
+  display: block;
+  margin-top: 4px;
+  border: none;
+  border-radius: var(--radius-6);
+  background: none;
+  color: var(--home-cal-next-fg);
+  font: 400 14px/20px var(--font-app);
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--home-card-focus-ring);
+}

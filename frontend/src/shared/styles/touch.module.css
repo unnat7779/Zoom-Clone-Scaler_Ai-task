@@ -1,0 +1,17 @@
+/* Touch hit area [D] ("Zoom look, mobile-usable"): on phones (≤767) and coarse pointers a small
+ * control gets an invisible ≥44×44 tap area centred on it, so its Zoom size and look are unchanged.
+ * `:where()` keeps the `position: relative` at zero specificity: an absolutely positioned control
+ * keeps its own position (it is a containing block either way). */
+@media (max-width: 767px), (pointer: coarse) {
+  :where(.target) { position: relative; }
+
+  .target::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, var(--touch-target-size));
+    height: max(100%, var(--touch-target-size));
+    transform: translate(-50%, -50%);
+  }
+}

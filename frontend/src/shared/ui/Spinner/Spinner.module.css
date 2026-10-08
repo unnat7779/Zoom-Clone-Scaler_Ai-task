@@ -1,0 +1,60 @@
+/* zoom-ui 8-spoke spinner (PRD §5.8.16) */
+.spinner {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  color: var(--spinner-spoke);
+}
+
+.size16 { width: 16px; height: 16px; --spoke-width: 2px; }
+.size24 { width: 24px; height: 24px; --spoke-width: 3px; }
+.size32 { width: 32px; height: 32px; --spoke-width: 4px; }
+.size48 { width: 48px; height: 48px; --spoke-width: 6px; }
+
+.light { color: var(--spinner-spoke-light); }
+.dark { color: var(--spinner-spoke-dark); }
+
+.spoke {
+  position: absolute;
+  top: 38%;
+  left: 46%;
+  width: var(--spoke-width);
+  height: 25%;
+  border-radius: var(--spoke-width);
+  background: currentColor;
+  animation: spokeFade var(--dur-spinner-spokes) var(--ease-linear) infinite;
+}
+
+.spoke:nth-child(1) { transform: rotate(-135deg) translateY(-120%); animation-delay: -0.3s; }
+.spoke:nth-child(2) { transform: rotate(-90deg) translateY(-120%); animation-delay: -0.2s; }
+.spoke:nth-child(3) { transform: rotate(-45deg) translateY(-120%); animation-delay: -0.1s; }
+.spoke:nth-child(4) { transform: rotate(0deg) translateY(-120%); animation-delay: 0s; }
+.spoke:nth-child(5) { transform: rotate(45deg) translateY(-120%); animation-delay: -0.7s; }
+.spoke:nth-child(6) { transform: rotate(90deg) translateY(-120%); animation-delay: -0.6s; }
+.spoke:nth-child(7) { transform: rotate(135deg) translateY(-120%); animation-delay: -0.5s; }
+.spoke:nth-child(8) { transform: rotate(180deg) translateY(-120%); animation-delay: -0.4s; }
+
+/* PWA `.z-loading` (24px PNG) */
+.pwa {
+  display: inline-block;
+  flex: none;
+  animation: rotate var(--dur-spinner-rotate) var(--ease-linear) infinite;
+}
+
+/* Module copies of tokens.css `spinner-fade` / `rotate-infinite` (module keyframe names are scoped). */
+@keyframes spokeFade {
+  0% { opacity: 0.9; }
+  12.5% { opacity: 0.8; }
+  25% { opacity: 0.7; }
+  37.5% { opacity: 0.6; }
+  50% { opacity: 0.5; }
+  62.5% { opacity: 0.4; }
+  75% { opacity: 0.3; }
+  87.5% { opacity: 0.2; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

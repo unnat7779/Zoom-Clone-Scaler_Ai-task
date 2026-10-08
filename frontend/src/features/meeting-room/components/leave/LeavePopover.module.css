@@ -1,0 +1,39 @@
+/* End / Leave options (PRD §8.14 [M]): right 8, bottom 52, 248 wide. */
+.popover {
+  position: absolute;
+  right: calc(8px + var(--safe-right));
+  bottom: calc(var(--room-toolbar-height) + var(--safe-bottom));
+  z-index: var(--z-room-bars);
+  display: flex;
+  flex-direction: column;
+  width: 248px;
+  padding: 16px;
+  border-radius: var(--radius-12);
+  background: var(--mr-leave-bg);
+}
+
+.option {
+  width: 216px;
+  height: 32px;
+  padding: 0 16px;
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  color: var(--mr-white);
+  font: 400 14px/32px var(--font-app);
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.option + .option { margin-top: 8px; }
+.option:last-child { margin-bottom: 8px; }
+
+.danger { background: var(--mr-danger); }
+.danger:hover { background: var(--mr-danger-hover); }
+
+.default { background: var(--mr-divider); }
+.default:hover { background: var(--mr-btn-active); }
+
+/* touch screens: 44px options */
+@media (pointer: coarse) {
+  .option { height: 44px; line-height: 44px; }
+}

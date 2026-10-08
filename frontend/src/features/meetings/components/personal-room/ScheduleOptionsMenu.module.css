@@ -1,0 +1,43 @@
+/* `ul.zm-dropdown-menu` (02-meetings.md §B.2, App. CSS): 241×155, padding 4, radius 8, transparent 1px
+ * border, `0 2px 12px rgba(35,35,51,.5)`; right-aligned under the caret, 4px below. */
+.menu {
+  width: 241px;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-portal-dropdown);
+}
+
+/* `.schedule-option.meeting-option{padding-bottom:8px;border-bottom:1px solid #dfe3e8;margin-bottom:8px}` */
+.first {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--portal-plain-border);
+}
+
+/* `.zm-dropdown-menu__item-content{display:block;border-radius:8px;line-height:24px;padding:4px 8px}` */
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: var(--radius-8);
+  color: var(--portal-detail-label);
+  font: 400 14px/24px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: left;
+  white-space: nowrap;
+}
+.item:hover,
+.item:focus-visible { background: var(--portal-plain-active); color: var(--portal-detail-label); }
+.item:active { background: var(--portal-primary); color: var(--color-text-inverse); }
+
+.icon { flex: none; width: 16px; height: 16px; color: var(--meetings-portal-tab-fg); }
+.label { flex: 1; margin: 0 8px; }
+.external { flex: none; width: 14px; height: 14px; color: var(--meetings-portal-tab-fg); }
+
+/* touch: 44px rows */
+@media (pointer: coarse) {
+  .item { min-height: var(--meetings-touch-target); }
+}

@@ -1,0 +1,28 @@
+/* View menu (PRD §8.4.4 [M]): under View, right-aligned to it (x=978, y=38, 244 wide), 13px. */
+.menu {
+  top: calc(38px + var(--safe-top));
+  right: 58px;
+  min-width: 244px;
+}
+
+.item.item {
+  font: 400 13px/18.57px var(--font-app);
+}
+
+.icon {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  color: var(--mr-text-80);
+}
+
+.chevron {
+  position: absolute;
+  top: 5px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  color: var(--mr-text-80);
+}

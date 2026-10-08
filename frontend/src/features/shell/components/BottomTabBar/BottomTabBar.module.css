@@ -1,0 +1,72 @@
+/* Phone tab bar (≤767px) [D]: rail tab typography (10px/14px, ls .12px) on a 56px white bar. */
+.bar { display: none; }
+
+@media (max-width: 767px) {
+  .bar {
+    display: block;
+    flex: none;
+    padding: 0 var(--shell-safe-right) var(--shell-safe-bottom) var(--shell-safe-left);
+    border-top: 1px solid var(--shell-tabbar-border);
+    background: var(--shell-tabbar-bg);
+  }
+}
+
+/* 56px including the 1px top rule */
+.tabs {
+  display: flex;
+  height: calc(var(--shell-tabbar-height) - 1px);
+}
+
+.item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.tab {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--shell-tabbar-fg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tab:active { color: var(--shell-tabbar-fg-hover); }
+
+.tab[aria-current="page"] { color: var(--shell-tabbar-fg-selected); }
+
+.tab:focus-visible { outline-offset: -4px; }
+
+@media (hover: hover) {
+  .tab:hover { color: var(--shell-tabbar-fg-hover); }
+  .tab[aria-current="page"]:hover { color: var(--shell-tabbar-fg-selected); }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+.icon > svg { width: 20px; height: 20px; }
+
+.label {
+  max-width: 100%;
+  margin-top: 4px;
+  overflow: hidden;
+  font: 400 10px/14px var(--font-app);
+  letter-spacing: var(--ls-rail);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

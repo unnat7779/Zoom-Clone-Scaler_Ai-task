@@ -1,0 +1,37 @@
+/* zoom-ui banner (PRD §5.8.12). */
+.banner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--banner-padding);
+  border: 1px solid;
+  border-radius: var(--banner-radius);
+  color: var(--color-text-primary);
+  font: 400 14px/18px var(--font-app);
+  transition: opacity var(--dur-300);
+}
+
+.closable { padding-right: 47px; }
+.bleed { border-width: 0 0 1px; border-radius: 0; }
+
+.info { border-color: var(--banner-info-border); background: var(--banner-info-layer), var(--banner-info-bg); }
+.success { border-color: var(--banner-success-border); background: var(--banner-success-layer), var(--banner-success-bg); }
+.warning { border-color: var(--banner-warning-border); background: var(--banner-warning-layer), var(--banner-warning-bg); }
+.danger { border-color: var(--banner-danger-border); background: var(--banner-danger-layer), var(--banner-danger-bg); }
+
+.icon { display: flex; flex: none; align-self: flex-start; }
+.info .icon { color: var(--banner-info-icon); }
+.success .icon { color: var(--banner-success-icon); }
+.warning .icon { color: var(--banner-warning-icon); }
+.danger .icon { color: var(--banner-danger-icon); }
+
+.body { flex: 1; min-width: 0; margin: 0 8px 0 12px; }
+.icon + .body { margin-left: 12px; }
+.banner > .body:first-child { margin-left: 0; }
+.title { font-weight: 600; }
+.title + .content { margin-top: 4px; }
+
+.actions { flex: none; align-self: flex-start; }
+.actionsBelow { margin-top: 8px; }
+
+.close { position: absolute; top: 13px; right: 13px; }

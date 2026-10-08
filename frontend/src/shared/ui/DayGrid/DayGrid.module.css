@@ -1,0 +1,59 @@
+/* zoom-ui `.zoom-date-table` (PRD §7.1.7, §7.6.6; 03-schedule.md §6.7): 7 × 32px columns 4px apart,
+ * every row 8px below the previous one. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  column-gap: 4px;
+}
+.row { display: contents; }
+
+/* the header cells are `.zoom-date-table__cell`s too: same transparent 1px border as the days */
+.weekday {
+  width: 32px;
+  height: 32px;
+  margin-top: 8px;
+  border: 1px solid transparent;
+  color: var(--color-text-tertiary);
+  font: 400 14px/30px var(--font-app);
+  text-align: center;
+}
+
+.cell {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-top: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-primary);
+  font: 400 14px/30px var(--font-app);
+  letter-spacing: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.cell:hover { background: var(--color-state-hover); }
+
+.outside { color: var(--color-text-tertiary); }
+.disabled,
+.disabled:hover { background: transparent; color: var(--color-text-disabled); cursor: not-allowed; }
+.today { background: var(--color-primary); color: var(--color-text-inverse); }
+.today:hover { background: var(--color-primary-hover); }
+.selected,
+.selected:hover {
+  border-color: var(--color-border-selected);
+  background: var(--color-bg-toggle-selected);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* keyboard focus: 2px ring 4px outside the circle */
+.cell:focus-visible { outline: none; }
+.cell:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--color-border-focus);
+  border-radius: var(--radius-2);
+  pointer-events: none;
+}

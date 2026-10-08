@@ -1,0 +1,28 @@
+/* Participants footer (live Zoom dump, R5-19: no border, padding 10px 0 → pills at y 641): 396×50, space-around pills h30, radius 20, #2A2B2D. */
+.footer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+  padding: 10px 0;
+  border-radius: 0 0 var(--radius-8) var(--radius-8);
+}
+
+.pill {
+  height: 30px;
+  padding: 6px 24px;
+  border-radius: var(--radius-20);
+  background: var(--mr-pill);
+  color: var(--mr-white);
+  font: 400 12px/18px var(--font-app);
+  white-space: nowrap;
+}
+.pill:hover,
+.pill[aria-expanded="true"] { background: var(--mr-btn-hover); }
+
+/* touch screens: 44px pills */
+@media (pointer: coarse) {
+  .footer { height: 64px; }
+  .pill { height: 44px; padding: 12px 24px; border-radius: var(--radius-pill); }
+}

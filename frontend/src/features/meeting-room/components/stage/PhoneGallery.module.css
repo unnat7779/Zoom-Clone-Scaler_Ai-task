@@ -1,0 +1,56 @@
+/* Phone gallery [D] (PRD §11.5.3): swipe area, ‹ › page buttons and page dots. */
+.gallery {
+  position: absolute;
+  inset: 0;
+  /* horizontal swipes page the gallery instead of scrolling or zooming the page */
+  touch-action: none;
+}
+
+/* 44×44 touch target with the filmstrip's chevron and page-button colour. Its top edge sits 4px
+ * below the middle of the area: centred, it covered the upper tile's name tag (bottom-left, right on
+ * the middle line in a 2×2 grid or a column of two). */
+.arrow {
+  position: absolute;
+  z-index: var(--room-z-tag);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-top: 4px;
+  border-radius: var(--radius-round);
+  background: var(--room-gallery-arrow-bg);
+}
+.arrow:active { background: var(--mr-btn-active); }
+.previous { left: 4px; }
+.next { right: 4px; }
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--mr-white);
+  border-right: 2px solid var(--mr-white);
+}
+.previous .chevron { margin-left: 4px; transform: rotate(-135deg); }
+.next .chevron { margin-right: 4px; transform: rotate(45deg); }
+
+/* dots: centred in the 16px strip under the tiles, above the toolbar */
+.dots {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: var(--room-z-tag);
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 5px;
+  pointer-events: none;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--room-gallery-dot);
+}
+.current { background: var(--mr-white); }

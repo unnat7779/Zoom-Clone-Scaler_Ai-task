@@ -1,0 +1,118 @@
+/* Join Meeting modal body (PRD §7.2.2–7.2.6, 06-design-system B.9). The frame is the shared
+ * `Modal variant="join"` (448 wide, radius 32, padding 32, rgba(0,0,0,.2) overlay, no animation). */
+.form {
+  margin-top: 24px;
+}
+
+.field {
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+  font: 400 14px/18px var(--font-app);
+  letter-spacing: var(--ls-tight);
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 6px 40px 6px 16px;
+  border: var(--home-join-input-border);
+  border-radius: var(--radius-12);
+  outline: none;
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  caret-color: var(--color-text-primary);
+  font: 400 14px/18px var(--font-app);
+  letter-spacing: var(--ls-tight);
+}
+
+/* PWA global :focus ring — shown on mouse focus too; the border does not change */
+.field .input:focus {
+  outline: var(--home-join-focus-ring);
+  outline-offset: var(--focus-ring-legacy-offset);
+}
+
+/* `.join-meeting-modal__history-toggle` */
+.historyToggle {
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--home-join-toggle-fg);
+  cursor: pointer;
+}
+
+.historyToggle > svg {
+  width: 14px;
+  height: 14px;
+}
+
+.historyToggle:hover,
+.historyToggle:focus { background: var(--home-join-toggle-bg-hover); }
+
+.field .historyToggle:focus {
+  outline: var(--home-join-focus-ring);
+  outline-offset: var(--focus-ring-legacy-offset);
+}
+
+/* `.join-meeting-modal__footer` */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.button { letter-spacing: var(--ls-tight); }
+
+/* Cancel: hover and active change nothing (PWA rule beats Prism's) */
+.cancel.cancel,
+.cancel.cancel:hover,
+.cancel.cancel:active {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+}
+
+/* Phones [D]: 16px side margins (and the safe area), a 16px field so iOS does not zoom into it.
+ * Portrait: the modal sits in the upper part of the screen, above the on-screen keyboard. */
+@media (max-width: 767px) {
+  .dialog.dialog {
+    width: min(448px, 100vw - 2 * var(--shell-phone-gutter) - var(--shell-safe-left) - var(--shell-safe-right));
+    max-height: min(100dvh - 40px, 520px);
+  }
+
+  .field .input { font-size: 16px; }
+}
+
+/* Touch phones in landscape [D] (Zoom's ≥768 layout): the 16px field only, so iOS does not zoom */
+@media (max-height: 500px) and (max-width: 1023px) and (pointer: coarse) {
+  .field .input { font-size: 16px; }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .overlay.overlay {
+    align-items: flex-start;
+    padding: max(var(--shell-phone-gutter), 12dvh) var(--shell-phone-gutter) var(--shell-phone-gutter);
+  }
+}
+
+/* Join: aria-disabled (not the disabled attribute) */
+.join[aria-disabled="true"],
+.join[aria-disabled="true"]:hover,
+.join[aria-disabled="true"]:active {
+  background: var(--btn-disabled-bg);
+  color: var(--btn-disabled-fg);
+  cursor: not-allowed;
+}

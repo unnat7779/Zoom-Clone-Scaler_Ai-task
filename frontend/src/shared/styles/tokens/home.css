@@ -1,0 +1,106 @@
+/* tokens/home.css — owned by HOME (phase 2).
+ * Home (clock, action buttons, New-meeting popover, hub entries, calendar widget, Recent meetings card)
+ * and the Join Meeting modal. PRD §7.1, §7.2, docs/requirements/01-shell-home.md (Appendix A = widget CSS),
+ * 04-join.md §2. All values [M] unless marked [D].
+ * Add ONLY area-specific tokens here; components reference these variables, never raw values.
+ */
+:root {
+  /* ---- Layout (PRD §7.1.1, §11) ---- */
+  --home-cards-width: 600px;
+  --home-cards-width-narrow: 96%;            /* ≤1024 */
+  --home-calendar-height: 300px;             /* Zoom's declared widget height; flex 0 0 [D] */
+
+  /* ---- Clock (PRD §7.1.2) ---- */
+  --home-clock-fg: var(--zc-text-legacy);    /* #232333 */
+  --home-clock-font: 600 40px/40px var(--font-app);
+  --home-date-fg: var(--zc-text-day);        /* rgba(4,4,19,.56) */
+  --home-date-font: 400 16px/20px var(--font-app);
+
+  /* ---- Action buttons (PRD §7.1.3) ---- */
+  --home-action-fg: var(--color-text-inverse);
+  --home-action-new-bg: var(--zc-orange);                    /* #FF742E */
+  --home-action-new-bg-press: var(--zc-orange-press);        /* #E56829 */
+  --home-action-new-bg-disabled: var(--zc-orange-disabled);  /* #F9CBB7 */
+  --home-action-blue-bg: var(--zc-blue-action);              /* #0E71EB */
+  --home-action-blue-bg-press: var(--zc-blue-action-press);  /* #0C63CE */
+  --home-action-blue-bg-disabled: var(--zc-blue-action-disabled); /* #B1C7F6 */
+  --home-action-label-fg: var(--zc-label-grey);              /* #6E7680 */
+  --home-action-label-fg-disabled: var(--zc-label-disabled); /* #909096 */
+  --home-action-label-font: 400 14px/16px var(--font-app);
+  --home-action-gap: 60px;
+  --home-action-gap-phone: clamp(16px, 8vw, 60px);           /* ≤767 [D] */
+  --home-chevron-fg: var(--zc-text-day);
+  --home-chevron-bg-hover: var(--zc-chevron-hover);          /* #F2F2F7 */
+  --home-chevron-radius: 30%;
+
+  /* ---- New-meeting popover + PMI submenu (PRD §7.1.4) ---- */
+  --home-popover-fg: var(--zc-text-legacy);                  /* #232333 */
+  --home-popover-row-bg-hover: var(--zc-blue-action);        /* #0E71EB */
+  --home-popover-row-fg-hover: var(--color-text-inverse);
+  --home-popover-radius: var(--radius-10);
+  --home-popover-shadow: var(--shadow-medium);
+  --home-submenu-overlap: -4px;                              /* 5px over the popover's right edge */
+  --home-submenu-z: 1;                                       /* above the popover rows it overlaps */
+
+  /* ---- Hub entries (PRD §7.1.5) ---- */
+  --home-hub-radius: var(--radius-16);
+  --home-hub-bg-hover: var(--color-bg-subtler);              /* #F7F9FA */
+  --home-hub-record-bg: var(--zoom-color-fill-subtler-error);/* #FFF2F5 */
+  --home-hub-ai-bg: linear-gradient(94deg, #76C7EA14 3.04%, #4E89FF14 42.49%, #A864E414 85.69%);
+  --home-hub-focus-ring: var(--focus-ring-hub);
+
+  /* ---- Calendar widget (PRD §7.1.6–7.1.8, Appendix A) ---- */
+  --home-cal-border: 1px solid var(--zc-divider-legacy);     /* #EDEDF4 */
+  --home-cal-radius: var(--radius-8);
+  --home-cal-rule: 1px solid var(--color-border-subtle);     /* #DFE3E8 tools row */
+  --home-cal-pill-border: 1px solid #98A0A9;                 /* --calendar-border-neutral */
+  --home-cal-scrollbar-thumb: var(--scrollbar-thumb);        /* #0000006B */
+  --home-cal-text: var(--zc-text-dark);                      /* --dynamic-color #131619 */
+  --home-cal-empty-fg: var(--color-text-secondary);          /* #555B62 */
+  --home-cal-next-fg: #0956B5;                               /* --dynamic-color-0956B5-blue50 */
+  --home-cal-loading-bg: var(--zoom-color-underlay-default); /* #FFFFFFCC */
+  --home-cal-loading-wrapper-bg: var(--zoom-color-fill-elevated-default); /* #FFFFFFB3 */
+  --home-cal-loading-blur: blur(15px);
+  --home-cal-menu-width: 207px;
+  /* the widget's zoom-buttons (date button, Today pill) measure as Helvetica/Arial: 116 / 66 wide [D] */
+  --home-cal-button-font: Helvetica, Arial, sans-serif;
+
+  /* event cards (`.list-item.meeting__card--item`) */
+  --home-card-radius: var(--radius-12);
+  --home-card-bg: var(--color-bg-surface);
+  --home-card-border: var(--color-border-subtle);            /* #DFE3E8 */
+  --home-card-border-hover: #98A0A9;
+  --home-card-live-bg: var(--color-bg-selected);             /* #F2F8FF */
+  --home-card-live-border: var(--color-border-selected);     /* #A8CCF8 */
+  --home-card-live-border-hover: var(--zc-focus-zbutton);    /* #4793F1 */
+  --home-card-past-bg: #F8F9FA;
+  --home-card-fg: #323539;                                   /* --sidebar-item-normal-color */
+  --home-card-past-fg: var(--color-text-secondary);          /* #555B62 (`--sidebar-item-past-color`, text and title) */
+  --home-card-status-fg: #AF1E30;                            /* --dynamic-now-text */
+  --home-card-icon-bg-hover: hsla(213, 8%, 47%, 0.12);
+  --home-card-icon-bg-press: hsla(213, 8%, 47%, 0.42);
+  --home-card-focus-ring: var(--shadow-ring-calendar-join);
+
+  /* ---- Day picker (PRD §7.1.7) ---- */
+  --home-picker-radius: var(--radius-16);
+  --home-picker-width-phone: 343px;     /* phones [D]: touch-sized, like the Schedule picker */
+  --home-picker-cell-phone: 40px;
+
+  /* ---- "Download the Zoom app" CTA, ≤768 (PRD §11.4) ---- */
+  --home-cta-bg: var(--color-bg-selected);                   /* #F2F8FF */
+  --home-cta-fg: var(--color-text-prism);                    /* #2A2B2D */
+
+  /* ---- Join Meeting modal (PRD §7.2) ---- */
+  --home-join-input-border: 1px solid var(--color-border-input); /* #C1C6CE */
+  --home-join-focus-ring: var(--focus-ring-legacy);          /* 2px solid #2D8CFF, offset 1 */
+  --home-join-toggle-fg: var(--color-icon-strong);           /* #555B62 */
+  --home-join-toggle-bg-hover: var(--color-bg-subtle);       /* #F1F4F6 */
+  --home-join-history-border: 1px solid rgba(186, 186, 204, 0.2);
+  --home-join-history-shadow: var(--shadow-meeting-history);
+  --home-join-history-max-height: 256px;                     /* 8 rows of 32px */
+  --home-join-history-max-height-phone: 264px;               /* phones [D]: 6 rows of 44px */
+  --home-join-history-item-bg-hover: var(--zc-blue-link);    /* #0E72ED */
+  --home-join-history-topic-fg: var(--zc-text-dark);         /* #131619 */
+  --home-join-history-number-fg: var(--zc-label-grey);       /* #6E7680 */
+  --home-join-history-clear-fg: var(--zc-focus-zbutton);     /* #4793F1 */
+}

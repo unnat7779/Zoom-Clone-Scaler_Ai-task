@@ -1,0 +1,46 @@
+/* Panel header icons (PRD §8.7 [M]): 16px, 8px apart, #DFE3E8 (#CAD1D5 in Chat / Host tools). */
+.actions {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.button {
+  position: relative;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  color: var(--mr-icon-panel);
+}
+.alt .button { color: var(--mr-icon-panel-alt); }
+.button:hover { opacity: 0.8; }
+.button svg { width: 16px; height: 16px; }
+
+/* chat operate group: 8px from the panel edge (Pop Out 1230, Close 1254 in the room) */
+.compact { right: 8px; }
+
+/* touch screens (tablet side panels): same 16px icons, 40×44 hit areas */
+@media (pointer: coarse) {
+  .button::after {
+    position: absolute;
+    inset: -14px -12px;
+    content: "";
+  }
+  .actions { gap: 20px; }
+}
+
+/* phone sheets [D]: no Pop Out (there is no window to pop out to); Minimize / Close are 44×44
+   with 20px icons, flush with the sheet edge */
+[data-panel-layout="sheet"] .actions { right: 4px; gap: 0; }
+[data-panel-layout="sheet"] .popout { display: none; }
+[data-panel-layout="sheet"] .button {
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+[data-panel-layout="sheet"] .button::after { content: none; }
+[data-panel-layout="sheet"] .button svg { width: 20px; height: 20px; }

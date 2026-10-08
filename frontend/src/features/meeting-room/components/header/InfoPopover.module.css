@@ -1,0 +1,62 @@
+/* Meeting information popover (PRD §8.4.3 [M]): x=5, y=53, 400 wide. */
+.popover {
+  left: calc(5px + var(--safe-left));
+  min-height: 220px;
+  padding: 10px 24px 24px;
+  font-size: 12px;
+}
+
+.topicText {
+  margin: 9px 0 18px 5px;
+  overflow: hidden;
+  font: 700 16px/24px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.row {
+  display: flex;
+  min-height: 18px;
+  margin: 8px 0 0 5px;
+  line-height: 18px;
+}
+
+.label {
+  flex: none;
+  width: 120px;
+  color: var(--mr-text-3);
+  font-size: 14px;
+}
+
+.value {
+  min-width: 0;
+  color: var(--mr-white);
+  font-size: 12px;
+  user-select: all;
+  overflow-wrap: anywhere;
+}
+
+.linkRow { line-height: 24px; }
+
+.link {
+  flex: 0 1 auto;
+  max-width: 220px;
+  overflow: hidden;
+  color: var(--mr-link);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.copy {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border-radius: var(--radius-6);
+}
+.copy:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.copied { color: var(--mr-copied); }

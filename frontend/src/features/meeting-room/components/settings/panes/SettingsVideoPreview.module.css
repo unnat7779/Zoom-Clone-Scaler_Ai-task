@@ -1,0 +1,38 @@
+/* Settings video preview (room-17): ≈378×212 (16:9) card at the top of the pane. */
+.preview {
+  position: relative;
+  width: 378px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  background: var(--room-settings-preview);
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 16px 15px; /* the message sits a little above centre (room-17) */
+  color: var(--room-settings-muted);
+  font: 400 16px/24px var(--font-app);
+  text-align: center;
+}
+.message p { margin: 0; }
+.message p + p { margin-top: 15px; }
+
+.icon {
+  width: 14px;
+  height: 13px;
+  margin-bottom: 14px;
+  color: var(--room-settings-muted);
+}
+
+.link {
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+}
+.link:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }

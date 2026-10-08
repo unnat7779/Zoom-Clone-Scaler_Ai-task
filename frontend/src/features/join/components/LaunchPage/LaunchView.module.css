@@ -1,0 +1,196 @@
+/* zoom.us/j/{n} launch page (PRD §7.9, 04-join.md §4.1) */
+.page {
+  min-height: 100vh;
+  padding-top: 64px;
+  background: var(--join-launch-bg);
+  font-family: var(--font-launch);
+}
+
+/* `#zoom-ui-frame`: 840 wide, centred; 263,64 840×554 at 1366×768. The extra 64px of bottom
+ * padding stand for Zoom's hidden launch-status block, so the column sits where measured
+ * (spinner centre 145, title 173, buttons 289, text 421 / 465). */
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 840px;
+  min-height: calc(100vh - 214px);
+  margin: 0 auto;
+  padding: 40px 40px 104px;
+  text-align: center;
+}
+
+/* `.At6Ofnrg` 32px ring: conic white → blue, white 26px core (3px ring), 3px blue head at the
+ * top centre; rotate 1.4s linear; fades after ~2.5 s but keeps its space */
+.spinner {
+  position: relative;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-round);
+  background: conic-gradient(var(--join-launch-spinner-bg) 2%, var(--join-launch-spinner-head));
+  animation:
+    spin var(--join-launch-spin) var(--ease-linear) infinite,
+    fadeOut var(--dur-200) var(--ease-in-out) 2.5s forwards;
+}
+.spinner::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: var(--radius-round);
+  background: var(--join-launch-spinner-bg);
+}
+.spinner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-round);
+  background: var(--join-launch-spinner-head);
+}
+
+.title {
+  margin-bottom: 52px;
+  padding: 12px 0;
+  color: var(--join-launch-title);
+  font: 700 24px/40px var(--font-launch);
+}
+
+/* ---- buttons ---- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.primary,
+.secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  font-size: 16px;
+  line-height: 20px;
+}
+.primary:focus-visible,
+.secondary:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+
+.primary {
+  background: var(--join-launch-primary);
+  color: var(--color-text-inverse);
+  font-weight: 500;
+}
+.primary:hover { background: var(--join-launch-primary-hover); }
+.primary:active { background: var(--join-launch-primary-press); }
+
+.secondary {
+  border-color: var(--join-launch-secondary-border);
+  background: var(--join-launch-bg);
+  color: var(--join-launch-secondary-fg);
+  font-weight: 400;
+}
+.secondary:hover { background: var(--color-state-hover); }
+.secondary:active { background: var(--color-state-press); }
+
+/* ---- text ---- */
+.spacer {
+  flex: none;
+  align-self: stretch;
+  height: 0;
+  margin: 8px 0;
+  border: 0;
+}
+
+.line {
+  color: var(--join-launch-text);
+  font: 400 14px/24px var(--font-launch);
+}
+.line + .line { margin-top: 20px; }
+
+.textLink {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-launch-text-link);
+  font: inherit;
+}
+.textLink:hover { text-decoration: underline; }
+
+/* ---- Zoom's mobile page (critic C6, live 390×844 iPhone): 246px column, 54px radius-16 buttons ---- */
+.note {
+  margin-top: 16px;
+  color: var(--join-launch-footer-fg);
+  font: 400 14px/16px var(--font-launch);
+}
+
+/* "Or" between two hairlines */
+.or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 5px;
+  color: var(--join-launch-or);
+  font: 400 12px/16px var(--font-launch);
+}
+.or::before,
+.or::after {
+  flex: 1;
+  height: 1px;
+  background: var(--join-launch-or-line);
+  content: "";
+}
+
+@media (min-width: 768px) {
+  .phoneOnly { display: none; }
+}
+
+@media (max-width: 767px) {
+  .desktopOnly { display: none; }
+  .page { padding-top: 60px; }
+  /* the column is centred between the 60px header and the footer: h1 at y=202 on a 390×844 phone */
+  .main {
+    min-height: calc(100vh - 207px);
+    min-height: calc(100dvh - 207px);
+    padding: 40px;
+  }
+  .spinner { display: none; }
+  .title {
+    margin-bottom: 44px;
+    padding: 0;
+    font: 700 24px/28px var(--font-launch);
+  }
+  .actions {
+    gap: 0;
+    width: 246px;
+  }
+  .primary,
+  .secondary {
+    height: 54px;
+    padding: 0 24px;
+    border-radius: var(--radius-16);
+    font: 500 17px/52px var(--font-launch);
+    white-space: nowrap;
+  }
+  .secondary { font-weight: 400; }
+  .primary + .secondary { margin-top: 30px; }
+  .or + .secondary { margin-top: 20px; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
+}

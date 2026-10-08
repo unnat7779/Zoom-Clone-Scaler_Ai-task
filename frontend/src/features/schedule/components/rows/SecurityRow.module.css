@@ -1,0 +1,16 @@
+/* Security (03-schedule.md §5.12): checkbox + 16px + the 200px passcode input on one baseline */
+.passcodeLine {
+  display: flex;
+  align-items: baseline;
+}
+.passcodeCheckbox { margin-right: 16px; }
+/* `.mgb-md`: 16px under each block (the last one included → row 134 tall) */
+.block { margin-bottom: 16px; }
+
+/* `p.desc` under each checkbox: 14/21 #686F79, `margin: 4px 0 0 24px` */
+.desc {
+  margin: 4px 0 0 24px;
+  color: var(--schedule-desc-fg);
+  font-size: 14px;
+  line-height: 21px;
+}

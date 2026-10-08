@@ -1,0 +1,35 @@
+/* Panel shell `.panel-shell--dark` (PRD §8.7 [M]): radius 15, border #313235, margin-top 4. */
+.shell {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 4px;
+  overflow: hidden;
+  border: 1px solid var(--mr-panel-border);
+  border-radius: var(--radius-15);
+  background: var(--mr-panel);
+  color: var(--mr-text);
+  font-family: var(--font-app);
+}
+
+.borderless { border: none; }
+
+.half { flex: 5 1 0; }
+
+.mini {
+  flex: none;
+  height: 44px;
+}
+
+/* pop-out window: the first shell sits at the window top */
+[data-panel-layout="floating"] .shell:first-child { margin-top: 0; }
+
+/* phone sheet (DV10): no inset, no rounded corners; stacked panels are split by a divider */
+[data-panel-layout="sheet"] .shell {
+  margin-top: 0;
+  border: none;
+  border-radius: 0;
+}
+[data-panel-layout="sheet"] .shell + .shell { border-top: 1px solid var(--mr-panel-border); }

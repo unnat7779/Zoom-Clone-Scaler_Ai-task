@@ -1,0 +1,51 @@
+/* "Continue the Conversation" coachmark (PRD §8.10 / spec 05 §10.2 [M]): 326×139 at room (878,40),
+   #333, radius 8, padding 14; title 14px/21px 700, body 13px/19.5px 4px below, Got it 13px/13px padding 4px 8px.
+   Position written by useRoomAnchor. */
+.coachmark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--room-z-popover);
+  width: 326px;
+  padding: 14px;
+  border: 1px solid var(--mr-menu-border);
+  border-radius: var(--radius-8);
+  background: var(--room-chat-coachmark);
+  box-shadow: var(--shadow-room-popover);
+  color: var(--mr-text-chat);
+}
+
+.arrow {
+  position: absolute;
+  top: -8px;
+  left: 13px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid var(--mr-menu-border);
+  border-left: 1px solid var(--mr-menu-border);
+  background: var(--room-chat-coachmark);
+  transform: rotate(45deg);
+}
+
+.title { font: 700 14px/21px var(--font-app); }
+
+.body {
+  margin-top: 4px;
+  font: 400 13px/19.5px var(--font-app);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gotIt {
+  margin: 4px 4px 0 0;
+  padding: 4px 8px;
+  border-radius: var(--radius-6);
+  background: var(--mr-primary);
+  color: var(--mr-white);
+  font: 400 13px/13px var(--font-app);
+}
+.gotIt:hover { background: var(--mr-primary-hover); }
+.gotIt:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }

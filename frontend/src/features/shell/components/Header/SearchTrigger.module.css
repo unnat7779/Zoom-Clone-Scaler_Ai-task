@@ -1,0 +1,44 @@
+/* Header search trigger (PRD §6.2, §11.1). No transition. */
+.trigger {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 6px;
+  width: clamp(160px, 30vw, 440px);
+  min-width: 0;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  background: var(--shell-search-bg);
+  color: var(--shell-search-fg);
+  font: 400 14px/20px var(--font-app);
+  letter-spacing: var(--ls-search);
+}
+.trigger:hover { background: var(--shell-search-bg-hover); }
+.trigger:active,
+.trigger[aria-expanded="true"] { background: var(--shell-search-bg-press); }
+
+.icon { flex: none; }
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.shortcut { padding: 0 6px; }
+
+@media (max-width: 1080px) {
+  .trigger {
+    justify-content: center;
+    width: 32px;
+    padding: 0;
+    background: transparent;
+  }
+  .trigger:hover { background: var(--color-state-search-icon-hover); }
+  .trigger:active { background: var(--color-state-search-icon-press); }
+  .label { display: none; }
+}

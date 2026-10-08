@@ -1,0 +1,24 @@
+/* Mute All checkbox (PRD §8.12.1 [M]): 16px dark box, border #707070, radius 4, checked #0E71EB. */
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 400 13px/19.5px var(--font-app);
+  cursor: pointer;
+}
+
+.box {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--mr-checkbox-border);
+  border-radius: var(--radius-4);
+  background: var(--mr-panel);
+  appearance: none;
+  cursor: pointer;
+}
+.box:checked {
+  border-color: var(--mr-primary);
+  background: var(--mr-primary) url("/zoom/room-sprite-check@2x.png") center / 10px 9px no-repeat;
+}
+.box:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }

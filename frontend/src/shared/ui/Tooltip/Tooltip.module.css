@@ -1,0 +1,63 @@
+/* Tooltips (PRD §5.8.9). */
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-tooltip);
+  max-width: var(--tooltip-max-width);
+  font: var(--tooltip-font);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Prism white */
+.light {
+  padding: var(--tooltip-light-padding);
+  border: var(--tooltip-light-border);
+  border-radius: var(--tooltip-light-radius);
+  background: var(--tooltip-light-bg);
+  color: var(--tooltip-light-fg);
+  box-shadow: var(--tooltip-light-shadow);
+  animation: fade var(--dur-300) var(--ease-standard);
+}
+
+/* closing light tooltip: fades out over 300ms, then unmounts */
+.light.leaving {
+  opacity: 0;
+  transition: opacity var(--dur-300) var(--ease-standard);
+}
+
+/* zoom-ui dark */
+.dark {
+  max-width: 320px;
+  padding: var(--tooltip-dark-padding);
+  border-radius: var(--tooltip-dark-radius);
+  background: var(--tooltip-dark-bg);
+  color: var(--tooltip-dark-fg);
+  box-shadow: var(--shadow-small);
+  backdrop-filter: blur(15px);
+  white-space: normal;
+  overflow-wrap: break-word;
+  animation: scaleFade var(--dur-200) var(--ease-standard);
+}
+
+/* MUI dark (header History) */
+.mui-dark {
+  padding: 3px 6px;
+  border: 0.5px solid var(--zc-tooltip-mui-border);
+  border-radius: var(--radius-4);
+  background: var(--zc-tooltip-mui-bg);
+  color: var(--zc-tooltip-mui-fg);
+  box-shadow: var(--shadow-small);
+  animation: fade var(--dur-150) var(--ease-standard);
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleFade {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}

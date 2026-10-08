@@ -1,0 +1,24 @@
+/* Header [D] (`home-03-activity-center.jpg`): y 68–116; "…" centred at x≈1054, title centred on
+ * the panel (x≈1196, y≈92), ✕ centred at x≈1335 → 24px buttons 10px / 13px from the edges. */
+.header {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 13px 0 10px;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-primary);
+  font: 500 16px/20px var(--font-app);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* "…" and ✕ read neutral grey in `home-03` (C1-05) [D] */
+.icon.icon { color: var(--shell-activity-header-icon-fg); }

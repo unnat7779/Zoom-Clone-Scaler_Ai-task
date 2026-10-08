@@ -1,0 +1,11 @@
+/* nothing selected (PRD §7.4.9): the 200×200 illustration over a 14px line, centred */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+.icon { display: block; width: 200px; height: 200px; }

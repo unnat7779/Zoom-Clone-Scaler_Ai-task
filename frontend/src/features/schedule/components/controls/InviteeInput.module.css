@@ -1,0 +1,66 @@
+/* Invitee suggestions (`.zoom-autocomplete__menu.attendee-suggestion`, 03-schedule.md §5.7). */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--schedule-menu-z);
+  border: var(--menu-border);
+  border-radius: var(--menu-radius);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+  transform-origin: center top;
+  animation: zoomIn var(--dur-300) var(--ease-out-quint);
+}
+.menu[data-side="top"] { transform-origin: center bottom; }
+
+.list { margin: 11px; }
+
+/* 48px row + 3px gap = 51px pitch */
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+  padding: 6px 8px;
+  border-radius: var(--radius-8);
+  cursor: pointer;
+}
+.option:last-child { margin-bottom: 0; }
+.option:hover,
+.active { background: var(--menu-item-bg-hover); }
+.option[aria-disabled="true"] { cursor: not-allowed; }
+.option[aria-disabled="true"]:hover { background: var(--menu-item-bg-hover); }
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0 8px;
+}
+.name {
+  overflow: hidden;
+  color: var(--schedule-suggestion-name);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.email {
+  overflow: hidden;
+  color: var(--schedule-suggestion-email);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.invalid {
+  flex: none;
+  color: var(--schedule-invalid-email);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}

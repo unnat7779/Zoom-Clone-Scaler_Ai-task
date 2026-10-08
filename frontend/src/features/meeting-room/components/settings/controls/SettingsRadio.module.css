@@ -1,0 +1,74 @@
+/* Settings radio `.zm-radio-button` (spec 05 §12 [M], wc_meeting.css [C]): 14px circle, border #A8A8A8,
+   white-disc fill (`linear-gradient(#EDECED, #FFF 60%)`); checked: #196BE5 border around the
+   #5F9BFA→#397FE9 disc with a white centre dot. The circle sits 4px into the 24px gutter
+   (`left:7px; translate(-20%)`); label 14px/21px. */
+.row {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px 0 24px;
+  color: var(--room-settings-text);
+  font: 400 14px/21px var(--font-app);
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.dot {
+  position: absolute;
+  top: 3.5px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--room-settings-radio-border);
+  border-radius: var(--radius-round);
+  background: var(--room-settings-radio-off);
+}
+
+/* checked: the blue disc with a white centre dot (room-16 "25 participants", room-18) */
+.input:checked + .dot {
+  border-color: var(--room-settings-radio-checked-border);
+  background: var(--room-settings-radio-checked);
+}
+.input:checked + .dot::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--room-settings-radio-dot);
+}
+
+.input:focus-visible + .dot { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+/* Breakout Rooms (`composite-check-box__is-lbl--radio-pattern`, room-20): 16px labels, a 16px dark
+   circle 1px in with a #9DA5B5 ring, #0E72ED when checked; the label box has 27px of padding. */
+.breakout {
+  padding-left: 27px;
+  color: var(--mr-text-chat);
+  font-size: 16px;
+}
+.breakout .dot {
+  top: 2.5px;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+  border-color: var(--room-breakout-radio-ring);
+  background: transparent;
+}
+.breakout .input:checked + .dot {
+  border-color: var(--room-breakout-radio-on);
+  background: var(--room-breakout-radio-on);
+}
+.breakout .input:checked + .dot::after {
+  top: 4px;
+  left: 4px;
+}

@@ -1,0 +1,20 @@
+.slot {
+  position: relative;
+  width: 100%;
+  height: var(--sticky-slot-height);
+}
+@media (max-width: 767px) {
+  .slot { height: var(--sticky-slot-height-phone); }
+}
+
+.bar {
+  width: 100%;
+  background: var(--color-bg-surface);
+}
+
+/* pinned: no shadow and no transition (Zoom) */
+.fixed {
+  position: fixed;
+  bottom: 0;
+  z-index: var(--z-portal-sticky);
+}

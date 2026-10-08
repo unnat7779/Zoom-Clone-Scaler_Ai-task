@@ -1,0 +1,88 @@
+/* Hamburger menu (top_nav.min.css): 768–1024 `ul.tabletWhiteBar` (padding 20px 40px, viewport height
+ * under the header, `0 16px 64px` shadow); ≤767 `#navbar.navbar-collapse.in` (white, full height
+ * under the 50px header). Rows `li{margin:0 15px; border-bottom:1px solid #e1e1e6}`. */
+/* hangs under the header (its containing block, fixed or — phone landscape — absolute) */
+.panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: calc(100vh - var(--portal-header-height));
+  height: calc(100dvh - var(--portal-header-height));
+  padding: 20px 40px calc(24px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--color-bg-surface);
+  box-shadow: var(--portal-mobile-menu-shadow);
+}
+
+.section { margin: 0 15px; }
+/* `.mobile-newmenu-items{margin-top:20px}` */
+.actions { margin-top: 20px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--portal-mobile-menu-row);
+  border-bottom: 1px solid var(--portal-mobile-menu-divider);
+  color: var(--portal-header-text);
+  font: 500 16px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: left;
+}
+.row:hover,
+.row:focus-visible { color: var(--portal-header-text-hover); }
+.chevron { flex: none; margin-left: 12px; }
+
+/* `ul.navbar-right.mobileView .profile-menu` — pill buttons, the last one blue */
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 15px 0;
+}
+.identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.identityText { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.name {
+  color: var(--portal-label);
+  font: 600 16px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+.email {
+  overflow: hidden;
+  color: var(--color-text-tertiary);
+  font: 400 14px/18px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pills { display: flex; gap: 12px; }
+.pill {
+  flex: 1;
+  min-height: var(--portal-touch-target);
+  padding: 10px 20px;
+  border: 1px solid var(--portal-plain-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-surface);
+  color: var(--color-text-black);
+  font: 400 16px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: center;
+}
+.pillPrimary {
+  border-color: var(--portal-mobile-menu-pill);
+  background: var(--portal-mobile-menu-pill);
+  color: var(--color-text-inverse);
+}
+
+@media (max-width: 767px) {
+  .panel {
+    height: calc(100vh - var(--portal-header-height-mobile));
+    height: calc(100dvh - var(--portal-header-height-mobile));
+    padding: 0 0 calc(24px + env(safe-area-inset-bottom, 0px));
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,140 @@
+/* Portal side menu (PRD §7.5.3, 03-schedule.md §3.4, 07-responsive.md §2.4). */
+.column {
+  flex: 0 0 var(--portal-sidemenu-width);
+  padding: 8px 0;
+  background: var(--portal-sidemenu-bg);
+}
+
+.menu {
+  width: 296px;
+  padding: 0 4px 64px 0;
+}
+
+.nav { padding: 4px 0 4px 4px; }
+
+/* block flow on purpose: vertical margins collapse exactly like Zoom's */
+.list,
+.subList { display: block; }
+.subList { padding-left: 24px; }
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+  margin-bottom: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-12);
+  color: var(--portal-sidemenu-item-fg);
+  font: 400 14px/18px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: left;
+  cursor: pointer;
+}
+.item:hover { background: var(--portal-sidemenu-item-hover); }
+.item:active { background: var(--portal-sidemenu-item-press); }
+.item:focus-visible { outline-offset: 0; }
+.itemSelected,
+.itemSelected:hover { background: var(--portal-sidemenu-item-selected-bg); color: var(--portal-sidemenu-item-selected-fg); }
+.spaced { margin-bottom: 24px; }
+
+.leading {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.label { flex: 1; padding: 4px 0; }
+
+.newBadge { width: 32px; margin-left: 8px; }
+
+.externalIcon { flex: none; margin-left: 8px; color: var(--portal-sidemenu-item-fg); }
+
+.title {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding: 3px 8px;
+  color: var(--portal-sidemenu-title-fg);
+  font: 400 12px/18px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+.groupChevron {
+  color: var(--portal-sidemenu-chevron);
+  transform: rotate(-90deg);
+  transition: transform var(--dur-300) var(--ease-in-out);
+}
+.groupChevronOpen { transform: rotate(0deg); }
+
+/* Upgrade to Pro */
+.footer { margin-top: 24px; text-align: center; }
+.upgradePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 6px 14px;
+  border: 1px solid var(--portal-upgrade-border);
+  border-radius: var(--radius-24);
+  background: var(--portal-upgrade-bg);
+  color: var(--portal-upgrade-fg);
+  font: 400 14px/18px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* ≤1023 collapsed bar (hidden on wide screens) */
+.collapsedBar { display: none; }
+
+@media (max-width: 1023px) {
+  .column { flex: none; padding: 16px 0 0; background: transparent; }
+  .collapsedBar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    margin-bottom: 16px;
+    text-align: left;
+    border-radius: var(--portal-sidemenu-bar-radius);
+    background: var(--portal-sidemenu-bar-bg);
+  }
+  .collapsedLabel {
+    flex: 1;
+    padding-left: 14px;
+    color: var(--portal-sidemenu-item-selected-fg);
+    font: 400 14px/38px var(--font-portal);
+    letter-spacing: var(--ls-portal);
+  }
+  .collapsedToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 34px;
+    padding: 2px 10px 9px;
+    border-radius: var(--radius-4);
+    color: var(--portal-sidemenu-item-selected-fg);
+  }
+  .collapsedChevron { color: var(--portal-sidemenu-item-selected-fg); }
+  .menu { display: none; width: 100%; padding: 0 0 16px; }
+  .menuOpen { display: block; }
+}
+
+/* touch, menu expanded under the bar: 44px rows */
+@media (max-width: 1023px) and (pointer: coarse) {
+  .item { min-height: var(--portal-touch-target); }
+}
+
+@media (max-width: 767px) {
+  .column { padding: 16px 6px 0; }
+  .collapsedBar { margin-bottom: 7px; }
+  /* phones: ⌄ while collapsed, ⌃ when open (resp-schedule-390) */
+  .collapsedChevron { transform: rotate(0deg); }
+  .collapsedChevron.groupChevronOpen { transform: rotate(180deg); }
+}

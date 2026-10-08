@@ -1,0 +1,98 @@
+/* `.zm-tabs--top` header of zoom.us/meeting (02-meetings.md §B.4): 987×52, mb 15. */
+.header {
+  margin-bottom: 15px;
+}
+
+.navWrap {
+  position: relative;
+  margin-bottom: -1px;
+  padding: 0 32px;
+  overflow: hidden;
+}
+/* the rule under all tabs: `height:0; border:1px solid #dfe3e8` → 2px, covered exactly by the active bar (C4-10) */
+.navWrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 0;
+  border: 1px solid var(--meetings-portal-tab-rule);
+}
+
+/* scrolled by the arrows (useTabScroll); touch users can swipe it too */
+.navScroll { overflow: hidden; }
+@media (pointer: coarse) {
+  .navScroll { overflow-x: auto; scrollbar-width: none; }
+  .navScroll::-webkit-scrollbar { display: none; }
+}
+.nav {
+  display: flex;
+  white-space: nowrap;
+}
+
+.tab {
+  position: relative;
+  flex: none;
+  margin-right: 32px;
+  line-height: 24px;
+}
+/* active bar: 2px, radius 2, above the rule */
+.tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 2px;
+  border-radius: var(--radius-2);
+  background: transparent;
+  transition: background-color var(--dur-200);
+}
+.active::after { background: var(--meetings-portal-tab-active); }
+
+.label {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.link {
+  display: block;
+  padding: 14px 0;
+  color: var(--meetings-portal-tab-fg);
+  font: inherit;
+  white-space: nowrap;
+}
+.link:hover,
+.active .link { color: var(--meetings-portal-tab-active); }
+.active .link { cursor: default; }
+
+/* `zm-tabs__nav-prev/next`: 30×20 at top 14, 4px from the edges; the 20px icon-font glyph (≈7×12)
+ * sits in a 28px line, so its centre is 28px below the header top (C4-4, C4-5) */
+.arrow {
+  position: absolute;
+  top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 20px;
+  color: var(--meetings-portal-tab-fg);
+}
+.arrow:hover { color: var(--meetings-portal-tab-active); }
+.arrow[aria-disabled] { color: var(--meetings-portal-tab-fg); cursor: not-allowed; }
+.arrow > svg { width: 20px; height: 20px; transform: translateY(4px); }
+.arrow > .flipped { transform: translateY(4px) scaleX(-1); }
+.prev { left: 4px; }
+.next { right: 4px; }
+
+/* touch: 44px tap areas (the 30×20 boxes keep their place) */
+@media (pointer: coarse) {
+  .arrow::before {
+    content: "";
+    position: absolute;
+    inset: -12px -7px;
+  }
+}

@@ -1,0 +1,74 @@
+/* `.zm-checkbox.preview-remember-name` (PRD §7.10.2; checked colours sampled from screenshot 18) */
+.row {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.box {
+  position: relative;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--join-check-off-border);
+  border-radius: var(--join-check-radius);
+  background: var(--join-check-off-bg);
+  pointer-events: none;
+}
+
+/* check mark: .25em × .4em, .125em stroke (4.5 × 7.2, 2.25px), 15% above the centre */
+.box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4.5px;
+  height: 7.2px;
+  border: solid var(--join-check-mark);
+  border-width: 0 2.25px 2.25px 0;
+  opacity: 0;
+  transform: translate(-50%, -65%) rotate(45deg);
+}
+
+.input:checked + .box {
+  border-color: var(--join-check-border);
+  background: var(--join-check-bg);
+}
+.input:checked + .box::after { opacity: 1; }
+
+/* `.zm-checkbox:focus:before`: 16px content box + 1px light-blue border and an inner blue ring */
+.input:focus + .box {
+  width: 18px;
+  height: 18px;
+  margin: -1px;
+  border-color: var(--join-check-focus-border);
+  border-radius: var(--join-check-focus-radius);
+  box-shadow: var(--join-check-focus-ring);
+}
+
+.label {
+  color: var(--join-text);
+  font: 400 13px/19.5px var(--font-app);
+  white-space: nowrap;
+}
+
+/* touch screens: the whole 44px-tall row toggles (same look, 12px less margin each side) */
+@media (pointer: coarse) {
+  .row { height: 44px; margin: 0 0 -12px; }
+  .input { top: 14px; }
+}

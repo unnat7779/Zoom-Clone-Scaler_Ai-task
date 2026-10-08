@@ -1,0 +1,168 @@
+/* Settings placeholder modal (PRD §6.9, 01-shell-home.md §8.4). Inner pane spacing [D]. */
+
+/* `.settings-dialog__backdrop-dialog{pointer-events:none}`: the page behind stays clickable */
+.overlay.overlay { pointer-events: none; }
+
+.dialog {
+  width: 820px;
+  height: 660px;
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shell-settings-shadow);
+  pointer-events: auto;
+}
+
+/* `.settings-dialog__header{cursor:move}` */
+.header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--shell-settings-divider);
+  cursor: move;
+}
+
+.title { color: var(--shell-settings-title); font: 400 20px/20px var(--font-app); }
+
+/* `.modal-dialog__close-icon{color:#222230;position:absolute;right:15px;top:15px}` 16×16 */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  color: var(--shell-settings-close-fg);
+}
+
+.columns { display: flex; flex: 1; min-height: 0; }
+
+.nav {
+  display: flex;
+  flex: 0 0 170px;
+  flex-direction: column;
+  padding: 16px;
+  border-right: 1px solid var(--shell-settings-divider);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 137px;
+  height: 32px;
+  margin: 6px 0;
+  padding: 0 12px;
+  border-radius: var(--radius-12);
+  color: var(--shell-settings-item-fg);
+  font: 400 16px/16px var(--font-app);
+}
+.navItem:hover { background: var(--shell-settings-item-bg-hover); }
+.navItemActive,
+.navItemActive:hover { background: var(--shell-settings-active-bg); color: var(--color-text-inverse); }
+
+/* `.settings-icon`: 20×20 tile, radius 5; the glyph is 14px (General, Audio, Video) or 12px */
+.tile {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--shell-settings-tile-radius);
+  color: var(--color-text-inverse);
+}
+.tileGeneral { background: var(--shell-settings-tile-general); }
+.tileMedia { background: var(--shell-settings-tile-media); }
+.tileChat { background: var(--shell-settings-tile-chat); }
+.tileAccount { background: var(--shell-settings-tile-account); }
+.navItemActive .tile { background: transparent; }
+
+/* Pane offsets [D] from `home-12-settings-dialog.jpg`: "Navigation" centred at y≈141, "Reset to default"
+ * at y≈163 ending ≈41px from the dialog edge, "Auto-call" at y≈207, the checkbox row at y≈232. */
+.pane { flex: 1; min-width: 0; padding: 32px 40px 24px 32px; overflow-y: auto; }
+
+/* `.right-content` scrollbar [M CSS] */
+.pane::-webkit-scrollbar { width: 6px; }
+.pane::-webkit-scrollbar-track {
+  border-radius: var(--radius-3);
+  background: var(--shell-settings-scrollbar-track);
+  box-shadow: var(--shell-settings-scrollbar-track-shadow);
+}
+.pane::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-3);
+  background: var(--shell-settings-scrollbar-thumb);
+  box-shadow: var(--shell-settings-scrollbar-thumb-shadow);
+}
+
+.general { display: flex; flex-direction: column; gap: 27px; }
+.section { display: flex; flex-direction: column; }
+.sectionHead { display: flex; align-items: flex-start; justify-content: space-between; }
+.sectionTitle { color: var(--color-text-prism); font: 700 14px/18px var(--font-app); }
+.sectionHint { margin-top: 2px; color: var(--color-text-prism); font: 400 12px/16px var(--font-app); }
+.reset { margin-top: 23px; color: var(--zc-blue-link); font: 700 12px/16px var(--font-app); }
+.reset:hover { color: var(--color-text-link-hover); }
+.autoCall { margin-top: 6px; }
+.autoCall span { color: var(--color-text-prism); }
+
+/* static panes [D]: Audio / Video / Chat rows, My account */
+.rows { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 10px; }
+.device.device { width: var(--shell-settings-field-width); max-width: 100%; }
+.checkboxRow span { color: var(--color-text-prism); }
+.account { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.accountText { display: flex; flex-direction: column; min-width: 0; }
+.accountName { color: var(--color-text-prism); font: 700 14px/18px var(--font-app); }
+.manage { align-self: flex-start; margin-top: 16px; color: var(--zc-blue-link); font: 700 12px/16px var(--font-app); }
+.manage:hover { color: var(--color-text-link-hover); }
+
+/* Phones [D]: a full-screen sheet inside the safe area; the section list becomes a row of tabs that
+ * scrolls sideways above the pane. */
+@media (max-width: 767px) {
+  .dialog.dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    padding: var(--shell-safe-top) var(--shell-safe-right) var(--shell-safe-bottom) var(--shell-safe-left);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header { height: 56px; padding: 0 var(--shell-phone-gutter); cursor: auto; }
+
+  .close {
+    top: calc(20px + var(--shell-safe-top));
+    right: calc(var(--shell-phone-gutter) + var(--shell-safe-right));
+  }
+
+  .columns { flex-direction: column; }
+
+  .nav {
+    flex: none;
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px var(--shell-phone-gutter);
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--shell-settings-divider);
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .navItem {
+    flex: none;
+    width: auto;
+    height: 40px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .pane { padding: 24px var(--shell-phone-gutter); overscroll-behavior: contain; }
+
+  .sectionHead { gap: 16px; }
+
+  .reset { flex: none; }
+}

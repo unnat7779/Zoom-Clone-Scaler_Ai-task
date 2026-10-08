@@ -1,0 +1,40 @@
+/* Name tag `.video-avatar__avatar-footer` (PRD §8.3.4 [M]). */
+.tag {
+  position: absolute;
+  left: 0;
+  z-index: var(--room-z-tag);
+  display: flex;
+  align-items: center;
+  max-width: calc(100% - 6px);
+  margin: 0 0 4px 4px;
+  padding: 3px 5px 3px 0;
+  border-radius: var(--radius-4);
+  background: var(--room-nametag-bg);
+  color: var(--mr-white);
+  font: 400 12px/18px var(--font-app);
+  transition: bottom var(--dur-200) var(--ease-out);
+}
+
+/* Zoom: `@media (max-height:720px)` → the in-shell room (694 tall) */
+@container room (max-height: 720px) {
+  .tag { font-size: 15px; line-height: 22.5px; }
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.muted {
+  background: url("/zoom/room-sprite-tile-muted@1.43x.png") center / 16px 16px no-repeat;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  margin-left: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

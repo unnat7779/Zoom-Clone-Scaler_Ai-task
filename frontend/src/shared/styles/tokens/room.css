@@ -1,0 +1,152 @@
+/* tokens/room.css — owned by ROOM (phase 2).
+ * Meeting room (stage, tiles, header, toolbar, panels, dialogs).
+ * Area-specific values from PRD §8 / docs/requirements/05-meeting-room.md that are
+ * not already in tokens/base.css (--mr-*). Components reference variables only.
+ */
+:root {
+  /* ---- device safe areas (notch / home indicator; `viewport-fit=cover` from the root layout) [D].
+     0 on desktop, so the measured geometry is unchanged. Also used by the pre-join page. ---- */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* ---- layers ---- */
+  --room-z-tag: 1;
+  --room-z-panel-overlay: 2;
+  --room-z-panel: 20;
+  --room-z-sheet: 300;
+  --room-z-frame: 900;            /* full-viewport room on phones, above any Workplace chrome */
+  --room-sheet-handle: rgba(255, 255, 255, 0.3);
+  --room-z-popover: 1000;
+
+  /* ---- radii not in base.css ---- */
+  --room-inshell-radius: var(--radius-8); /* in-shell room card = `.pwa-webclient` radius */
+  --room-radius-tooltip: 5px;     /* copy-invite-link tooltip */
+  --room-radius-recipient: 10.5px;/* chat recipient pill */
+  --room-radius-contact: 9px;     /* invite contact tile */
+
+  /* ---- header (§8.4) ---- */
+  --room-header-height: 48px;
+  --room-pill-hover: rgba(255, 255, 255, 0.15);
+  --room-pill-active: rgba(255, 255, 255, 0.22);
+  --room-header-divider: rgba(255, 255, 255, 0.2);
+  --room-view-btn-hover: rgba(62, 62, 62, 0.88);
+  --room-view-btn-active: rgba(79, 79, 79, 0.88);
+  --room-switch-btn-bg: rgba(36, 36, 36, 0.88);
+  --room-focus-ring: 2px solid #2D8CFF;
+  --room-info-input-hover: #2E2E2E;
+  --room-info-input-focus: #2D8CFF;
+  --room-report: #FF5C5C;
+
+  /* ---- toolbar (§8.5) ---- */
+  --room-toolbar-height: 52px;
+  --room-caret-hover: rgba(255, 255, 255, 0.33);
+  --room-copy-tooltip-bg: #212326;
+  --room-caret-menu-divider: #747487; /* .common-ui-component__dropdown-divider (all caret menus) */
+
+  /* ---- mic level meter `.audio-voip-active-icon` (shared/media AudioLevelIcon: pre-join + toolbar, 08 [M]) ---- */
+  --audio-meter-fill: var(--mr-audio-level);
+  --audio-meter-radius: 5px;
+  --audio-meter-transition: height var(--dur-100) var(--ease-linear);
+  /* device-initialising ring (shared/media RingSpinner: pre-join controls + toolbar Video, 08 [M]) */
+  --media-spinner-rotate: 1.5s;
+
+  /* ---- tiles (§8.3) ---- */
+  --room-nametag-bg: rgba(0, 0, 0, 0.56);
+  --room-ring: inset 0 0 0 2px var(--mr-speaking-ring);
+  /* phone gallery pages [D] (§11.5.3): ‹ › buttons on the tiles, page dots */
+  --room-gallery-arrow-bg: rgba(0, 0, 0, 0.56);
+  --room-gallery-dot: rgba(255, 255, 255, 0.4);
+
+  /* ---- menus and pickers (§8.6) ---- */
+  --room-react-bg: rgba(0, 0, 0, 0.8);
+  --room-react-shadow: 0 6.14px 18.43px rgba(0, 0, 0, 0.2);
+  --room-react-blur: blur(15.36px);
+  --room-react-btn: rgba(255, 255, 255, 0.09);
+  --room-react-btn-hover: rgba(255, 255, 255, 0.18);
+  --room-react-btn-active: rgba(255, 255, 255, 0.27);
+  --room-react-tooltip-border: 0.5px solid rgba(255, 255, 255, 0.09);
+  --room-emoji-skin: #FFD54F;
+  --room-emoji-skin-shade: #F5A623;
+  --room-emoji-heart: #FF4D5A;
+  --room-emoji-heart-shade: #C2141F;
+  --room-switch-off: #555B62;
+  --room-switch-on: #0D6BDE;
+  --room-switch-thumb-shadow: 0 4px 8px #00000014, 0 2px 4px #00000014;
+
+  /* ---- panels (§8.7–8.10) ---- */
+  --room-row-icon-hover: rgba(0, 0, 0, 0.45);
+  --room-row-menu-shadow: 0 8px 24px rgba(0, 0, 0, 0.48);
+  --room-disabled-text: #596069;
+  --room-select-disabled-border: rgba(89, 96, 105, 0.25);
+  --room-footer-menu-border: #3A3A3A;
+  --room-hosttools-danger: #E8173D;
+  --room-chat-muted: rgba(255, 255, 255, 0.56);
+  --room-chat-bar: rgba(255, 255, 255, 0.06);
+  --room-chat-bar-hover: rgba(255, 255, 255, 0.1);
+  --room-chat-popover: #2A2A2A;
+  --room-chat-popover-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --room-chat-coachmark: #333333;
+  --room-chat-send-disabled: #333333;
+  --room-chat-send-icon-disabled: #6B7280;
+  --room-chat-placeholder: #DFE3E8;
+  --room-chat-header-btn-hover: rgba(255, 255, 255, 0.08);
+  --room-chat-header-disabled: #8E9194;   /* .chat-header__title-name--button-disable */
+  --room-chat-privacy-shield: #4F9AF8;    /* "Who can see your messages?" sprite shield */
+
+  /* ---- invite window (§8.11) ---- */
+  --room-invite-track: #3A3A3A;
+  --room-invite-tab-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --room-invite-hover: #2681F2;
+  --room-invite-cancel-border: #555555;
+  --room-invite-cancel-hover: rgba(255, 255, 255, 0.08); /* #ffffff14 */
+  --room-invite-input-border: #555B62;
+
+  /* ---- in-room Settings window (§8.17, spec 05 §12) ---- */
+  --room-window-close: #D0D0D0;  /* thin light-grey ✕ of the Settings / Breakout windows (room-16, room-20) */
+  --room-settings-border: 0.5px solid rgba(0, 0, 0, 0.25);
+  --room-settings-shadow: var(--shadow-room-popover), var(--shadow-room-window);
+  --room-settings-text: #F5F5F5;
+  --room-settings-tab-text: rgba(255, 255, 255, 0.54);
+  --room-settings-tab-active: #4F9AF7;
+  --room-settings-chip-general: rgba(255, 255, 255, 0.8); /* [D] "white" chip, measured ≈#CFCFCF on #1D1E20 */
+  --room-settings-chip-video: #AFD784;
+  --room-settings-chip-audio: #82C786;
+  --room-settings-chip-background: #4FD1E2;
+  --room-settings-chip-statistics: #C182D1;
+  --room-settings-chip-about: #7A86CC;
+  --room-settings-radio-border: #A8A8A8;
+  --room-settings-radio-off: linear-gradient(to bottom, #EDECED, #FFFFFF 60%); /* .zm-radio-button:before */
+  --room-settings-radio-checked-border: #196BE5;
+  --room-breakout-radio-ring: #9DA5B5;
+  --room-breakout-radio-on: #0E72ED;
+  --room-settings-radio-checked: linear-gradient(#5F9BFA, #397FE9);
+  --room-settings-radio-dot: #FFFFFF; /* centre of the checked disc */
+  --room-settings-preview: #2E2E2E;               /* [D] video preview area (room-17) */
+  --room-settings-muted: rgba(255, 255, 255, 0.72);
+  --room-settings-hint: #98A0A9;
+  --room-settings-report: #4793F1;
+  --room-settings-level: rgba(255, 255, 255, 0.9); /* [D] Output / Input level line (room-18) */
+
+  /* ---- static More dialogs (§8.12.5–6, spec 05 §13.3 / §13.5) ---- */
+  --room-captions-hint: rgba(255, 255, 255, 0.7);
+  --room-captions-chevron: rgba(255, 255, 255, 0.54); /* [D] room-19 indicator */
+  --room-captions-focus: 0 0 0 1px var(--mr-primary); /* .zm-modal--dark input:focus */
+  --room-breakout-input-border: #BABACC;
+  --room-breakout-stepper: #BABACC; /* [D] room-20 ▴▾ */
+
+  /* ---- End / Leave (§8.14) ---- */
+  --room-check-on: linear-gradient(to bottom, #609BFB, #3A80E9); /* .zm-checkbox-checked:before (Give feedback) */
+  --room-check-on-border: #196BE6;
+  --room-leave-blur: blur(48px);
+  --room-leave-cancel: rgba(255, 255, 255, 0.04);
+  --room-leave-cancel-hover: rgba(255, 255, 255, 0.09);
+
+  /* ---- motion ---- */
+  --room-bars-transition: transform var(--dur-200) var(--ease-out);
+  --room-stage-transition: all var(--dur-200) var(--ease-in);
+
+  /* ---- left page (§7.11) ---- */
+  --room-left-title: var(--color-text-primary);
+}

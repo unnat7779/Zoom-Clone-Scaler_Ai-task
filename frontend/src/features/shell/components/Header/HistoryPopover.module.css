@@ -1,0 +1,28 @@
+.paper {
+  padding: 12px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-large);
+  animation: fade var(--dur-200) var(--ease-standard);
+}
+
+.exiting {
+  opacity: 0;
+  transition: opacity var(--dur-200) var(--ease-standard);
+  pointer-events: none;
+}
+
+.empty { padding: 10px; }
+
+.text {
+  margin-top: 4px;
+  color: var(--color-text-tertiary);
+  font: 400 14px/18px var(--font-app);
+  white-space: nowrap;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

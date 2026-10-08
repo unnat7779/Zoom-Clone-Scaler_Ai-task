@@ -1,0 +1,48 @@
+/* Invitees: banner 8px under the input; the added list 16px under the banner */
+.banner {
+  max-width: var(--schedule-banner-max);
+  margin-top: 8px;
+}
+
+/* `a.zoom-link` "Connect calendar": its own 18px line under the 21px text (banner 73 tall) */
+.connect {
+  display: flex;
+  color: var(--color-text-link);
+  font-size: 14px;
+  line-height: 18px;
+}
+.connect:hover { color: var(--color-text-link-hover); text-decoration: underline; }
+.connect:active { color: var(--color-text-link-press); }
+
+/* `.select-user-container`: 16px under the banner, max 350 then scrolls */
+.list {
+  width: 100%;
+  max-width: var(--schedule-width-long);
+  max-height: 350px;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+.list::-webkit-scrollbar { width: 6px; }
+.list::-webkit-scrollbar-thumb { border-radius: var(--radius-6); background: var(--scrollbar-thumb); }
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding-right: 8px;
+}
+
+.email {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0 8px;
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  line-height: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.remove { color: var(--color-icon-strong); }

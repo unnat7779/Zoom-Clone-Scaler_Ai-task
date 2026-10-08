@@ -1,0 +1,83 @@
+/* Portal page frame (PRD §7.5.2, §11.1). */
+.portal {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-bg-surface);
+  color: var(--portal-label);
+}
+
+/* a focused or scrolled-to field never ends up under the fixed header or the pinned action bar */
+:global(html):has(.portal) {
+  scroll-padding-top: calc(var(--portal-header-height) + 16px);
+  scroll-padding-bottom: var(--portal-sticky-bar-room);
+}
+@media (max-width: 767px) {
+  :global(html):has(.portal) { scroll-padding-top: calc(var(--portal-header-height-mobile) + 16px); }
+}
+/* phone landscape: the header scrolls away (PortalHeader), so nothing covers the top */
+@media (max-height: 500px) and (orientation: landscape) {
+  :global(html):has(.portal) { scroll-padding-top: 16px; }
+}
+
+/* zoom.us surface (PRD §5.1): every text node in the portal font with 0.42px tracking. Kit
+ * controls read --font-app; form controls inherit the tracking (zero specificity, so a
+ * component's own letter-spacing still wins). `.overlays` carries the same to the menus,
+ * popovers and dialogs appended to <body> (OverlayScope), and puts select menus under the
+ * fixed header (03-schedule.md §6.3: z 105–119 < 1030). */
+.portal,
+.overlays {
+  --font-app: var(--font-portal);
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+.overlays { --select-menu-z: var(--portal-floating-z); }
+/* phones [D]: select menus get 44px touch rows (5½ visible; they stay anchored and clamped inside
+ * the visible viewport, above the on-screen keyboard) */
+@media (max-width: 767px) {
+  .overlays {
+    --select-option-min-height: var(--portal-touch-target);
+    --select-menu-max-height: var(--portal-select-menu-max-height-phone);
+  }
+}
+:where(.portal, .overlays) :is(button, input, textarea, select) { letter-spacing: inherit; }
+
+/* touch phones [D]: iOS Safari zooms the page into any focused field under 16px (the viewport allows
+ * zoom), so text fields use 16px there — in landscape too; the controls keep their 32px Zoom boxes */
+@media (max-width: 767px) and (pointer: coarse), (max-height: 500px) and (max-width: 1023px) and (pointer: coarse) {
+  .portal :is(input:not([type="checkbox"], [type="radio"]), textarea) { font-size: 16px; }
+}
+
+/* the side menu column (≈1000px) keeps the footer below the fold on every side-menu page */
+.body {
+  display: flex;
+  align-items: stretch;
+  padding-top: var(--portal-header-height);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--portal-content-padding);
+}
+
+/* usePortalHeaderOnly(): full-width page under the header, no side menu (PRD §7.8.6) */
+.headerOnly {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--portal-error-page-height);
+}
+
+@media (max-width: 1279px) {
+  .content { padding: 32px 24px; }
+}
+
+@media (max-width: 1023px) {
+  .body { display: block; }
+  .content { padding: 32px 16px; }
+}
+
+@media (max-width: 767px) {
+  .body { padding-top: var(--portal-header-height-mobile); }
+}

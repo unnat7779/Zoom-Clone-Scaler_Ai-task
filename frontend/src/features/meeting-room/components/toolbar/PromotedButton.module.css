@@ -1,0 +1,14 @@
+/* `#footer-temporary-icon-divider` (spec 05 §5.3 [M]): 17×22 — a 1px white line with 8px margins,
+   vertically centred in the bar (room-19 / room-20). */
+.divider {
+  flex: none;
+  width: 1px;
+  height: 22px;
+  margin: 0 8px;
+  background: var(--mr-white);
+}
+
+/* measured widths of the promoted buttons: Show Captions 108, Breakout Rooms 116 [M]
+   (`button.` outranks the shared `.button { min-width: 86px }`) */
+button.captions { min-width: 108px; }
+button.breakout { min-width: 116px; }

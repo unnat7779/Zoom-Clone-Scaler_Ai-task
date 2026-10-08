@@ -1,0 +1,26 @@
+/* `.zm-form-item` of the zoom.us meeting detail (PRD §7.8.2): label 32 tall + 20 → row pitch 52. */
+.item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.label {
+  flex: 0 0 var(--meetings-detail-label-width);
+  width: var(--meetings-detail-label-width);
+  padding: 4px 12px 4px 0;
+  color: var(--portal-detail-label);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* phones [D]: the label sits above its value like the Schedule rows at ≤767 (PRD §11.1), so values
+ * get the full width instead of 183px beside a 160px label */
+@media (max-width: 767px) {
+  .item { display: block; }
+  .label { width: 100%; padding: 4px 0 0; }
+}

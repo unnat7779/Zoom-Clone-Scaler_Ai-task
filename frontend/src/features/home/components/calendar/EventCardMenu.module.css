@@ -1,0 +1,24 @@
+/* Event-card "…" `.more-option-button` (01-shell-home Appendix A.1). */
+.moreButton {
+  display: flex;
+  padding: 2px 4px 1px;
+  border: none;
+  border-radius: var(--radius-6);
+  background: transparent;
+  color: var(--color-icon-strong);
+  cursor: pointer;
+}
+
+.moreButton > svg {
+  width: 14px;
+  height: 14px;
+}
+
+.moreButton:hover,
+.moreButton[aria-expanded="true"] { background: var(--home-card-icon-bg-hover); }
+.moreButton:active { background: var(--home-card-icon-bg-press); }
+
+/* phones [D]: 44px rows, like the PMI submenu and the profile sheet */
+@media (max-width: 767px) {
+  .menu { --menu-item-min-height: var(--touch-target-size); }
+}

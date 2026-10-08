@@ -1,0 +1,35 @@
+/* `.wr-loading-icon-wrapper{transform:scale(.7)}` around the 24px icon (margin-left 8) */
+.wrapper {
+  display: flex;
+  flex: none;
+  transform: scale(0.7);
+}
+
+/* `.wr-loading-icon`: band alpha ≈ .05 → .25 → .5 → 1 clockwise, with a round 3px cap at the head
+   (150°: x 17.25, y 21.1 on the 10.5px band radius) — critic C12 against the sprite cell */
+.ring {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  border-radius: var(--radius-round);
+  background: var(--join-hold-ring);
+  mask: var(--join-hold-ring-mask);
+  animation: rotate360 var(--join-spinner-rotate) var(--ease-linear) infinite;
+}
+.ring::after {
+  position: absolute;
+  top: 19.6px;
+  left: 15.75px;
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-round);
+  background: var(--join-hold-tip);
+  content: "";
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

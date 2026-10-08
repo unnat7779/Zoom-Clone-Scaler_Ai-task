@@ -1,0 +1,53 @@
+/* Phone bottom sheet [D] (DV10): the room's dark menu colours, full width at the bottom edge. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--room-z-popover);
+  background: var(--overlay-scrim);
+  animation: fadeIn var(--dur-150) var(--ease-out);
+}
+
+.sheet {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--room-z-popover);
+  display: flex;
+  flex-direction: column;
+  max-height: 75%;
+  padding: 4px var(--safe-right) calc(8px + var(--safe-bottom)) var(--safe-left);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--mr-menu-border);
+  border-radius: var(--radius-12) var(--radius-12) 0 0;
+  background: var(--mr-panel);
+  box-shadow: var(--shadow-room-popover);
+  color: var(--mr-white);
+  font-family: var(--font-app);
+  text-align: left;
+  white-space: normal;
+  outline: none;
+  animation: slideUp var(--dur-200) var(--ease-out);
+}
+
+/* grab handle (decorative) */
+.handle {
+  flex: none;
+  align-self: center;
+  width: 36px;
+  height: 4px;
+  margin: 4px 0 8px;
+  border-radius: var(--radius-pill);
+  background: var(--room-sheet-handle);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}

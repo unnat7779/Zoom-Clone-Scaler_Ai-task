@@ -1,0 +1,52 @@
+/* Number input (spec 05 §13.5 [M]): 60×24, bg #2A2A2A, 1px #BABACC border, radius 6; ▴▾ at the right. */
+.box {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  width: 60px;
+  height: 24px;
+  margin: 0 8px;
+  border: 1px solid var(--room-breakout-input-border);
+  border-radius: var(--radius-6);
+  background: var(--room-chat-popover);
+  vertical-align: middle;
+}
+.box:focus-within { border-color: var(--mr-primary); }
+
+.input {
+  width: 46px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mr-text-chat);
+  font: 400 12px/22px var(--font-app);
+  text-align: center;
+  outline: none;
+}
+
+.steppers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 12px;
+  height: 100%;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 9px;
+  color: var(--room-breakout-stepper);
+}
+.step svg { width: 8px; height: 8px; }
+.step:hover { color: var(--mr-white); }
+
+.down { transform: rotate(180deg); }
+
+/* phones [D]: 16px text, so iOS does not zoom the meeting in when the field gets focus */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .input { font-size: 16px; }
+}

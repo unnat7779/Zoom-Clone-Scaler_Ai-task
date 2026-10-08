@@ -1,0 +1,43 @@
+/* `.date-operation` (PRD §7.1.6, 01-shell-home §10.3): 44px, the date button centred in the
+ * space left of Open Calendar. */
+.dateRow {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 16px 0 8px;
+}
+
+.dayCell {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+/* `.select-time`: transparent md secondary zoom-button, label 14/18 700, 4px before the chevron */
+.dateButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 2px 8px;
+  border: none;
+  border-radius: var(--radius-12);
+  background: transparent;
+  color: var(--color-text-primary);
+  font: 700 14px/18px var(--home-cal-button-font);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dateButton:hover { background: var(--color-state-hover); }
+.dateButton:active { background: var(--color-state-press); }
+
+.dateChevron {
+  flex: none;
+  color: var(--color-icon-strongest);
+  transition: transform var(--dur-300) var(--ease-linear);
+}
+
+.dateChevronOpen { transform: rotate(180deg); }

@@ -1,0 +1,49 @@
+/* Anchored room menu layer (position written by useRoomAnchor). */
+.floating {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--room-z-popover);
+  outline: none;
+}
+
+/* touch screens (tablet side panels): 44px rows, the ✓ centred on them */
+@media (pointer: coarse) {
+  .floating > button,
+  .floating > [role^="menuitem"] {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .floating > button::before {
+    top: 50%;
+    translate: 0 -50%;
+  }
+}
+
+/* phone sheet [D]: the menu rows (row "…", Participants footer More, chat recipients) grow to 48px */
+.sheet > button,
+.sheet > [role^="menuitem"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 24px 12px 44px;
+  color: var(--mr-text);
+  font: 400 15px/24px var(--font-app);
+  text-align: left;
+}
+.sheet > button:disabled { color: var(--room-disabled-text); }
+/* checked rows (Mute all upon entry, the chosen chat recipient): the ✓ centred on the taller row
+   (`translate`, so the recipient tick keeps its own rotation) */
+.sheet > button::before {
+  top: 50%;
+  left: 16px;
+  translate: 0 -50%;
+}
+.sheet > [role="separator"] {
+  flex: none;
+  height: 1px;
+  margin: 6px 0;
+  background: var(--mr-divider);
+}

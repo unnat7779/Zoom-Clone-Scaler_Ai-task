@@ -1,0 +1,18 @@
+/* Calendar widget = Home "Upcoming meetings" (PRD §7.1.6, 01-shell-home §10.1). */
+.widget {
+  display: flex;
+  flex: 0 0 var(--home-calendar-height);
+  flex-direction: column;
+  min-height: var(--home-calendar-height);
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: var(--home-cal-border);
+  border-radius: var(--home-cal-radius);
+  background: var(--color-bg-surface);
+  color: var(--home-cal-text);
+}
+
+/* Phones [D]: the widget grows with the day's cards (the page scrolls, not the list) */
+@media (max-width: 767px) {
+  .widget { flex: none; }
+}

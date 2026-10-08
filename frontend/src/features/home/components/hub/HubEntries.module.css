@@ -1,0 +1,66 @@
+/* `nav.home-hub-entries_row` (PRD §7.1.5, 07-responsive §2.1.4). */
+.row {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.entry {
+  display: flex;
+  flex: 1 1 160px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  height: 56px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--home-hub-radius);
+  background: var(--color-bg-surface);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.entry:hover { background: var(--home-hub-bg-hover); }
+
+/* Portrait phones [D]: always one per row (`flex: 1 1 160px` would give a 2 + 1 grid from 368px) */
+@media (max-width: 559px) {
+  .entry { flex-basis: 100%; }
+}
+
+.entry:focus-visible {
+  outline: var(--home-hub-focus-ring);
+  outline-offset: 2px;
+}
+
+.iconWrap {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: var(--radius-10);
+}
+
+.iconWrap > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.record { background: var(--home-hub-record-bg); }
+.ai { background: var(--home-hub-ai-bg); }
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font: 600 14px/18px var(--font-app);
+  letter-spacing: var(--ls-tight);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

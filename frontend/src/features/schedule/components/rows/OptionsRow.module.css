@@ -1,0 +1,4 @@
+/* Options: "Show" button `padding: 4px 0` (26 tall), then 28px rows (`pdt-xs pdb-xs`) */
+.toggle { padding: 4px 0; }
+.list { margin-top: 2px; }
+.list > * { display: flex; padding: 4px 0; }

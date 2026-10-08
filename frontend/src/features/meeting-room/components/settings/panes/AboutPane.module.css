@@ -1,0 +1,60 @@
+/* Settings › About (spec 05 §12 [M] text styles; layout [D]). */
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 88px;
+  height: 20px;
+}
+
+.product { font: 600 20px/24px var(--font-app); }
+
+.version {
+  margin: 24px 0 0;
+  font: 600 14px/21px var(--font-app);
+}
+
+.copyright {
+  margin: 8px 0 0;
+  color: var(--room-settings-muted);
+  font: 400 14px/21px var(--font-app);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+  color: var(--room-settings-tab-active);
+  font: 400 14px/21px var(--font-app);
+}
+
+.external {
+  width: 12px;
+  height: 12px;
+}
+
+.footer {
+  margin: 48px 0 0;
+  color: var(--room-settings-hint);
+  font: 400 13px/20px var(--font-app);
+}
+
+.report {
+  color: var(--room-settings-report);
+  font: inherit;
+}
+
+.link:focus-visible,
+.report:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }

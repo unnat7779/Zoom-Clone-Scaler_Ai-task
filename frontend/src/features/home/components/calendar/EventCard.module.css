@@ -1,0 +1,133 @@
+/* Event card — Zoom's widget CSS (PRD §7.1.8, 01-shell-home Appendix A.1). */
+.card {
+  position: relative;
+  margin: 4px 0;
+  padding: 8px;
+  border: 1px solid var(--home-card-border);
+  border-radius: var(--home-card-radius);
+  background: var(--home-card-bg);
+  cursor: default;
+}
+
+.card:hover { border-color: var(--home-card-border-hover); }
+
+/* isComing / now / isPast.joined */
+.coming,
+.now,
+.pastJoined {
+  border-color: var(--home-card-live-border);
+  background: var(--home-card-live-bg);
+}
+
+.coming:hover,
+.now:hover,
+.pastJoined:hover { border-color: var(--home-card-live-border-hover); }
+
+.past { background: var(--home-card-past-bg); }
+.past:hover { border-color: var(--home-card-border-hover); }
+
+.separated { margin-top: 24px; }
+
+/* card body → Meetings tab: a link covering the card under the Start/Join and "…" buttons */
+.cardLink {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  cursor: default;
+}
+
+.mainRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  padding-right: 4px;
+  color: var(--home-card-fg);
+  font: var(--font-weight-sf-semibold) 14px/20px var(--font-app);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* `.time .allday` (padding 1px 0) wrapping a div with margin-bottom 2px */
+.time {
+  padding: 1px 0 3px;
+  font: 400 12px/16px var(--font-app);
+}
+
+.indicator {
+  max-width: 200px;
+  margin-top: 2px;
+  overflow: hidden;
+  color: var(--home-card-fg);
+  font: 400 12px/16px var(--font-app);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* past cards: `.list-item.isPast .title-text{color:var(--sidebar-item-past-color)}` keeps the
+ * 14px/20px title (the 14px/16px #6E7680 `.isPast .title` rule only hits the flex container) */
+.past .title,
+.past .time,
+.past .indicator,
+.pastJoined .time,
+.pastJoined .indicator,
+.pastJoined .title { color: var(--home-card-past-fg); }
+
+/* "Starting soon" / "Now" */
+.status {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--home-card-status-fg);
+  font: 700 10px/12px var(--font-app);
+}
+
+/* `.more`: Start/Join pill + "…" */
+.more {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 26px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.action.action {
+  position: relative;
+  margin-right: 10px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.action:focus-visible {
+  outline: none;
+  border-radius: var(--radius-6);
+  box-shadow: var(--home-card-focus-ring);
+}
+
+/* touch [D]: let the Start pill's and "…"'s 44px tap areas reach past the 26px row */
+@media (max-width: 767px), (pointer: coarse) {
+  .more { overflow: visible; }
+}
+
+.moreRight {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

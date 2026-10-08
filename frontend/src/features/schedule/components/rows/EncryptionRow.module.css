@@ -1,0 +1,30 @@
+/* Encryption radios: `.pt-sm.pb-sm` */
+.radios { padding: 4px 0; }
+.shield { width: 16px; height: 16px; color: var(--color-icon-success); }
+
+/* End-to-end warning: (502, +4 under the radios) 810×70, padding 16px 47px 16px 16px.
+ * `zoom-banner-fade`: fades in, and out over the banner's own `opacity .3s` before it unmounts */
+.banner {
+  max-width: var(--schedule-banner-max);
+  margin-top: 4px;
+  animation: bannerFadeIn var(--dur-300);
+}
+.bannerLeaving { opacity: 0; }
+@keyframes bannerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* the banner's own 14px/18px copy (two lines → 70 tall), not the page's 21px `<p>` */
+.text {
+  font-size: 14px;
+  line-height: 18px;
+}
+.learnMore {
+  margin-left: 12px;
+  color: var(--color-text-link);
+}
+.learnMore:hover { color: var(--color-text-link-hover); text-decoration: underline; }
+/* phones [D]: it always starts its own line there, so without the 12px indent (C4-19) */
+@media (max-width: 767px) {
+  .learnMore { display: block; margin: 4px 0 0; }
+}

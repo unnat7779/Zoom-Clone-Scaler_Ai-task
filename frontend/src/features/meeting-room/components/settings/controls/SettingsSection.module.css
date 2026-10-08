@@ -1,0 +1,9 @@
+/* Settings section (spec 05 §12 [M] label; spacing measured on room-16: 24px between groups,
+   18px in the denser Audio pane, which sets --settings-section-gap). */
+.section + .section { margin-top: var(--settings-section-gap, 24px); }
+
+.title {
+  margin: 0 0 8px;
+  color: var(--room-settings-text);
+  font: 700 13px/16px var(--font-app);
+}

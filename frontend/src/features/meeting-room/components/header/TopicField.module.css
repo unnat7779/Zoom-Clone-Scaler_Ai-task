@@ -1,0 +1,36 @@
+/* Host topic input (PRD §8.4.3): 350×44 wrapper, border 2px, radius 10, padding 2. */
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 350px;
+  height: 44px;
+  padding: 2px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-10);
+}
+.wrap:hover { background: var(--room-info-input-hover); }
+.wrap:focus-within { border-color: var(--room-info-input-focus); background: transparent; }
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  padding: 0 24px 0 2px;
+  outline: none;
+  color: var(--mr-white);
+  font: 700 16px/24px var(--font-app);
+}
+.input::placeholder { color: var(--mr-text-3); }
+
+.pencil {
+  position: absolute;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  color: var(--mr-white);
+  opacity: 0;
+  pointer-events: none;
+}
+.wrap:hover .pencil { opacity: 1; }
+.wrap:focus-within .pencil { opacity: 0; }

@@ -1,0 +1,50 @@
+/* `.schedule-dropdown .zm-button-group` (02-meetings.md §B.2, App. 2): 187×34 + 32×34, primary
+ * small with a 1px border in the fill colour. */
+.group {
+  display: inline-flex;
+  flex: none;
+}
+
+.main,
+.caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border: 1px solid var(--portal-primary);
+  background: var(--portal-primary);
+  color: var(--color-text-inverse);
+  font: 500 14px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  white-space: nowrap;
+  transition: all var(--dur-100);
+}
+.main:hover,
+.caret:hover { border-color: var(--portal-primary-hover); background: var(--portal-primary-hover); }
+.main:active,
+.caret:active { border-color: var(--portal-primary-active); background: var(--portal-primary-active); }
+
+/* the two halves overlap by 1px; their facing borders are the 50 % white divider
+ * (`.zm-button-group .zm-button--primary:first-child{border-right-color:hsla(0,0%,100%,.5)}`, C4-2) */
+.main {
+  position: relative;
+  z-index: 1;
+  gap: 4px;
+  margin-right: -1px;
+  padding: 6px 16px;
+  border-radius: var(--radius-8) 0 0 var(--radius-8);
+}
+.main,
+.main:hover,
+.main:active { border-right-color: var(--portal-split-divider); }
+.plus { width: 14px; height: 14px; }
+
+.caret {
+  width: 32px;
+  padding: 0 5px;
+  border-radius: 0 var(--radius-8) var(--radius-8) 0;
+}
+.caret,
+.caret:hover,
+.caret:active { border-left-color: var(--portal-split-divider); }
+.chevron { width: 12px; height: 12px; }

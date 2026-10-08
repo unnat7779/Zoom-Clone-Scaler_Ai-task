@@ -1,0 +1,62 @@
+/* Recurring meeting expanded (03-schedule.md §8.1; sch-10…12). Sub-rows reuse the form row
+ * geometry inside the controls column: labels at x=502, controls at x=672, 57px pitch. */
+
+.checkboxLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* `span.recurrence-text`: 26px after the label, 700 14px/24px */
+.summary {
+  margin-left: 26px;
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.form { margin-top: 16px; }
+.subRow:last-child { margin-bottom: 0; }
+/* No Fixed Time: only the Recurrence row, and Zoom keeps ≈51px between it and Invitees (sch-12, C4-1) */
+.noFixedTime .subRow:last-child { margin-bottom: 26px; }
+
+.asterisk {
+  margin-left: 4px;
+  color: var(--color-text-error);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+}
+.unit {
+  margin-left: 8px;
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  line-height: 14px;
+}
+.inline > :global(*) + :global(*) { margin-left: 8px; }
+.inline > .unit { margin-left: 8px; }
+
+/* Weekly: Sun … Sat, 16px apart */
+.weekdays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 6px 0;
+}
+
+/* Monthly: two 32px lines */
+.monthly { padding-bottom: 7px; } /* Day → End date 104.7 (sch-11, C4-13) */
+.monthly > * { margin-bottom: 9px; }
+.monthly > :last-child { margin-bottom: 0; }
+
+/* End date: `.recurring-end-data` flex-wrap, row-gap 10; "After" on its own line */
+.endDate {
+  align-items: center;
+  row-gap: 10px;
+}
+.endDate > :last-child { flex-basis: 100%; }

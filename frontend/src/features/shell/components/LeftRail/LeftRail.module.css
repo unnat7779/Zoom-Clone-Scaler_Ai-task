@@ -1,0 +1,78 @@
+/* Left rail (PRD §6.7): the same from 768px up (§11.2); phones get the bottom tab bar [D].
+ * A landscape notch widens it by the left safe area (0 on desktop). */
+.rail {
+  display: flex;
+  flex: 0 0 calc(var(--shell-rail-width) + var(--shell-safe-left));
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4px 0 calc(4px + var(--shell-safe-left));
+  background: var(--shell-rail-bg);
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 72px;
+}
+
+.endSection {
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  width: 72px;
+  min-height: 56px;
+  padding: 12px 0 8px;
+  border: 0;
+  border-radius: var(--rail-tab-radius);
+  background: transparent;
+  color: var(--shell-rail-fg);
+  cursor: pointer;
+}
+
+.tab:hover {
+  background: var(--shell-rail-bg-hover);
+  color: var(--shell-rail-fg-active);
+}
+
+.tab[aria-current="page"],
+.tab[aria-current="page"]:hover {
+  background: var(--shell-rail-bg-selected);
+  color: var(--shell-rail-fg-active);
+}
+
+.tab:focus-visible { outline-offset: -4px; }
+
+.tabInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  width: 18px;
+  height: 18px;
+}
+.icon > svg { width: 18px; height: 18px; }
+
+.label {
+  margin-top: 4px;
+  font: 400 10px/14px var(--font-app);
+  letter-spacing: var(--ls-rail);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* very short viewports: the Settings auto margin collapses to 4px */
+@media (max-height: 380px) {
+  .endSection { margin-top: 4px; }
+}
+
+@media (max-width: 767px) {
+  .rail { display: none; }
+}

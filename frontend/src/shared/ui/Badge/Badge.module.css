@@ -1,0 +1,22 @@
+/* zoom-ui label badge (06-design-system.md §6.2). */
+.badge {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  max-height: 16px;
+  padding: 0 4px;
+  border: 1px solid;
+  border-radius: var(--radius-pill);
+  font: 500 10px/16px var(--font-app);
+  white-space: nowrap;
+}
+.sm { padding: 1px 4px; font: 600 8px/12px var(--font-app); }
+.blue { border-color: var(--zoom-color-border-subtle-primary); background: var(--zoom-color-fill-subtler-primary); color: var(--zoom-color-text-strong-primary); }
+.gray { border-color: var(--zoom-color-border-subtle-neutral); background: var(--zoom-color-fill-subtler-neutral); color: var(--zoom-color-text-strong-neutral); }
+.green { border-color: var(--zoom-color-border-subtle-success); background: var(--zoom-color-fill-subtler-success); color: var(--zoom-color-text-strong-success); }
+.orange { border-color: var(--zoom-color-border-subtle-complementary); background: var(--zoom-color-fill-subtler-complementary); color: var(--zoom-color-text-strong-complementary); }
+.yellow { border-color: var(--zoom-color-border-subtle-warning); background: var(--zoom-color-fill-subtler-warning); color: var(--zoom-color-text-strong-warning); }
+.red { border-color: var(--zoom-color-border-subtle-error); background: var(--zoom-color-fill-subtler-error); color: var(--zoom-color-text-strong-error); }
+.purple { border-color: var(--zoom-color-border-subtle-supplementary1); background: var(--zoom-color-fill-subtler-supplementary1); color: var(--zoom-color-text-strong-supplementary1); }
+.cyan { border-color: var(--zoom-color-border-subtle-supplementary2); background: var(--zoom-color-fill-subtler-supplementary2); color: var(--zoom-color-text-strong-supplementary2); }

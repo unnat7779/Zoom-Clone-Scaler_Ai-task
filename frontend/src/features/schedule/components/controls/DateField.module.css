@@ -1,0 +1,42 @@
+/* `.zoom-date-input--md` (03-schedule.md §5.3, App. A). Keeps its 240px at every width: at ≤767 the
+ * time + AM/PM wrap under it (`.when-item-widget{flex-wrap:wrap}`, R6-07). */
+.field {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  width: var(--schedule-width-date);
+  max-width: 100%;
+  height: 32px;
+  padding: 0 9px 0 11px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+}
+.field:hover:not(:disabled) { background: var(--input-bg-hover); }
+.field:focus-visible { border-color: var(--input-border-focus); box-shadow: var(--input-focus-shadow); }
+.field:disabled { border-color: var(--input-border-disabled); cursor: not-allowed; }
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--input-fg);
+  font: 400 14px/18px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.field:disabled .label,
+.field:disabled .icon { color: var(--input-fg-disabled); }
+
+.icon {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  color: var(--color-icon-strong);
+}

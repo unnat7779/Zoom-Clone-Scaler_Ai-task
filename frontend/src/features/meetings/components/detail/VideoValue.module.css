@@ -1,0 +1,9 @@
+/* Video value (PRD §7.8.2): Host / Participant sub-rows 28px apart, 120px name column. */
+.video {
+  padding: 5px 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+.line { display: flex; }
+.line + .line { margin-top: 8px; }
+.name { width: 120px; }

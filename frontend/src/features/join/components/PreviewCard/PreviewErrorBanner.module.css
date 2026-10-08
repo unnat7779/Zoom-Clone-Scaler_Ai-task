@@ -1,0 +1,39 @@
+/* `.preview-error.preview-video__error` (wc_meeting.css): absolute, top 8, centred (left/right 0,
+   margin auto), rgba(0,0,0,.6), 14px/24px rgba(255,255,255,.8), padding 14px 16px, radius 14,
+   max-width 90%, z 100; warning icon 8px before the copy. */
+.banner {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  left: 0;
+  z-index: var(--join-preview-error-z);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 90%;
+  margin: auto;
+  padding: 14px 16px;
+  border-radius: var(--radius-14);
+  background: var(--join-preview-error-bg);
+  color: var(--join-preview-error-fg);
+  font: 400 14px/24px var(--font-app);
+  text-align: left;
+}
+
+.icon {
+  flex: none;
+  width: 14px;
+  height: 13px;
+  margin-right: 8px;
+  color: var(--mr-warning);
+}
+
+/* `.preview-error-doc`: #1890FF, no underline */
+.doc {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-link);
+  font: inherit;
+}

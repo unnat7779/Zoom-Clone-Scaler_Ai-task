@@ -1,0 +1,26 @@
+/* Stage `#wc-container-left` (PRD §8.2 [M]): bg #0D0D0D, shrinks to make room for a panel. */
+.stage {
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--mr-bg-stage);
+  transition: var(--room-stage-transition);
+  container: stage / inline-size;
+}
+
+/* a side-column panel takes 400px (the pop-out window and the phone sheet float over the stage) */
+.withPanel {
+  width: calc(100% - 400px);
+}
+
+/* tiles lay out inside the safe area (the whole stage when the insets are 0); no stacking context,
+   so the tiles' name tags and rings keep layering with the stage's bars as before */
+.videoArea {
+  position: absolute;
+  top: var(--safe-top);
+  right: var(--safe-right);
+  bottom: var(--safe-bottom);
+  left: var(--safe-left);
+}

@@ -1,0 +1,7 @@
+/* `.meetings` list column (02-meetings.md §A.2–A.4, App. 1): PMI card, groups, "Add a calendar". */
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}

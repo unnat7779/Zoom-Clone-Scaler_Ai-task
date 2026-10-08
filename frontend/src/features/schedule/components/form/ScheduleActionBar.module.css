@@ -1,0 +1,18 @@
+/* `.sticky-btn-wrapper`: white, `padding: 24px 0`, left aligned; no shadow, border or transition. */
+.bar {
+  padding: 24px 0;
+  text-align: left;
+}
+
+/* adjacent zoom-ui buttons: `.zoom-button + .zoom-button { margin-left: 8px }` */
+.cancel { margin-left: 8px; }
+
+/* Zoom pads the bar `0 10px` at ≤390 but starts it 10px further left, so Save stays at the inputs'
+ * x=16; the bar here starts at the content edge, so the padding stays 0 (R6-11). */
+
+/* phones [D]: 44px Save / Cancel; pinned, the bar clears the home indicator (safe area) */
+@media (max-width: 767px) {
+  .bar { padding: 12px 0; }
+  .bar > button { height: var(--portal-touch-target); padding: 0 20px; }
+  .fixed { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+}

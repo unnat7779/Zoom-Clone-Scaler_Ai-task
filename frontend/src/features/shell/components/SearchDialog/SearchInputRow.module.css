@@ -1,0 +1,64 @@
+/* `._searchInput` (01-shell-home §4): no border, no background. */
+.row {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 36px;
+  padding: 2px 4px;
+}
+
+.group {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.magnifier { flex: none; color: var(--shell-search-muted); }
+
+.inputWrapper {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  padding: 4px 0 4px 12px;
+  font-size: 14px;
+}
+
+/* The field keeps Chrome's UA font size (13.33px) [M]. */
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--shell-search-input-fg);
+  font: 400 13.333px/normal var(--font-app);
+  caret-color: var(--shell-search-caret);
+}
+.input::placeholder { color: var(--shell-search-placeholder); }
+
+.clear { flex: none; margin-left: 18px; }
+
+/* ✕ 24×24 tertiary icon button, `margin: 4px 8px`, 14px glyph */
+.close.close { margin: 4px 8px; color: var(--shell-search-muted); }
+.close.close:hover { color: var(--shell-search-button-fg-hover); }
+.close.close:active { background: var(--shell-search-button-bg-press); color: var(--shell-search-button-fg-press); }
+
+/* Phones [D]: a 44px row; 16px text so iOS does not zoom into the focused field. */
+@media (max-width: 767px) {
+  .row { height: var(--touch-target-size); padding: 0; }
+
+  .group { padding: 0 4px; }
+
+  .input { height: 32px; font-size: 16px; }
+
+  .close.close { margin: 0 0 0 8px; }
+}
+
+/* Touch phones in landscape [D] (Zoom's ≥768 dialog): 16px text only, so iOS does not zoom */
+@media (max-height: 500px) and (max-width: 1023px) and (pointer: coarse) {
+  .input { font-size: 16px; }
+}

@@ -1,0 +1,37 @@
+/* zoom.us/meeting header + "Details" capsule (02-meetings.md §B.2, §C.2). Zoom's upgrade banner
+ * between the header and the tabs is omitted (§B.3 [D]). */
+.head {
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* `header.mgb-md`: flex, line-height 30, 16px below; the h1 box is 769×34 next to the 219px button group */
+.header {
+  display: flex;
+  margin-bottom: 16px;
+  line-height: 30px;
+}
+.title {
+  flex: 1;
+  min-width: 0;
+  color: var(--portal-label);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 26.4px;
+}
+
+/* `.zm-tabs--capsule` header, margin-bottom 24 */
+.capsules {
+  display: flex;
+  margin-bottom: 24px;
+}
+.capsule {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: var(--radius-6);
+  background: var(--meetings-capsule-bg);
+  color: var(--meetings-capsule-fg);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 32px;
+}

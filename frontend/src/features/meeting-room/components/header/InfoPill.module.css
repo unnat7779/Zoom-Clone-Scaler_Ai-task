@@ -1,0 +1,50 @@
+/* Meeting-info pill (PRD §8.4.1 [M]). */
+.wrap {
+  display: flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 600px;
+  height: 22px;
+  margin-left: 4px;
+  border-radius: var(--radius-20);
+  background: var(--mr-pill-bg);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 22px;
+  padding: 3px 10px 3px 6px;
+  border-radius: var(--radius-8);
+  color: var(--mr-white);
+}
+.button:hover { background: var(--room-pill-hover); }
+.button:active,
+.button[aria-expanded="true"] { background: var(--room-pill-active); }
+.button:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.title {
+  min-width: 0;
+  margin-left: 6px;
+  overflow: hidden;
+  font: 700 12px/16px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* touch screens: the 22px pill takes a 44px-tall hit area */
+@media (pointer: coarse) {
+  .button { position: relative; }
+  .button::after {
+    position: absolute;
+    inset: -11px 0;
+    content: "";
+  }
+}

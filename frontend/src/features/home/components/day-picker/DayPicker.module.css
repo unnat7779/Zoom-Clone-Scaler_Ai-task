@@ -1,0 +1,91 @@
+/* Day picker (PRD §7.1.7, 01-shell-home §10.5 + Appendix A.6); the month table is the shared `DayGrid`. */
+.picker {
+  width: 312px;
+  padding: 16px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--home-picker-radius);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-medium);
+}
+
+/* 14×14 rotated-square arrow pointing at the date button */
+.picker::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid var(--color-border-subtle);
+  border-left: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-surface);
+  transform: rotate(45deg);
+}
+
+/* Phones and short viewports [D] (see DayPicker): flipped above the button, the arrow points down;
+ * pushed on screen over the button, no arrow. */
+.picker[data-side="top"]::before {
+  top: auto;
+  bottom: -8px;
+  transform: rotate(225deg);
+}
+.picker[data-clamped]::before { display: none; }
+
+/* Short (landscape) viewports [D]: kept on screen by the popover (see DayPicker), scrolls if taller
+ * than the screen; the arrow would no longer point at the button. */
+@media (max-height: 540px) {
+  .picker { max-height: calc(100dvh - 16px); overflow-y: auto; }
+
+  .picker::before { display: none; }
+}
+
+/* `.zoom-date-panel__body` */
+.body {
+  position: relative;
+  width: 278px;
+  padding: 15px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.navGroup { display: flex; }
+
+.headerLabel {
+  color: var(--color-text-primary);
+  font: 600 14px/24px var(--font-app);
+  white-space: nowrap;
+}
+
+.labelButton {
+  display: inline-block;
+  padding: 0 2px;
+  border-radius: var(--radius-4);
+  cursor: pointer;
+}
+
+.labelButton:hover { background: var(--color-state-hover); }
+
+/* Phones [D]: the Schedule picker's touch sizes — as wide as the screen allows (≤343), 40px day
+ * cells and 40px header buttons. */
+@media (max-width: 767px) {
+  .picker { width: min(var(--home-picker-width-phone), 100vw - 32px); padding: 0; }
+  .body { width: 100%; }
+  .header { height: var(--home-picker-cell-phone); }
+  .navButton.navButton { width: var(--home-picker-cell-phone); height: var(--home-picker-cell-phone); }
+  .headerLabel { line-height: var(--home-picker-cell-phone); }
+  .grid { grid-template-columns: repeat(7, 1fr); column-gap: 0; }
+  .grid [role="columnheader"],
+  .grid [role="gridcell"] { justify-self: center; }
+  .grid [role="gridcell"] {
+    width: var(--home-picker-cell-phone);
+    height: var(--home-picker-cell-phone);
+    margin-top: 4px;
+    line-height: calc(var(--home-picker-cell-phone) - 2px);
+  }
+}

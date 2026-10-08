@@ -1,0 +1,5 @@
+/* the ⓘ popover's bullet list */
+.infoList {
+  margin-left: 16px;
+  list-style: disc;
+}

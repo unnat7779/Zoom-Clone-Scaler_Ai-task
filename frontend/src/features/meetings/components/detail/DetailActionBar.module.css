@@ -1,0 +1,27 @@
+/* `.detail-btns-wrapper` (PRD §7.8.3): buttons 10px apart; pinned it gets the top rule. */
+.bar {
+  display: flex;
+  align-items: center;
+  padding: 24px 0 24px 5px;
+  white-space: nowrap;
+}
+.bar > * { margin-right: 10px; }
+
+.fixed {
+  z-index: var(--meetings-sticky-z);
+  border-top: 1px solid var(--portal-divider);
+}
+
+/* phones [D]: one row of 44px buttons that scrolls sideways (the cut-off last button shows there
+ * is more) instead of squeezing five buttons into 343px; pinned, it clears the home indicator */
+@media (max-width: 767px) {
+  .bar {
+    padding: 12px 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .bar::-webkit-scrollbar { display: none; }
+  .bar > :is(button, a) { flex: none; height: var(--meetings-touch-target); }
+  .fixed { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+}

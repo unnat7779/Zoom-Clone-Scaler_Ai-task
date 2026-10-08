@@ -1,0 +1,8 @@
+/* `p.pdt-xs.pdb-xs` value of a detail row (PRD §7.8.2): 14px/21px, padding 4px 0 → 32 tall. */
+.value {
+  padding: 4px 0;
+  color: var(--portal-value);
+  font-size: 14px;
+  line-height: 21px;
+  overflow-wrap: anywhere;
+}

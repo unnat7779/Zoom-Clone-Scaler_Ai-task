@@ -1,0 +1,78 @@
+/* Workplace layout skeleton (PRD §6.1, §11.2). The dynamic viewport height (= 100vh on desktop)
+ * keeps the card above a phone's browser bars; safe-area insets are 0 on desktop. */
+.shell {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: var(--shell-viewport-height);
+  overflow: hidden;
+  background: var(--color-bg-app);
+}
+
+.bannerSlot {
+  flex: none;
+  margin-bottom: var(--shell-banner-gap);
+  padding: 0 var(--shell-gutter);
+}
+
+.mainBody {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 0 calc(var(--shell-gutter) + var(--shell-safe-right)) calc(var(--shell-gutter) + var(--shell-safe-bottom)) 0;
+}
+
+.contentColumn {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--shell-card-radius);
+  background: var(--color-bg-surface);
+}
+
+/* Phones [D]: no banner gap, a full-bleed white card between the header and the tab bar. */
+@media (max-width: 767px) {
+  .bannerSlot { margin-bottom: 0; }
+
+  .mainBody { padding: 0 var(--shell-safe-right) 0 var(--shell-safe-left); }
+
+  .card { border-radius: 0; }
+}
+
+/* Full viewport: the wrappers generate no box, so the page lays out as a child of <body>. */
+.hidden,
+.hidden .mainBody,
+.hidden .contentColumn,
+.hidden .card { display: contents; }
+
+@media (max-width: 767px) {
+  .desktop,
+  .desktop .mainBody,
+  .desktop .contentColumn,
+  .desktop .card { display: contents; }
+
+  .desktop > :not(.mainBody),
+  .desktop .mainBody > :not(.contentColumn) { display: none; }
+}
+
+/* Workplace global scrollbar (PRD §5.8.16), only while the chrome is shown. */
+.visible ::-webkit-scrollbar { width: 6px; height: 6px; }
+.visible ::-webkit-scrollbar-track { border-radius: var(--radius-6); background: transparent; }
+.visible ::-webkit-scrollbar-thumb { border-radius: var(--radius-6); background: var(--zc-scrollbar-thumb); }
+.visible ::-webkit-scrollbar-thumb:hover { background: var(--zc-scrollbar-thumb-hover); }
+
+@media (min-width: 768px) {
+  .desktop ::-webkit-scrollbar { width: 6px; height: 6px; }
+  .desktop ::-webkit-scrollbar-track { border-radius: var(--radius-6); background: transparent; }
+  .desktop ::-webkit-scrollbar-thumb { border-radius: var(--radius-6); background: var(--zc-scrollbar-thumb); }
+  .desktop ::-webkit-scrollbar-thumb:hover { background: var(--zc-scrollbar-thumb-hover); }
+}

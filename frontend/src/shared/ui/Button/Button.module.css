@@ -1,0 +1,125 @@
+/* zoom-ui button, Workplace look (PRD §5.8.1). No transitions (Zoom has none). */
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  border: none;
+  white-space: nowrap;
+  font: var(--btn-font-weight) var(--btn-font-size) / var(--btn-line-height) var(--font-app);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button > svg {
+  flex: none;
+  width: var(--btn-icon-md);
+  height: var(--btn-icon-md);
+}
+
+/* ---- sizes ---- */
+.sm {
+  height: var(--btn-height-sm);
+  padding: var(--btn-padding-sm);
+  border-radius: var(--btn-radius-sm);
+  font-size: var(--btn-font-size-sm);
+  line-height: var(--btn-line-height-sm);
+}
+.sm > svg { width: var(--btn-icon-sm); height: var(--btn-icon-sm); }
+.md { height: var(--btn-height-md); padding: var(--btn-padding-md); border-radius: var(--btn-radius-md); }
+.lg { height: var(--btn-height-lg); padding: var(--btn-padding-lg); border-radius: var(--btn-radius-lg); }
+.tertiary.sm { padding: var(--btn-tertiary-padding-sm); }
+.tertiary.md { padding: var(--btn-tertiary-padding-md); }
+.tertiary.lg { padding: var(--btn-tertiary-padding-lg); }
+
+/* ---- primary ---- */
+.primary { background: var(--btn-primary-bg); color: var(--btn-primary-fg); font-weight: var(--btn-font-weight-strong); }
+.primary:hover { background: var(--btn-primary-bg-hover); }
+.primary:active { background: var(--btn-primary-bg-active); }
+.primary.danger { background: var(--btn-danger-bg); }
+.primary.danger:hover { background: var(--btn-danger-bg-hover); }
+.primary.danger:active { background: var(--btn-danger-bg-active); }
+
+/* ---- secondary ---- */
+.secondary { background: var(--btn-secondary-bg); color: var(--btn-secondary-fg); }
+.secondary:hover { background: var(--btn-secondary-bg-hover); color: var(--btn-secondary-fg-hover); }
+.secondary:active { background: var(--btn-secondary-bg-active); color: var(--btn-secondary-fg-active); }
+.secondary.danger { color: var(--btn-danger-secondary-fg); }
+.secondary.danger:hover { color: var(--btn-danger-secondary-fg-hover); }
+.secondary.danger:active { color: var(--btn-danger-secondary-fg-active); }
+
+/* ---- secondary-neutral (also secondary icon-only) ---- */
+.secondaryNeutral,
+.secondary.iconOnly { background: var(--btn-secondary-neutral-bg); color: var(--btn-secondary-neutral-fg); }
+.secondaryNeutral:hover,
+.secondary.iconOnly:hover { background: var(--btn-secondary-neutral-bg-hover); color: var(--btn-secondary-neutral-fg); }
+.secondaryNeutral:active,
+.secondary.iconOnly:active { background: var(--btn-secondary-neutral-bg-active); color: var(--btn-secondary-neutral-fg); }
+
+/* ---- tertiary ---- */
+.tertiary { background: var(--btn-tertiary-bg); color: var(--btn-tertiary-fg); }
+.tertiary:hover { background: var(--btn-tertiary-bg-hover); color: var(--btn-tertiary-fg-hover); }
+.tertiary:active { background: var(--btn-tertiary-bg-active); color: var(--btn-tertiary-fg-active); }
+.tertiary.danger { color: var(--btn-danger-secondary-fg); }
+.tertiary.danger:hover { color: var(--btn-danger-secondary-fg-hover); }
+.tertiary.danger:active { color: var(--btn-danger-secondary-fg-active); }
+.tertiary.iconOnly,
+.tertiary.iconOnly:hover,
+.tertiary.iconOnly:active { color: var(--btn-tertiary-icon-fg); }
+
+/* ---- text ---- */
+.text { background: transparent; color: var(--btn-text-fg); }
+.text:hover { color: var(--btn-text-fg-hover); }
+.text:active { color: var(--btn-text-fg-active); }
+.text.danger { color: var(--btn-danger-secondary-fg); }
+.text.danger:hover { color: var(--btn-danger-secondary-fg-hover); }
+.text.danger:active { color: var(--btn-danger-secondary-fg-active); }
+.pureText { height: auto; padding: 0; border-radius: var(--radius-4); }
+
+/* ---- overlay ---- */
+.overlay {
+  background: var(--btn-overlay-bg);
+  color: var(--btn-overlay-fg);
+  font-weight: var(--btn-font-weight-strong);
+  backdrop-filter: var(--btn-overlay-blur);
+}
+.overlay:hover { background: var(--btn-overlay-bg-hover); }
+.overlay:active { background: var(--btn-overlay-bg-active); }
+
+/* ---- icon-only: square box, round, bigger glyph ---- */
+.iconOnly { padding: 0; border-radius: var(--radius-round); }
+.iconOnly.sm { width: var(--btn-icononly-sm); }
+.iconOnly.md { width: var(--btn-icononly-md); }
+.iconOnly.lg { width: var(--btn-icononly-lg); }
+.iconOnly.sm > svg { width: var(--btn-icononly-glyph-sm); height: var(--btn-icononly-glyph-sm); }
+.iconOnly.md > svg { width: var(--btn-icononly-glyph-md); height: var(--btn-icononly-glyph-md); }
+.iconOnly.lg > svg { width: var(--btn-icononly-glyph-lg); height: var(--btn-icononly-glyph-lg); }
+
+/* ---- disabled (after the variants so it wins) ---- */
+.button:disabled { cursor: not-allowed; color: var(--btn-disabled-fg); }
+.primary:disabled,
+.secondary:disabled,
+.secondaryNeutral:disabled { background: var(--btn-disabled-bg); }
+.tertiary:disabled,
+.text:disabled { background: transparent; }
+.overlay:disabled { background: var(--btn-overlay-bg); }
+
+/* ---- loading: resting colours frozen, spinner mask on top ---- */
+.loading { cursor: not-allowed; }
+.primary.loading { background: var(--btn-primary-bg); }
+.primary.danger.loading { background: var(--btn-danger-bg); }
+.secondary.loading { background: var(--btn-secondary-bg); color: var(--btn-secondary-fg); }
+.tertiary.loading { background: var(--btn-tertiary-bg); color: var(--btn-tertiary-fg); }
+.loadingMask {
+  position: absolute;
+  inset: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-8);
+  background: var(--loading-mask-bg);
+}
+.sm .loadingMask { border-radius: var(--radius-6); }
+
+.fullWidth { width: 100%; }

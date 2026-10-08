@@ -1,0 +1,69 @@
+/* Meeting invitation block (PRD §7.4.7): "Show / Hide Meeting Invitation" + the scrolling `<pre>`. */
+.block {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.toggle {
+  margin: 12px 0 16px;
+  padding: 1px 6px;
+  color: var(--meetings-link-fg);
+  font-size: 13px;
+  line-height: 8px;
+  text-align: center;
+}
+.toggle:hover {
+  color: var(--meetings-link-fg-hover);
+  text-decoration-line: underline;
+}
+
+/* touch: 44px tap area around the 10px-tall link, nothing visible */
+@media (pointer: coarse) {
+  .toggle { position: relative; }
+  .toggle::before {
+    content: "";
+    position: absolute;
+    inset: calc((10px - var(--meetings-touch-target)) / 2) 0;
+  }
+}
+
+/* fills the rest of the pane and scrolls; on a pane too short for it (phone landscape) it keeps
+ * a minimum and the pane scrolls instead */
+.content {
+  flex: 1 1 auto;
+  align-self: stretch;
+  height: 0;
+  min-height: var(--meetings-invitation-min-height);
+  overflow: auto;
+  font-size: 13px;
+  white-space: break-spaces;
+  word-break: break-word;
+}
+.content::-webkit-scrollbar { width: 6px; }
+
+.text {
+  margin: 0;
+  color: var(--meetings-pre-fg);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  white-space: pre;
+}
+
+/* DV11 [D]: the pushed phone detail scrolls as one page — the invitation takes its natural height
+ * and wraps (a sideways-scrolling `<pre>` is unusable by touch) */
+@media (max-width: 767px) {
+  .content { flex: none; height: auto; min-height: 0; overflow: visible; }
+  .text { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+
+.spinner { margin: 10px 20px; }
+.retry {
+  color: var(--meetings-link-fg);
+  font-size: 13px;
+  line-height: 16px;
+}
+.retry:hover { text-decoration-line: underline; }

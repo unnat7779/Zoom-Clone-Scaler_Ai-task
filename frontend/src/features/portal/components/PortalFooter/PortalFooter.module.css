@@ -1,0 +1,153 @@
+/* zoom.us `#footer_container` (03-schedule.md §3.5, 04-join.md §5; join-10, sch-04, mtg-18): the same
+ * footer closes every zoom.us page — portal pages (`PortalShell`) and the invalid-link page. */
+.footer {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  padding: 29px 0 16px;
+  background: var(--portal-footer-bg);
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* Zoom's auto-sized table columns, at 1351px: x = 24 / 257 / 513 / 758 / 1003 */
+.columns {
+  display: grid;
+  grid-template-columns: 233fr 256fr 245fr 245fr 372fr;
+}
+
+.column {
+  min-width: 0;
+  padding: 0 12px 0 24px;
+}
+
+/* glyph tops as measured on zoom.us: heading 2px lower, first link 34px below it */
+.heading {
+  margin-bottom: 10px;
+  padding-top: 2px;
+  color: var(--portal-footer-heading);
+  font: 600 16px/17.6px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  border: none;
+  background: transparent;
+  color: var(--portal-footer-link);
+  font: 400 14px/24px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: left;
+}
+.link:hover { text-decoration: underline; }
+
+.selectGroup + .selectGroup { margin-top: 29px; }
+.selectGroup .heading { margin-bottom: 11px; }
+
+.select {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 15px;
+  border: 1px solid var(--portal-footer-select-border);
+  border-radius: var(--radius-4);
+  background: transparent;
+  color: var(--portal-footer-link);
+  font: 400 14px/24px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* bootstrap `.caret`: 4px down triangle */
+.caret {
+  width: 0;
+  height: 0;
+  border-top: 4px solid currentColor;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+/* `a.icon` 36×36 circles, 40px apart */
+.socialIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-round);
+  background: var(--portal-footer-social-bg);
+}
+
+.socialGlyph { display: block; }
+.glyphFill { fill: var(--portal-footer-social-fg); }
+.glyphStroke {
+  fill: none;
+  stroke: var(--portal-footer-social-fg);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* bottom `div.info`: no padding, Zoom's two-line (Almaden) height, 16px above the page end */
+.info {
+  min-height: 40px;
+  margin-top: auto;
+  color: var(--portal-footer-link);
+  font: 400 14px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  text-align: center;
+}
+
+.copyright { padding-right: 6px; }
+
+.legal .link {
+  padding: 0 6px;
+  font-size: 14px;
+  line-height: 18px; /* the separators run 18px tall on zoom.us */
+}
+
+.legal + .legal .link {
+  border-left: 1px solid var(--portal-footer-divider);
+}
+
+/* CCPA toggle before "Your Privacy Choices" */
+.privacyIcon {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.ccpaPill { fill: var(--portal-ccpa-white); stroke: var(--portal-ccpa-blue); }
+.ccpaBlue { fill: var(--portal-ccpa-blue); }
+.ccpaCheck,
+.ccpaCross {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ccpaCheck { stroke: var(--portal-ccpa-blue); }
+.ccpaCross { stroke: var(--portal-ccpa-white); }
+
+/* phones [D] (R6-14): two columns that grow with their content, never wider than the screen */
+@media (max-width: 767px) {
+  .footer { height: auto; }
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+  .column { padding: 0 12px 0 16px; }
+  .link { overflow-wrap: anywhere; }
+  .info { margin-top: 24px; padding: 0 16px; }
+}

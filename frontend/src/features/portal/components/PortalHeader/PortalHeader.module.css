@@ -1,0 +1,16 @@
+/* zoom.us portal header (PRD §7.5.1): fixed, 104px = black strip 40 + nav bar 64 (50 on phones). */
+.header {
+  position: fixed;
+  top: 0;
+  right: var(--scroll-lock-gap, 0px); /* a dialog's scroll lock must not widen the bar (R2-F13) */
+  left: 0;
+  z-index: var(--z-portal-header);
+  background: var(--portal-header-bg);
+  box-shadow: var(--portal-header-shadow);
+}
+
+/* phone landscape [D]: a fixed 104px header would cover a third of a 393px-tall screen (and most of
+ * what the keyboard leaves); it stays at the top of the page and scrolls away instead */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header { position: absolute; }
+}

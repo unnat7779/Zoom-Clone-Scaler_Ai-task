@@ -1,0 +1,72 @@
+/* zoom-ui input (PRD §5.8.4, 06-design-system.md §4.1). No transitions. */
+.field {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-fg);
+  font-family: var(--font-app);
+  outline: none;
+}
+
+.input::placeholder { color: var(--input-placeholder); opacity: 1; }
+
+.sm .input { height: var(--input-height-sm); padding: var(--input-padding-sm); border-radius: var(--input-radius-sm); font-size: 12px; line-height: 16px; }
+.md .input { height: var(--input-height-md); padding: var(--input-padding-md); border-radius: var(--input-radius-md); font-size: 14px; line-height: 18px; }
+.lg .input { height: var(--input-height-lg); padding: var(--input-padding-lg); border-radius: var(--input-radius-lg); font-size: 14px; line-height: 18px; }
+
+/* hover (not focused / disabled / readonly) */
+.input:hover:not(:focus, :disabled, :read-only) { background: var(--input-bg-hover); }
+.input:hover:not(:focus, :disabled, :read-only)::placeholder { color: var(--input-placeholder-hover); }
+
+/* focus (any modality): border + 1px inset ring */
+.input:focus { border-color: var(--input-border-focus); box-shadow: var(--input-focus-shadow); }
+
+/* error */
+.error,
+.error:focus { border-color: var(--input-border-error); }
+.error:focus { box-shadow: var(--input-focus-shadow-error); }
+
+/* disabled */
+.input:disabled { border-color: var(--input-border-disabled); color: var(--input-fg-disabled); cursor: not-allowed; }
+.input:disabled::placeholder { color: var(--input-fg-disabled); }
+
+/* readonly */
+.input:read-only:not(:disabled) { background: var(--input-bg-readonly); color: var(--input-fg-readonly); cursor: not-allowed; }
+
+/* icons */
+.leading,
+.trailing {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-tertiary);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.leading > svg,
+.trailing > svg { width: 14px; height: 14px; }
+.sm .leading > svg,
+.sm .trailing > svg { width: 12px; height: 12px; }
+
+.sm .leading { left: 8px; }
+.md .leading { left: 10px; }
+.lg .leading { left: 14px; }
+.sm .trailing { right: 6px; }
+.md .trailing { right: 8px; }
+.lg .trailing { right: 14px; }
+
+.sm.withLeading .input { padding-left: 23px; }
+.md.withLeading .input { padding-left: 27px; }
+.lg.withLeading .input { padding-left: 31px; }
+.sm.withTrailing .input { padding-right: 25px; }
+.md.withTrailing .input { padding-right: 31px; }
+.lg.withTrailing .input { padding-right: 35px; }

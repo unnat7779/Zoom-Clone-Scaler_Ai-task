@@ -1,0 +1,32 @@
+/* Room header bar (PRD §8.4 [M]). On notched phones it grows by the top inset and keeps clear
+   of the side insets (env() is 0 on desktop). */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-room-bars);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: calc(var(--room-header-height) + var(--safe-top));
+  padding: var(--safe-top) var(--safe-right) 0 var(--safe-left);
+  background: var(--room-header-bg);
+  transition: var(--room-bars-transition);
+}
+
+.hidden {
+  transform: translateY(-100%);
+}
+
+.side {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: 22px;
+}
+
+/* phones: the right group sits 12px from the edge so the info pill keeps more of its title */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .side { margin-right: 12px; }
+}

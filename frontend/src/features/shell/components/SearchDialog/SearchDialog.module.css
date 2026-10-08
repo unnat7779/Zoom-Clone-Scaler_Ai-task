@@ -1,0 +1,47 @@
+/* `._searchDialog` MUI Dialog (PRD §6.4, 01-shell-home §4). Doubled selectors win over the bare
+ * Modal frame regardless of stylesheet order. */
+.backdrop.backdrop {
+  z-index: var(--shell-search-dialog-z);
+  background: var(--shell-search-backdrop);
+  animation: fade var(--dur-225) var(--ease-standard);
+}
+
+/* Paper: 720×628 at (323,70) at 1366×768 — centred, `margin:32px`, MUI's `calc(100% − 64px)` caps;
+ * `.ui-Dialog-content` padding 24 → 672×580 inside. */
+.paper.paper {
+  width: 720px;
+  max-width: calc(100% - 64px);
+  max-height: calc(100% - 64px);
+  margin: 32px;
+  padding: 24px;
+  border-radius: var(--shell-search-dialog-radius);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shell-search-dialog-shadow);
+}
+
+/* Phones [D]: a full-screen white sheet inside the safe area (16px gutters), ✕ stays top-right. */
+@media (max-width: 767px) {
+  .paper.paper {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: calc(8px + var(--shell-safe-top)) calc(var(--shell-phone-gutter) + var(--shell-safe-right))
+      var(--shell-safe-bottom) calc(var(--shell-phone-gutter) + var(--shell-safe-left));
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* MUI Fade exit (.195s) on both the paper and the backdrop, then the dialog unmounts */
+.exiting.exiting {
+  opacity: 0;
+  transition: opacity var(--shell-search-exit-dur) var(--ease-standard);
+  pointer-events: none;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

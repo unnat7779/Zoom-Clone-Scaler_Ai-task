@@ -1,0 +1,84 @@
+/* Invite footer (PRD §8.11 [M]): Copy URL / Copy Invitation · Passcode · Invite · Cancel. */
+.footer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding: 9px;
+}
+
+.copy {
+  min-width: 80px;
+  margin-right: 28px;
+  color: var(--mr-link-alt);
+  font: 400 14px/21px var(--font-app);
+  text-align: center;
+  white-space: nowrap;
+}
+.copy:last-of-type { margin-right: 0; }
+
+.right {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 0 auto;
+}
+
+.passcodeLabel {
+  margin-right: 11px;
+  color: var(--mr-text-2);
+  font: 400 13px/19.5px var(--font-app);
+}
+
+.passcode {
+  max-width: 220px;
+  margin-right: 10px;
+  overflow: hidden;
+  color: var(--mr-text-chat);
+  font: 600 13px/19.5px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.invite {
+  height: 32px;
+  margin: 0 14px;
+  padding: 0 16px;
+  border-radius: var(--radius-8);
+  background: var(--mr-primary);
+  color: var(--mr-white);
+  font: 400 14px/32px var(--font-app);
+  text-align: center;
+}
+.invite:hover:not(:disabled) { background: var(--room-invite-hover); }
+.invite:disabled { opacity: 0.6; cursor: default; }
+
+.cancel {
+  width: 78px;
+  height: 32px;
+  border: 1px solid var(--room-invite-cancel-border);
+  border-radius: var(--radius-8);
+  color: var(--mr-text-chat);
+  font: 400 14px/30px var(--font-app);
+  text-align: center;
+}
+.cancel:hover { background: var(--room-invite-cancel-hover); }
+
+/* phones [D]: the row wraps — Copy URL / Copy Invitation, then Passcode · Invite · Cancel at the
+ * right — with 44px touch rows and the home-indicator inset */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .footer {
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    padding: 4px 16px calc(8px + var(--safe-bottom));
+  }
+
+  .copy { min-height: var(--touch-target-size); margin-right: 0; }
+
+  .right { flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin: 0 0 0 auto; }
+
+  .passcodeLabel { margin-right: 0; }
+
+  .invite,
+  .cancel { height: var(--touch-target-size); line-height: calc(var(--touch-target-size) - 2px); }
+
+  .invite { margin: 0; }
+}

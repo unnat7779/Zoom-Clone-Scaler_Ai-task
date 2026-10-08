@@ -1,0 +1,104 @@
+/* `.preview-video__control` — 176×52, centred, 12px above the card bottom (screenshot 18) */
+.bar {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  z-index: var(--join-controls-z);
+  display: flex;
+  width: 176px;
+  height: 52px;
+  border-radius: var(--radius-10);
+  background: var(--join-control-bg);
+  transform: translateX(-50%);
+}
+
+/* ---- `.preview-video__control-button-container` (88×52) ---- */
+.control {
+  position: relative;
+  width: 88px;
+  height: 52px;
+}
+
+/* `.preview-video__control-button`: icon + label centred as one column (icon top 6.5, label 30.5) */
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-10);
+  background: transparent;
+  color: var(--join-control-fg);
+}
+.button:hover { background: var(--join-control-hover); }
+.button:focus-visible {
+  outline: var(--join-focus-ring);
+  outline-offset: -2px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* the permission-denied glyphs (32×24, 38×25) overflow the 24px slot, centred */
+.icon > svg {
+  flex: none;
+}
+
+/* `.preview-video__control-text` 12px/15px */
+.label {
+  max-width: 90px;
+  overflow: hidden;
+  font: 400 12px/15px var(--font-app);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* `.preview__toggle`: 24×24 at top 2 / right 2, 16px "Chevron Up V2" */
+.caret {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-8);
+  background: transparent;
+  color: var(--join-caret-fg);
+}
+/* Zoom's order: focus .33, hover .18 (hover wins while both apply) */
+.caret:focus { background: var(--join-caret-focus); }
+.caret:hover { background: var(--join-caret-hover); }
+.caret:focus-visible {
+  outline: var(--join-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Touch screens [D]: the 24px caret becomes its own 40×52 segment next to its button, so the
+ * device menu and the mute / video toggle are two clear targets (the pill grows to fit). */
+@media (pointer: coarse) {
+  .bar { width: auto; }
+  .control {
+    display: flex;
+    width: auto;
+  }
+  .button { width: 88px; }
+  .caret {
+    position: static;
+    width: 40px;
+    height: 52px;
+    border-radius: var(--radius-10);
+  }
+  .caret:focus:not(:focus-visible) { background: transparent; }
+}

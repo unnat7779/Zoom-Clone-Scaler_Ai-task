@@ -1,0 +1,167 @@
+/* zoom-ui select (PRD §5.8.5, 03-schedule.md §6.2–6.3, 06-design-system.md §4.3). */
+.field {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--input-border);
+  background: var(--color-bg-surface);
+  color: var(--input-fg);
+  font: 400 14px/18px var(--font-app);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.sm .trigger { height: 24px; padding: 0 25px 0 7px; border-radius: var(--radius-8); font-size: 12px; line-height: 16px; }
+.md .trigger { height: 32px; padding: 0 31px 0 11px; border-radius: var(--radius-12); }
+.lg .trigger { height: 40px; padding: 0 35px 0 15px; border-radius: var(--radius-12); }
+
+.trigger:hover:not(:disabled) { background: var(--input-bg-hover); }
+.trigger:hover:not(:disabled) .placeholder { color: var(--input-placeholder-hover); }
+/* `.is-vue3-keyboard-event .zoom-select-input.is-focusing`: keyboard only; opening only turns the chevron.
+ * Blue border + a 2px `::after` ring that overlaps it and reaches 1px outside (`inset: -1px`). */
+.trigger:focus-visible { border-color: var(--input-border-focus); }
+.trigger:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 2px solid var(--input-border-focus);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.error { border-color: var(--input-border-error); }
+.error:focus-visible::after { border-color: var(--input-border-error); }
+.trigger:disabled { border-color: var(--input-border-disabled); color: var(--input-fg-disabled); cursor: not-allowed; }
+
+.value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.placeholder { color: var(--input-placeholder); }
+
+/* SelectChevron: the md glyph's left edge sits 25px inside the trigger's right edge (Time Zone 967,
+ * AM/PM 1010, start time 898 — 03-schedule.md §5.3/§5.5) */
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  color: var(--color-icon-strong);
+  pointer-events: none;
+  transition: transform var(--dur-300) var(--ease-linear);
+}
+.sm .chevron { right: 5px; }
+.lg .chevron { right: 13px; }
+.chevronOpen { transform: rotate(180deg); }
+.trigger:disabled .chevron { color: var(--color-text-disabled); }
+
+/* ---- floating menu (`.zoom-floating`; layer: --select-menu-z, portal pages 105) ---- */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--select-menu-z, var(--z-floating));
+  overflow: hidden;
+  border: var(--menu-border);
+  border-radius: var(--menu-radius);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+  transform-origin: center top;
+  animation: zoomInTop var(--dur-300) var(--ease-out-quint);
+}
+.menu[data-side="top"] { transform-origin: center bottom; }
+
+/* `.zoom-scrollbar__wrap`: 208px including the list margins → n×32 + 24, at most 210 with the border.
+ * A surface may enlarge the menu through `--select-menu-max-height` / `--select-option-min-height`
+ * (the portal does on phones: 44px touch rows). */
+.wrap {
+  position: relative;
+  max-height: var(--select-menu-max-height, 208px);
+  overflow-y: auto;
+}
+.wrap::-webkit-scrollbar { width: 6px; }
+.wrap::-webkit-scrollbar-thumb { border-radius: var(--radius-6); background: transparent; }
+.wrap:hover::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); }
+
+.list { margin: 11px; }
+
+.groupTitle {
+  position: relative;
+  padding: 8px;
+  color: var(--color-text-tertiary);
+  font: 400 12px/16px var(--font-app);
+}
+/* a following group: 16px gap with a 1px rule 8px above the title, inset 8px */
+.nextGroup { margin-top: 16px; }
+.nextGroup::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  right: 8px;
+  left: 8px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--select-option-min-height, 32px);
+  padding: 6px 8px;
+  border-radius: var(--radius-8);
+  color: var(--menu-item-fg);
+  font: 400 14px/18px var(--font-app);
+  cursor: pointer;
+}
+.option:hover { background: var(--menu-item-bg-hover); }
+.reserveCheck { padding-right: 32px; }
+/* keyboard / virtual focus: tinted row + 2×(h−12) bar in the list margin */
+.active,
+.active:hover { background: var(--color-state-virtual-focus); }
+.active::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -8px;
+  width: 2px;
+  height: calc(100% - 12px);
+  border-radius: var(--radius-2);
+  background: var(--color-border-focus);
+}
+.option[aria-disabled="true"] { color: var(--menu-item-fg-disabled); background: transparent; cursor: not-allowed; }
+
+.optionLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.description { display: block; color: var(--color-text-tertiary); font-size: 12px; line-height: 16px; }
+
+.check { flex: none; width: 16px; height: 16px; margin-left: 8px; color: var(--menu-item-fg); }
+
+.empty {
+  padding: 12px;
+  color: var(--color-text-tertiary);
+  font: 400 14px/20px var(--font-app);
+  text-align: center;
+}
+
+@keyframes zoomInTop {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}

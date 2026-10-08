@@ -1,0 +1,26 @@
+/* List area under the tools row: scrolls with Zoom's 8px widget scrollbar (PRD §5.8.16);
+ * the loading overlay sits on top. */
+.listArea {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.scroller {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Phones [D]: no inner scroll; the list takes its content's height (the widget keeps min 300) */
+@media (max-width: 767px) {
+  .scroller { height: auto; overflow: visible; }
+}
+
+.scroller::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+.scroller::-webkit-scrollbar-track { background: transparent; }
+.scroller::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border-radius: var(--radius-8);
+  background: var(--home-cal-scrollbar-thumb);
+}

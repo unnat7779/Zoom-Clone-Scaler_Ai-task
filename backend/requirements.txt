@@ -1,0 +1,9 @@
+# Runtime dependencies (Python >= 3.12; verified on 3.14)
+fastapi==0.142.2
+uvicorn==0.54.0
+websockets==17.2
+SQLAlchemy==2.0.54
+pydantic==2.13.5
+email-validator==2.3.0
+itsdangerous==2.2.0
+tzdata==2026.5

@@ -1,0 +1,6 @@
+/* `.when-item-widget`: date · time · AM/PM, 8px apart, wrapping on narrow screens */
+.widget {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

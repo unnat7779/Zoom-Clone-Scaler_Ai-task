@@ -1,0 +1,25 @@
+/* Width classes of the Schedule controls — `!important` exactly like Zoom's
+ * `.long-width{width:490px!important}` (03-schedule.md App. A), so they win over
+ * the kit's `width: 100%`. */
+.long { width: var(--schedule-width-long) !important; }
+.middle { width: var(--schedule-width-middle) !important; }
+.short { width: var(--schedule-width-short) !important; }
+.time { width: var(--schedule-width-time) !important; }
+.ampm { width: var(--schedule-width-ampm) !important; }
+.passcode { width: var(--schedule-width-passcode) !important; }
+.recurrence { width: var(--schedule-width-recurrence) !important; }
+.duration { width: var(--schedule-width-middle) !important; }
+
+/* ≤767 (PRD §11.1): full-width fields; the duration selects share one line
+ * (`.duration-item-widget{display:flex}`, ≈151 each at 390, R6-08) */
+@media (max-width: 767px) {
+  .long { width: 100% !important; }
+  .middle { width: 80% !important; }
+  /* half the row minus the "hr" / "min" units (≈64px) each — a growing basis would hand the filter
+   * select's 42px padding to its share */
+  .duration {
+    flex: 0 1 calc(50% - 32px);
+    width: auto !important;
+    min-width: 0;
+  }
+}

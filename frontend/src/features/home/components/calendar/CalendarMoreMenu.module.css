@@ -1,0 +1,26 @@
+/* Calendar "…" menu (PRD §7.1.6): zoom-ui floating dropdown 207 wide. */
+.popover {
+  width: var(--home-cal-menu-width);
+}
+
+/* `menuitemcheckbox` rows: 173×30 with a 4px margin */
+.filter.filter {
+  width: auto;
+  min-height: 30px;
+  margin: 4px;
+}
+
+/* group gap before Refresh: the measured 214px menu height leaves 10px [D] */
+.refresh { margin-top: 10px; }
+
+/* phones [D]: 44px rows, like the PMI submenu and the profile sheet */
+@media (max-width: 767px) {
+  .popover { --menu-item-min-height: var(--touch-target-size); }
+  .filter.filter { min-height: var(--touch-target-size); margin: 0 4px; }
+}
+
+.refreshIcon.refreshIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-icon-strongest);
+}

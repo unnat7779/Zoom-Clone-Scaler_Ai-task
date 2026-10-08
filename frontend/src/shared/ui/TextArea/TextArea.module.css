@@ -1,0 +1,32 @@
+/* zoom-ui textarea (PRD §5.8.4, 06-design-system.md §4.2). */
+.textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-fg);
+  font-family: var(--font-app);
+  resize: vertical;
+  outline: none;
+}
+
+.textarea::placeholder { color: var(--input-placeholder); opacity: 1; }
+
+.sm { height: 48px; padding: 8px; border-radius: var(--radius-8); font-size: 12px; line-height: 16px; }
+.md { height: var(--textarea-height); padding: var(--textarea-padding); border-radius: var(--radius-12); font-size: 14px; line-height: 18px; }
+.lg { height: 72px; padding: 12px 16px; border-radius: var(--radius-12); font-size: 14px; line-height: 18px; }
+.autoResize { padding: 6px 12px; }
+
+.textarea:hover:not(:focus, :disabled, :read-only) { background: var(--input-bg-hover); }
+.textarea:hover:not(:focus, :disabled, :read-only)::placeholder { color: var(--input-placeholder-hover); }
+.textarea:focus { border-color: var(--input-border-focus); box-shadow: var(--input-focus-shadow); }
+
+.error,
+.error:focus { border-color: var(--input-border-error); }
+.error:focus { box-shadow: var(--input-focus-shadow-error); }
+
+.textarea:disabled { border-color: var(--input-border-disabled); color: var(--input-fg-disabled); cursor: not-allowed; }
+.textarea:read-only:not(:disabled) { background: var(--input-bg-readonly); color: var(--input-fg-readonly); cursor: not-allowed; }
+
+.textarea::-webkit-scrollbar { width: 6px; }
+.textarea::-webkit-scrollbar-thumb { border-radius: var(--radius-6); background: var(--scrollbar-thumb); }

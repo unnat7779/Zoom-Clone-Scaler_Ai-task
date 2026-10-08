@@ -1,0 +1,61 @@
+/* Participant row (PRD §8.8 [M]): 390×44, padding 6px 20px, radius 4, hover #313235. */
+.row {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin: 0 3px;
+  padding: 6px 20px;
+  border-radius: var(--radius-4);
+  color: var(--mr-white);
+  font: 400 14px/18px var(--font-app);
+  white-space: nowrap;
+}
+.row:hover,
+.row.menuOpen { background: var(--mr-panel-border); }
+
+.avatar {
+  flex: none;
+  margin-right: 12px;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label { margin-right: 5px; }
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 5px;
+  border-radius: var(--radius-6);
+  color: var(--mr-white);
+}
+.icon:hover { background: var(--room-row-icon-hover); }
+.icon svg { width: 16px; height: 16px; }
+.inert { cursor: default; }
+
+.danger { color: var(--mr-danger); }
+.videoOn { color: var(--mr-list-muted); }
+.more { color: var(--mr-icon-panel); }
+
+/* touch screens: 52px rows and 44×44 row icons, so the host can mute / open "…" by tap */
+@media (pointer: coarse) {
+  .row { height: 52px; padding-right: 8px; }
+  .actions { gap: 0; }
+  .icon { width: 44px; height: 44px; padding: 14px; }
+}

@@ -1,0 +1,44 @@
+/* zoom-ui filter-select trigger on the Schedule page (03-schedule.md §6.2, App. A). The chevron and
+ * the menu are the shared Select's. No transitions except the chevron. */
+.field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 5px 31px 5px 11px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  vertical-align: middle;
+  cursor: pointer;
+}
+.compact { padding: 5px 7px; }
+.field:hover:not(.focusing) { background: var(--input-bg-hover); }
+.field:hover:not(.focusing) .input::placeholder { color: var(--input-placeholder-hover); }
+
+/* open filter select: blue border + 2px ring drawn outside the border */
+.focusing { border-color: var(--input-border-focus); }
+.focusing::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 2px solid var(--input-border-focus);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.error,
+.error.focusing { border-color: var(--input-border-error); }
+.error.focusing::after { border-color: var(--input-border-error); }
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--input-fg);
+  font: 400 14px/18px var(--font-app);
+  outline: none;
+  cursor: inherit;
+}
+.input::placeholder { color: var(--input-placeholder); opacity: 1; }

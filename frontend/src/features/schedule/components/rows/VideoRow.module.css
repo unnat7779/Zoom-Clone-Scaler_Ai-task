@@ -1,0 +1,14 @@
+/* Video: two 32px sub-rows 33px apart (row 65 tall), 120px name column */
+.line {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+.line + .line { margin-top: 1px; }
+.name {
+  width: 120px;
+  margin-right: 16px;
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  line-height: 14px;
+}

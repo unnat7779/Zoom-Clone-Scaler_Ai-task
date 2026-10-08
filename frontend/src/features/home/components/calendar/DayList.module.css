@@ -1,0 +1,4 @@
+/* `.ax-container` around the day's event cards (01-shell-home Appendix A.2). */
+.list {
+  padding: 4px 16px;
+}

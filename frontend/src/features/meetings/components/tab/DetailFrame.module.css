@@ -1,0 +1,48 @@
+/* `.meetings__detail` right pane (PRD §7.4.3, 02-meetings.md App. 1). It fills the pane (`min-height`
+ * instead of Zoom's `height: 100%`): on short screens (phone landscape) the pane scrolls instead of
+ * clipping the buttons; wherever everything fits the box is exactly Zoom's. */
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100%;
+  padding: 48px 4px 40px 40px;
+}
+
+/* flex item = own formatting context: the last row's 16px bottom margin stays inside */
+.info { flex: 0 0 auto; }
+
+.topic {
+  margin-bottom: 32px;
+  color: var(--meetings-detail-topic-fg);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  overflow-wrap: break-word;
+}
+
+.buttons {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+.buttons > * { margin: 0 16px 10px 0; }
+
+/* DV11 [D]: the pushed phone detail uses the 16px phone gutters; the z-buttons keep their colours
+ * and radius but become 44px touch targets in a grid — two per row where they fit, else stacked */
+@media (max-width: 767px) {
+  .detail { padding: 24px 16px 40px; }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--meetings-phone-button-min-width), 1fr));
+    gap: 12px;
+    margin: 24px 0 12px;
+  }
+  .buttons > :is(button, a) {
+    justify-content: center;
+    height: var(--meetings-touch-target);
+    margin: 0;
+    padding: 0 12px;
+  }
+}

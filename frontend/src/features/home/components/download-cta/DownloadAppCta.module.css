@@ -1,0 +1,45 @@
+/* `DownloadMobileCTA` (PRD §11.4, 07-responsive §2.1.3): only at ≤768px. */
+.container {
+  display: none;
+  flex: none;
+  width: 100%;
+  padding: 6px 6px 0;
+}
+
+/* `a.DownloadMobileCTA_cta`: no underline on hover or focus */
+.cta {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius-10);
+  background: var(--home-cta-bg);
+  color: var(--home-cta-fg);
+  text-decoration: none;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font: var(--font-weight-sf-semibold) 16px/20px var(--font-app);
+  letter-spacing: var(--ls-cta);
+}
+
+.description {
+  font: 400 14px/18px var(--font-app);
+  letter-spacing: var(--ls-tight);
+}
+
+@media (max-width: 768px) {
+  .container { display: block; }
+}
+
+/* Phones [D]: the Home column already has 16px gutters */
+@media (max-width: 767px) {
+  .container { padding: var(--shell-phone-gutter) 0 0; }
+}

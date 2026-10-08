@@ -1,0 +1,17 @@
+.cluster {
+  display: flex;
+  flex: none;
+  align-items: center;
+  width: 72px;
+  height: 32px;
+}
+
+/* MUI tertiary icon buttons: #2A2B2D glyph, .25s background transition */
+.button {
+  color: var(--shell-nav-fg);
+  transition: background-color var(--dur-250) var(--ease-standard);
+}
+
+@media (max-width: 1080px) {
+  .cluster { display: none; }
+}

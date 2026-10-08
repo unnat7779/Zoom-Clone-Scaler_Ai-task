@@ -1,0 +1,49 @@
+/* tokens/schedule.css — owned by MEET (phase 2).
+ * Schedule / Edit form (rows, date picker, time selects, sticky bar).
+ * Add ONLY area-specific tokens here (raw colours, shadows, radii, z-index,
+ * durations that are not already in tokens/base.css). Name them --schedule-*.
+ * Components must reference variables, never raw values.
+ */
+:root {
+  /* ---- layout (PRD §7.6.2, 03-schedule.md §4) ---- */
+  --schedule-label-width: 160px;
+  --schedule-row-gap: 10px;
+  --schedule-row-spacing: 25px;
+  --schedule-width-long: 490px;          /* Topic, Time Zone, Invitees, Template */
+  --schedule-width-date: 240px;
+  --schedule-width-time: 173px;
+  --schedule-width-ampm: 104px;
+  --schedule-width-middle: 150px;        /* duration selects, Add Whiteboard */
+  --schedule-width-short: 100px;
+  --schedule-width-passcode: 200px;
+  --schedule-width-recurrence: 200px;    /* Recurrence select (03-schedule.md §8.1) */
+  --schedule-width-interpreter-email: 200px;
+  --schedule-width-interpreter-language: 300px;
+  --schedule-banner-max: 810px;
+  --schedule-region-dialog-width: 640px; /* "Approve or block entry…" dialog (03-schedule.md §6.11) */
+  --schedule-divider-width: 827px;
+
+  /* ---- colours ---- */
+  --schedule-label-fg: var(--portal-label);              /* #222325 */
+  --schedule-value-fg: var(--portal-value);              /* #232333 checkbox labels, hr/min, Video names */
+  --schedule-desc-fg: var(--color-text-tertiary);        /* #686F79 security descriptions */
+  --schedule-divider: var(--portal-divider);             /* #EDEDF4 */
+  --schedule-option-desc-fg: var(--color-text-prism);    /* #2A2B2D Zoom AI option descriptions */
+  --schedule-suggestion-name: var(--portal-suggestion-fg);   /* #323539 */
+  --schedule-suggestion-email: var(--portal-suggestion-muted); /* #6E7680 */
+  --schedule-invalid-email: var(--portal-invalid-email); /* #B22424 */
+  --schedule-rule-ok: var(--color-text-success);         /* #247F40 */
+  --schedule-rule-fail: var(--color-text-error);         /* #DA1639 */
+  --schedule-tooltip-dark-bg: rgba(0, 0, 0, 0.64);       /* date-picker weekday tooltips */
+
+  /* ---- layers: Zoom's floating menus sit under the fixed portal header (z 1030) ---- */
+  --schedule-menu-z: var(--portal-floating-z);   /* invitee suggestions (select menus: PortalShell) */
+  --schedule-datepicker-z: 108;
+  --schedule-info-popover-z: 148;
+
+  /* ---- date picker (PRD §7.6.6) ---- */
+  --schedule-dp-width: 280px;
+  --schedule-dp-cell: 32px;
+  --schedule-dp-width-phone: 343px;      /* phones [D]: touch-sized picker */
+  --schedule-dp-cell-phone: 40px;
+}

@@ -1,0 +1,28 @@
+/* `.waiting-room-preview{position:absolute;left:24px;top:24px;width:240px;height:146px;border-radius:8px;z-index:2}` */
+.preview {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: var(--join-hold-preview-z);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 146px;
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  background: var(--join-preview-bg);
+}
+
+.inShell { top: 72px; }
+
+/* `.preview-username{font-size:24px;padding:0 30px}` */
+.name {
+  max-width: 100%;
+  padding: 0 30px;
+  overflow: hidden;
+  color: var(--join-text);
+  font: 400 24px/32px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

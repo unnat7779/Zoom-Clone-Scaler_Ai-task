@@ -1,0 +1,3 @@
+/* Status rows: the presence glyph is a 10×10 `::before` with `margin-right:10px` (01-shell-home §7.1). */
+.statusItem > span:first-child { margin-right: 10px; }
+.statusItem > span:first-child > svg { width: 10px; height: 10px; }

@@ -1,0 +1,36 @@
+/* Participants counter (PRD §8.5.5 [M]) and the "copied" tooltip (§8.6.4 [M]). */
+.counter {
+  position: absolute;
+  top: -2px;
+  left: calc(50% + 8px);
+  width: 22px;
+  color: var(--mr-text-80);
+  font: 400 11px/16.5px var(--font-app);
+  text-align: center;
+}
+
+.tooltip {
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  z-index: var(--room-z-popover);
+  min-width: 220px;
+  padding: 20px 30px;
+  border-radius: var(--room-radius-tooltip);
+  background: var(--room-copy-tooltip-bg);
+  color: var(--mr-white);
+  font: 400 14px/21px var(--font-app);
+  white-space: nowrap;
+  transform: translate(-50%);
+  pointer-events: none;
+}
+.tooltip::after {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -10px;
+  border-top: 8px solid var(--room-copy-tooltip-bg);
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  content: "";
+}

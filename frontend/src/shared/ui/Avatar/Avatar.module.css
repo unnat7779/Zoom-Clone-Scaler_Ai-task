@@ -1,0 +1,63 @@
+/* Initials avatar (PRD §5.8.14). */
+.avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--avatar-fg);
+  font-family: var(--font-app);
+  font-weight: var(--avatar-font-weight);
+  user-select: none;
+}
+
+/* sizes: box / initials (line-height = box) */
+.size20 { width: 20px; height: 20px; font-size: 8px; line-height: 20px; }
+.size24 { width: 24px; height: 24px; font-size: 10px; line-height: 24px; }
+.size32 { width: 32px; height: 32px; font-size: 14px; line-height: 32px; }
+.size40 { width: 40px; height: 40px; font-size: 16px; line-height: 40px; }
+.size48 { width: 48px; height: 48px; font-size: 20px; line-height: 48px; }
+.size64 { width: 64px; height: 64px; font-size: 24px; line-height: 64px; }
+.size80 { width: 80px; height: 80px; font-size: 36px; line-height: 80px; }
+.size110 { width: 110px; height: 110px; font-size: 44px; line-height: 110px; }
+
+/* meeting client: 32px list avatar uses 16px/32px 400 */
+.meeting { font-weight: 400; }
+.size32 .meeting { font-size: 16px; }
+
+/* shapes */
+.rounded { border-radius: var(--avatar-radius); }
+.circle { border-radius: var(--radius-pill); }
+.chat { border-radius: var(--radius-6); }
+
+/* workplace palette */
+.green { background: var(--avatar-green); }
+.purple { background: var(--avatar-purple); }
+.teal { background: var(--avatar-teal); }
+.steel { background: var(--avatar-steel); }
+.gray { background: var(--avatar-gray); }
+.orange { background: var(--avatar-orange); }
+.yellow { background: var(--avatar-yellow); }
+.red { background: var(--avatar-red); }
+
+/* meeting-client palette */
+.mc1 { background: var(--mc-avatar-1); }
+.mc2 { background: var(--mc-avatar-2); }
+.mc3 { background: var(--mc-avatar-3); }
+.mc4 { background: var(--mc-avatar-4); }
+.mc5 { background: var(--mc-avatar-5); }
+.mc6 { background: var(--mc-avatar-6); }
+.mc7 { background: var(--mc-avatar-7); }
+.mc8 { background: var(--mc-avatar-8); }
+
+/* presence */
+.notchDot { mask-image: var(--avatar-notch-dot); }
+.notchMeeting { mask-image: var(--avatar-notch-meeting); }
+.glyph { position: absolute; top: -3px; right: -3px; }
+.glyphMeeting { position: absolute; top: -2.5px; right: -5.28px; }

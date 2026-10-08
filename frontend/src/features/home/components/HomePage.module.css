@@ -1,0 +1,48 @@
+/* `.main.main--standard` + `.home__cards` (PRD §7.1.1, §11; 07-responsive §2.1.4). */
+.home {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* The Recent card (DV1) makes the column scroll; a gutter on both edges keeps the cards
+ * exactly 600 wide and centred whether or not the 6px scrollbar shows. */
+.cards {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  width: calc(var(--home-cards-width) + 2 * var(--scrollbar-size));
+  min-height: 0;
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+@media (max-width: 1024px) {
+  .cards { width: calc(var(--home-cards-width-narrow) + 2 * var(--scrollbar-size)); }
+}
+
+/* Short viewports (a landscape phone or tablet) [D]: the cards would get a sliver of height
+ * with their own scrollbar, so the whole page scrolls instead. */
+@media (max-height: 540px) {
+  .cards { flex: none; overflow: visible; }
+}
+
+/* Phones [D]: one page scroll, the column full width with 16px gutters (and the safe area). */
+@media (max-width: 767px) {
+  .home {
+    align-items: stretch;
+    padding: 0 var(--shell-phone-gutter);
+    overscroll-behavior: contain;
+  }
+
+  .cards {
+    flex: none;
+    width: 100%;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+}

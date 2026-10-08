@@ -1,0 +1,69 @@
+/* Contacts / Zoom Rooms tab (PRD §8.11 [M]): tag input 660×42, contact tiles (static selection). */
+.wrap {
+  padding: 0 20px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin: 10px 0;
+  padding: 4px;
+  border: 1px solid var(--room-invite-input-border);
+  border-radius: var(--radius-8);
+}
+
+.searchIcon {
+  flex: none;
+  width: 21px;
+  height: 18px;
+  margin: 0 10px;
+  color: var(--mr-text-4);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  outline: none;
+  color: var(--mr-text-chat);
+  font: 400 16px/32px var(--font-app);
+}
+.input::placeholder { color: var(--mr-text-4); }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -7px;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 151px;
+  height: 54px;
+  margin: 7px;
+  padding: 10px;
+  border-radius: var(--room-radius-contact);
+  color: var(--mr-text-chat);
+  font: 400 14px/18px var(--font-app);
+  text-align: left;
+}
+.tile:hover { background: var(--mr-panel-border); }
+.selected,
+.selected:hover { background: var(--mr-primary-alt); color: var(--mr-white); }
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+}
+.avatar > span { border-radius: var(--radius-8); }
+
+.name {
+  width: 86px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

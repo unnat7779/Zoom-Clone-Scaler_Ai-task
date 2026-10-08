@@ -1,0 +1,18 @@
+# Captured Zoom reference screenshots contain real account identifiers — keep local only
+docs/reference/screens/
+assignment.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/data/*.db
+
+# Node
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+.DS_Store
+

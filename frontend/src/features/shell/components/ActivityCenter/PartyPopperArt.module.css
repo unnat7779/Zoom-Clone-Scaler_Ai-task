@@ -1,0 +1,25 @@
+/* Palette of the drawn party popper [D] (tokens in tokens/shell.css). */
+.art { display: block; flex: none; }
+
+.cone { fill: var(--shell-art-cone); }
+.stripe { fill: var(--shell-art-cone-stripe); }
+.mouth { fill: var(--shell-art-red); }
+
+.streamerBlue,
+.streamerPurple,
+.streamerYellow,
+.streamerRed,
+.markGreen,
+.markRed { fill: none; stroke-width: 2px; stroke-linecap: round; }
+.streamerBlue { stroke: var(--shell-art-blue); }
+.streamerPurple { stroke: var(--shell-art-cone-stripe); }
+.streamerYellow { stroke: var(--shell-art-yellow); }
+.streamerRed { stroke: var(--shell-art-red); }
+.markGreen { stroke: var(--shell-art-green); }
+.markRed { stroke: var(--shell-art-red); }
+
+.confettiPurple { fill: var(--shell-art-purple); }
+.confettiRed { fill: var(--shell-art-red); }
+.confettiGreen { fill: var(--shell-art-green); }
+.confettiYellow { fill: var(--shell-art-yellow); }
+.confettiBlue { fill: var(--shell-art-blue); }

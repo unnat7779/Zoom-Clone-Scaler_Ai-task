@@ -1,0 +1,36 @@
+/* zoom.us meeting detail (PRD §7.8, 02-meetings.md §C). The portal font and 0.42px tracking come
+ * from PortalShell. */
+.form { color: var(--portal-value); }
+.formInset { padding: 0 16px; }
+
+.description { white-space: pre-wrap; }
+.muted { padding-bottom: 2px; color: var(--meetings-muted-fg); font-size: 14px; line-height: 21px; }
+
+/* `.advanced-options-0::before`: full-width rule 70px under "Add to", Encryption 35px below
+ * (the top margin collapses with the row's 20px) */
+.divider {
+  margin: 30px 0 35px;
+  border-top: 1px solid var(--portal-divider);
+}
+
+/* Encryption row is 34 tall (`p.mgt-xs` + the sub-aligned shield) */
+.encryption {
+  margin-top: 4px;
+  padding: 4px 0 5px;
+  color: var(--portal-value);
+  font-size: 14px;
+  line-height: 21px;
+}
+.shield {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  color: var(--color-icon-success);
+  vertical-align: sub;
+}
+
+.option {
+  color: var(--portal-value);
+  font-size: 14px;
+  line-height: 32px;
+}

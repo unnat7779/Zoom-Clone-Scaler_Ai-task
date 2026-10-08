@@ -1,0 +1,193 @@
+/* Chat / Contacts placeholder pages (PRD §6.8). Values [M] where given, layout [D].
+ * `.page` is the size container of the width rules at the end. */
+.page {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  container-type: inline-size;
+}
+
+.emptyPane {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* ---- Chat ---- */
+.chatSidebar {
+  flex: 0 0 328px;
+  padding: 0 16px;
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  margin-top: 23px;
+}
+
+.chatTitle {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-prism);
+  font: var(--font-weight-sf-semibold) 16px/20px var(--font-app);
+  letter-spacing: var(--ls-cta);
+}
+
+.squareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-8);
+  color: var(--color-icon-strong);
+}
+.squareButton:hover { background: var(--color-state-hover); }
+
+.newButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--shell-new-chat-bg);
+  color: var(--color-text-inverse);
+}
+
+.pills { display: flex; gap: 10px; margin-top: 6px; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-20);
+  color: var(--color-text-secondary);
+  font: 400 14px/20px var(--font-app);
+}
+.pillSelected { border-color: var(--color-border-selected); background: var(--shell-pill-selected-bg); color: var(--color-text-link); }
+
+.groups { margin-top: 14px; }
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  color: var(--color-text-secondary);
+  font: 400 14px/20px var(--font-app);
+}
+
+.chatEmptyText {
+  width: 400px;
+  max-width: 100%;
+  color: var(--color-text-prism);
+  font: 400 16px/20px var(--font-app);
+  text-align: center;
+}
+
+/* ---- Contacts ---- */
+.contactsList {
+  flex: 0 0 360px;
+  padding: 10px 10px 0;
+  overflow-y: auto;
+  border-right: 2px solid var(--zc-v-divider);
+}
+
+.contactsSearchRow { display: flex; align-items: center; gap: 10px; }
+
+.contactsSearch { position: relative; display: flex; flex: 0 1 304px; min-width: 0; }
+.contactsSearchIcon { position: absolute; top: 10px; left: 9px; color: var(--color-text-tertiary); }
+.contactsSearchInput {
+  width: 100%;
+  height: 32px;
+  padding: 10px 10px 10px 25px;
+  border: 1px solid var(--shell-placeholder-border);
+  border-radius: var(--radius-8);
+  font: 400 14px/24px var(--font-app);
+  outline: none;
+}
+.contactsSearchInput:focus { border-color: var(--color-border-focus); }
+
+.addContact {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--shell-placeholder-border);
+  border-radius: var(--radius-6);
+  color: var(--color-icon-strong);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--shell-placeholder-muted);
+  font: 400 16px/20px var(--font-app);
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 8px;
+  border-radius: var(--radius-8);
+  color: var(--color-text-primary);
+  font: 400 14px/18px var(--font-app);
+}
+.contactRow:first-child { margin-top: 8px; }
+.contactRow:hover { background: var(--color-state-hover); }
+
+.contactsEmptyText { color: var(--shell-placeholder-muted); font: 400 14px/18px var(--font-app); }
+
+/* Contacts list: 360px from a 720px viewport, 50% from 645px (07-responsive §3.1), i.e. card widths
+ * 634 / 559 beside the rail. Queried on the card (`.page`), so a docked Activity Center that narrows
+ * the card (e.g. 380px at an 800px window) also collapses the list instead of crushing the pane. */
+@container (max-width: 633px) {
+  .contactsList { flex-basis: 50%; }
+}
+
+/* the list / sidebar takes the whole card with 16px gutters [D]; the empty right pane is hidden */
+@container (max-width: 558px) {
+  .chatSidebar,
+  .contactsList {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 0 var(--shell-phone-gutter);
+    border-right: none;
+  }
+
+  .contactsList { padding-top: 12px; }
+
+  .contactsSearch { flex: 1 1 auto; }
+
+  .emptyPane { display: none; }
+}
+
+/* Phones [D]: a 40px, 16px field so iOS does not zoom into it */
+@media (max-width: 767px) {
+  .contactsSearchInput { height: 40px; font-size: 16px; }
+
+  .contactsSearchIcon { top: 14px; }
+}
+
+/* Touch phones in landscape [D] (Zoom's ≥768 layout): 16px text only, so iOS does not zoom */
+@media (max-height: 500px) and (max-width: 1023px) and (pointer: coarse) {
+  .contactsSearchInput { font-size: 16px; }
+}

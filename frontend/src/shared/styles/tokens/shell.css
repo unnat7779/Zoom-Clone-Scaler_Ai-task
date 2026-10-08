@@ -1,0 +1,149 @@
+/* tokens/shell.css — Workplace shell (header, left rail, content card,
+ * profile menu, History popover, Settings modal). Owned by FE-core.
+ * PRD §6 / docs/requirements/01-shell-home.md. All values [M] unless [D].
+ */
+:root {
+  /* Layout constants (other features may read them, e.g. the in-shell room) */
+  --shell-header-height: 64px;
+  --shell-rail-width: 80px;
+  --shell-gutter: 6px;             /* card right/bottom gap, banner slot padding */
+  --shell-banner-gap: 4px;         /* empty banner slot under the header */
+  /* Device safe areas (notch, home indicator; `viewport-fit=cover`). 0 on desktop. */
+  --shell-safe-top: env(safe-area-inset-top, 0px);
+  --shell-safe-right: env(safe-area-inset-right, 0px);
+  --shell-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --shell-safe-left: env(safe-area-inset-left, 0px);
+
+  --shell-viewport-height: 100dvh;  /* the dynamic viewport: excludes a phone's browser bars [D] */
+  --shell-card-width: calc(100vw - 86px - var(--shell-safe-left) - var(--shell-safe-right));
+  --shell-card-height: calc(100dvh - 74px - var(--shell-safe-top) - var(--shell-safe-bottom));
+  --shell-card-radius: var(--radius-12);
+
+  /* Touch (phones and coarse pointers) [D]: minimum hit area, invisible (`shared/styles/touch.module.css`) */
+  --touch-target-size: 44px;
+
+  /* Phones ≤767 [D] ("Zoom look, mobile-usable"): bottom tab bar instead of the rail */
+  --shell-phone-gutter: 16px;                          /* side padding of phone pages and sheets */
+  --shell-tabbar-height: 56px;
+  --shell-tabbar-bg: var(--color-bg-surface);
+  --shell-tabbar-border: var(--color-border-subtle);   /* #DFE3E8, like the header's rule */
+  --shell-tabbar-fg: var(--rail-tab-fg);               /* #555B62 */
+  --shell-tabbar-fg-hover: var(--rail-tab-fg-hover);   /* #222325 */
+  --shell-tabbar-fg-selected: var(--color-text-link);  /* #0D6BDE Zoom blue */
+  --shell-sheet-z: var(--z-profile-menu);              /* full-screen sheets over the shell */
+
+  /* Header */
+  --shell-header-bg: var(--color-bg-surface);
+  --shell-header-border: var(--color-border-subtle);
+  --shell-wordmark-fg: var(--color-text-primary);
+  --shell-item-fg: var(--zc-header-text);              /* #555B62 Admin Center */
+  --shell-item-fg-hover: var(--zc-header-text-hover);  /* #0C60C8 */
+  --shell-item-fg-press: var(--zc-header-text-press);  /* #084085 */
+  --shell-item-bg-hover: var(--zc-header-item-hover);  /* #6E76801F */
+  --shell-item-bg-press: var(--zc-header-item-press);  /* #6E76803D */
+  --shell-nav-fg: var(--color-icon-prism);             /* #2A2B2D enabled Back/Forward/History */
+  --shell-search-bg: var(--zc-search-bg);              /* #ECEFF1 */
+  --shell-search-bg-hover: var(--zc-search-bg-hover);
+  --shell-search-bg-press: var(--zc-search-bg-press);
+  --shell-search-fg: var(--zc-search-text);
+  --shell-bell-fg: var(--color-icon-strong);
+
+  /* Rail */
+  --shell-rail-bg: var(--color-bg-app);
+  --shell-rail-fg: var(--rail-tab-fg);
+  --shell-rail-fg-active: var(--rail-tab-fg-hover);
+  --shell-rail-bg-hover: var(--rail-tab-bg-hover);
+  --shell-rail-bg-selected: var(--rail-tab-bg-selected);
+
+  /* Profile menu */
+  --shell-profile-menu-width: 268px;
+  --shell-submenu-width: 232px;
+
+  /* Settings modal (static placeholder, PRD §6.9) */
+  --shell-settings-shadow: 0 0 24px rgba(0, 0, 0, 0.075);
+  --shell-settings-title: #000000;
+  --shell-settings-close-fg: #222230;                  /* `.modal-dialog__close-icon` */
+  --shell-settings-divider: #EDEDF4;
+  --shell-settings-item-fg: #131619;
+  --shell-settings-item-bg-hover: #F7F3F3;             /* `.settings-nav-item:not(.active):hover` */
+  --shell-settings-active-bg: #0E71EB;
+  --shell-settings-tile-general: #82C786;              /* shares the audio / video rule */
+  --shell-settings-tile-media: #82C786;
+  --shell-settings-tile-chat: #70C3A0;
+  --shell-settings-tile-account: #5B8DEF;
+  --shell-settings-tile-radius: 5px;
+  /* `.right-content` scrollbar */
+  --shell-settings-scrollbar-track: #0000000F;
+  --shell-settings-scrollbar-track-shadow: inset 0 0 5px #00000014;
+  --shell-settings-scrollbar-thumb: #0000001F;
+  --shell-settings-scrollbar-thumb-shadow: inset 0 0 10px #00000033;
+  --shell-settings-field-width: 240px;                 /* static device selects [D] */
+
+  /* Global Search dialog (PRD §6.4, 01-shell-home §4) */
+  --shell-search-dialog-z: var(--z-popover);           /* MUI Dialog 1300 */
+  --shell-search-dialog-radius: var(--radius-12);
+  --shell-search-dialog-shadow: var(--shadow-medium);
+  --shell-search-backdrop: var(--overlay-scrim);       /* rgba(0,0,0,.5) */
+  --shell-search-exit-dur: 195ms;                      /* MUI Fade exit; `SEARCH_EXIT_MS` */
+  --shell-search-input-fg: var(--color-text-prism);    /* #2A2B2D */
+  --shell-search-caret: var(--color-text-link);        /* #0D6BDE */
+  --shell-search-placeholder: #757575;                 /* Chrome UA placeholder grey [D] */
+  --shell-search-muted: var(--color-text-tertiary);    /* #686F79 magnifier, ✕, Clear, Clear all */
+  /* nx-chat tertiary buttons (Clear, Clear all, ✕, unselected chips): `!important` hover / active */
+  --shell-search-button-bg-hover: var(--color-state-hover);      /* #6E76801F */
+  --shell-search-button-fg-hover: var(--color-text-link-hover);  /* #0C60C8 */
+  --shell-search-button-bg-press: var(--color-state-press);      /* #6E76806B */
+  --shell-search-button-fg-press: var(--color-text-link-press);  /* #084085 */
+  --shell-search-chip-bg: var(--color-bg-subtler);     /* #F7F9FA */
+  --shell-search-chip-fg: var(--color-text-prism);
+  --shell-search-chip-bg-selected: var(--btn-primary-bg);   /* #0D6BDE */
+  --shell-search-chip-fg-selected: var(--color-text-inverse);
+
+  /* Activity Center docked panel (PRD §6.5, 01-shell-home §5; contents [D]) */
+  --shell-activity-panel-radius: var(--radius-12);
+  --shell-activity-handle-z: 177;                      /* `.bodyDragHandle::after` hit area */
+  --shell-activity-sheet-z: var(--z-profile-menu);     /* ≤768 full-screen sheet [D] */
+  /* contents are a cross-origin iframe: colours sampled from `home-03` (C1-04/05, ±10%) [D] */
+  --shell-activity-tab-fg: #4A4A4F;                    /* "Other" */
+  --shell-activity-tab-fg-selected: var(--zc-text-dark); /* #131619 "Focus" */
+  --shell-activity-tab-bar: #2D3F6E;                   /* dark navy underline (unverified) */
+  --shell-activity-body-fg: #4A4A4F;
+  --shell-activity-link-fg: #2D3F6E;
+  --shell-activity-link-fg-hover: #1E2B4D;
+  --shell-activity-tool-fg: var(--zc-text-dark);       /* filter, mark all read */
+  --shell-activity-header-icon-fg: #555555;            /* "…" and ✕ */
+  --shell-art-cone: #F6B940;                           /* party-popper illustration [D] */
+  --shell-art-cone-stripe: #3B3A9B;
+  --shell-art-purple: #8C7BEF;
+  --shell-art-red: #EF6A6A;
+  --shell-art-green: #3FBF8F;
+  --shell-art-blue: #7FB2F5;
+  --shell-art-yellow: #F4C95D;
+
+  /* About modal (PRD §6.6, 01-shell-home §7.4) */
+  --shell-about-overlay: var(--overlay-light);         /* rgba(255,255,255,.75) */
+  --shell-about-border: 0.5px solid rgba(35, 35, 51, 0.2);
+  --shell-about-shadow: var(--shadow-meeting-history); /* 0 8px 24px rgba(35,35,51,.1) */
+  --shell-about-version-fg: #222230;
+  --shell-about-copyright-fg: var(--zc-text-day);      /* rgba(4,4,19,.56) */
+  --shell-about-link-fg: var(--zc-blue-link);          /* #0E72ED */
+  --shell-about-close-radius: 30%;
+  --shell-about-close-bg-hover: #EEE8E8;               /* `.about-close:hover` (no :active rule) */
+
+  /* Placeholder pages (Chat / Contacts, PRD §6.8) */
+  --shell-placeholder-muted: var(--zc-text-day);
+  --shell-placeholder-border: #98A0A9;
+  --shell-pill-selected-bg: #E7F1FD;
+  --shell-new-chat-bg: radial-gradient(141.42% 141.42% at 0 0, #508AFF 0%, #0B5CFF 100%);
+}
+
+/* Phones ≤767 [D]: compact 56px header, no rail (bottom tab bar), a full-bleed card between them. */
+@media (max-width: 767px) {
+  :root {
+    --shell-header-height: 56px;
+    --shell-card-width: calc(100vw - var(--shell-safe-left) - var(--shell-safe-right));
+    --shell-card-height: calc(
+      100dvh - var(--shell-header-height) - var(--shell-tabbar-height) - var(--shell-safe-top) - var(--shell-safe-bottom)
+    );
+  }
+}

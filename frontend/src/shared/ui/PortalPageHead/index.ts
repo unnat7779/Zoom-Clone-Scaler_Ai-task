@@ -1,0 +1,1 @@
+export { PortalPageHead } from "./PortalPageHead";

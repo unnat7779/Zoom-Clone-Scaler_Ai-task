@@ -1,0 +1,96 @@
+/* In-room Settings window (PRD §8.17 / spec 05 §12 [M]): 757×565 centred, modeless (no dim overlay),
+   bg #1D1E20, border .5px rgba(0,0,0,.25), radius 8; header 53, padding 14, title 16px/24px 700. */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-room-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  width: 757px;
+  max-width: calc(100% - 16px);
+  height: 565px;
+  max-height: calc(100% - 16px);
+  overflow: hidden;
+  border: var(--room-settings-border);
+  border-radius: var(--radius-8);
+  background: var(--mr-panel);
+  box-shadow: var(--room-settings-shadow);
+  color: var(--room-settings-text);
+  font-family: var(--font-app);
+  text-align: left;
+  pointer-events: auto;
+}
+
+.header {
+  position: relative;
+  flex: none;
+  height: 53px;
+  padding: 14px;
+  cursor: move;
+  touch-action: none;
+  border-bottom: 1px solid var(--mr-divider);
+}
+
+.title {
+  margin: 0;
+  font: 700 16px/24px var(--font-app);
+  text-align: center;
+}
+
+/* close 18×18 at top / right 19.4 */
+.close {
+  position: absolute;
+  top: 19.4px;
+  right: 19.4px;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-4);
+  color: var(--room-window-close);
+}
+.close svg { width: 10px; height: 10px; }
+.close:hover { opacity: 0.8; }
+.close:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* tab panel padding 24px 0, body padding 0 24px, scroll-y */
+.panel {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  padding: 24px 0;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 0 24px;
+  overflow-y: auto;
+}
+
+/* phones [D]: full-screen sheet, tabs on top */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .window {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .body { flex-direction: column; }
+}

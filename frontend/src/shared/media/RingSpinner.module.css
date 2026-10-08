@@ -1,0 +1,13 @@
+/* `.preview-video .spinner{width:24px;height:24px;animation:1.5s linear infinite rotate360}` */
+.spinner {
+  display: block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  animation: rotate360 var(--media-spinner-rotate) var(--ease-linear) infinite;
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

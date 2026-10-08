@@ -1,0 +1,37 @@
+/* Settings › General (spec 05 §12 [M]; offsets measured on room-16). */
+.first { margin-top: 17px; }
+
+.text {
+  margin: 0;
+  font: 400 14px/24px var(--font-app);
+}
+
+/* `.zm-radio-button{flex:1}`: the second radio starts ≈224px after the first (room-16, C2-12) */
+.radios {
+  display: grid;
+  grid-template-columns: 224px auto;
+  margin-top: 8px;
+}
+
+.skinRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skinLabel {
+  margin-right: 11px;
+  font: 400 13px/25px var(--font-app);
+}
+
+/* 40×40 buttons, radius 10, padding 8, selected bg rgba(255,255,255,.09) */
+.skin {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: var(--radius-10);
+  font: 400 20px/24px var(--font-app);
+}
+.skin:hover,
+.skinSelected { background: var(--mr-divider); }
+.skin:focus-visible { outline: var(--room-focus-ring); outline-offset: -2px; }

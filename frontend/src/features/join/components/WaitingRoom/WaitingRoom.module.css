@@ -1,0 +1,98 @@
+/* `.preview-root--dark .waiting-room-container` (wc_meeting.css): fills the page (or the shell panel),
+   flex column, space-around, centred text, #1D1E20, text rgba(235,235,245,.6). */
+.container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+  container: waiting / inline-size;
+  background: var(--join-prejoin-bg);
+  color: var(--join-hold-date);
+  font-family: var(--font-app);
+  text-align: center;
+}
+
+.inShell { min-height: 0; }
+
+/* `.wr-information{padding:24px 300px}`; ≤1024 it moves right of the corner preview, left-aligned */
+.information { padding: 24px 300px; }
+
+.topic {
+  color: var(--join-text);
+  font: 700 24px/32px var(--font-app);
+  word-break: break-all;
+}
+
+.date {
+  min-height: 24px;
+  margin-top: 8px;
+  color: var(--join-hold-date);
+  font: 400 14px/24px var(--font-app);
+}
+
+.tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  margin-top: 24px;
+  color: var(--join-hold-tip);
+  font: 600 14px/normal var(--font-app);
+}
+
+/* `.btn-container{margin-top:8px;margin-right:-10px}` › `.host-signin-btn`, `.leave-btn` */
+.buttons {
+  margin-top: 8px;
+  margin-right: -10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-hold-tip);
+  font: 400 14px/32px var(--font-app);
+}
+.button:focus-visible {
+  outline: var(--join-focus-ring);
+  outline-offset: 1px;
+}
+
+.exitIcon {
+  width: 1em;
+  height: 1em;
+  margin-left: 5px;
+}
+
+/* `.wr-main-content.wr-content-default`: margin 24, grows, radius 8, #3A3A3C (the default background
+   image is Zoom's st1.zoom.us asset, not shipped) */
+.content {
+  flex-grow: 1;
+  margin: 24px;
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  background: var(--join-hold-content-bg);
+}
+
+/* `.page-footer{margin:0 0 16px}` as the last flex child */
+.footer.footer {
+  position: static;
+  margin-bottom: 16px;
+}
+
+@container waiting (max-width: 1024px) {
+  .information {
+    padding-right: 24px;
+    padding-left: 302px;
+    text-align: left;
+  }
+  .tip { justify-content: flex-start; }
+}

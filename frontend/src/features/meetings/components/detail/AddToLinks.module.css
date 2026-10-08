@@ -1,0 +1,21 @@
+/* "Add to" (static, PRD §7.8.2): three 16px/32px links, 30px apart, with 20px brand icons. */
+.addTo {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4px 0;
+  font-size: 16px;
+  line-height: 32px;
+}
+.link {
+  display: inline-flex;
+  align-items: flex-start;
+  margin-right: 30px;
+  font-size: 16px;
+  line-height: 32px;
+  white-space: nowrap; /* a link wraps as a whole, never "Google / Calendar" under its icon (C4-19) */
+}
+.link:hover { text-decoration: underline; }
+.icon { flex: none; width: 20px; height: 20px; margin: 6px 4px 0 0; }
+.google { color: var(--meetings-add-google); }
+.outlook { color: var(--meetings-add-outlook); }
+.yahoo { color: var(--meetings-add-yahoo); }

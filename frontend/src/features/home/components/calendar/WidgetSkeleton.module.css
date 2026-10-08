@@ -1,0 +1,11 @@
+/* `.sidebar-event-loading` (PRD §7.1.8, 01-shell-home Appendix A.3): config bar + cards. */
+.skeleton {
+  flex: 1;
+  overflow: hidden;
+}
+
+.configBar {
+  width: calc(100% - 32px);
+  height: 26px;
+  margin: 16px 16px 4px;
+}

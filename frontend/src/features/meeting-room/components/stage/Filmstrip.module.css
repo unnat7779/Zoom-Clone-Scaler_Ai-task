@@ -1,0 +1,20 @@
+/* Speaker-view filmstrip page buttons (PRD §8.3.2 [M CSS]): 32×117 at y=51 (box from the strip
+   metrics: 44px wide on phones), rgba(255,255,255,.09), radius 4. */
+.pager {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-4);
+  background: var(--mr-divider);
+}
+.pager:disabled { opacity: 0.5; cursor: default; }
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid var(--mr-white);
+  border-right: 3px solid var(--mr-white);
+}
+.previous .chevron { margin-left: 4px; transform: rotate(-135deg); }
+.next .chevron { margin-right: 4px; transform: rotate(45deg); }

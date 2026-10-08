@@ -1,0 +1,31 @@
+/* Interpretation reveal (03-schedule.md §5.20, sch-18) [D vertical gaps from the screenshot: the select
+ * sits 15px under the checkbox line (C4-14)]. */
+.reveal { margin-top: 15px; }
+
+/* email 200×32 · 10px · language 300×32 + the round 32×32 × flush after it (C4-7) */
+.interpreter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.interpreter + .interpreter { margin-top: 10px; }
+.languageCell {
+  display: flex;
+  align-items: center;
+}
+/* width classes win over the kit's `width: 100%`, like Zoom's `!important` width utilities */
+.email { width: var(--schedule-width-interpreter-email) !important; }
+.language { width: var(--schedule-width-interpreter-language) !important; }
+
+/* "+ Add Sign Language Interpreter": tertiary md 232×32, `margin-left: -12px`, 58px under the row top */
+.add {
+  margin: 26px 0 0 -12px;
+}
+
+/* phones [D]: email on its own line, then the language select with its × on the next (C4-19) */
+@media (max-width: 767px) {
+  .email { width: 100% !important; }
+  .languageCell { flex: 1 1 100%; min-width: 0; }
+  .language { flex: 1; width: auto !important; min-width: 0; }
+}

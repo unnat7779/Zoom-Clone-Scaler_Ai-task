@@ -1,0 +1,19 @@
+/* `.z-modal-confirm__body p` (02-meetings.md §A.8); the frame renders the 14/14 h5 title. */
+.text {
+  margin-top: 24px;
+  color: var(--meetings-confirm-text);
+  font: 400 14px/19.2px var(--font-app);
+}
+
+.link { color: var(--color-text-link); }
+
+/* phones [D]: 44px Delete / Cancel (both frames already fit: 80vw / calc(100vw - 32px)) */
+@media (max-width: 767px) {
+  .action.action { justify-content: center; height: var(--meetings-touch-target); }
+}
+
+/* portal variant (PRD §7.8.5): zm-dialog body copy */
+.portalText {
+  color: var(--portal-detail-label);
+  font: 400 14px/21px var(--font-portal);
+}

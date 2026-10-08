@@ -1,0 +1,44 @@
+/* `.data-tools` (PRD §7.1.6, 01-shell-home §10.4): Today pill, ‹ ›, "…"; 10px gap before the list
+ * (`.prevOrNext{margin-bottom:10px}`). */
+.toolsRow {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  margin-bottom: 10px;
+  padding: 0 16px;
+  border-top: var(--home-cal-rule);
+  border-bottom: var(--home-cal-rule);
+}
+
+.toolsGroup {
+  display: flex;
+  align-items: center;
+}
+
+/* `.today-circle`: icon `.jump-today` 13×13 + 3px, then the label */
+.todayPill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 2px 8px;
+  border: var(--home-cal-pill-border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-primary);
+  font: 400 12px/16px var(--home-cal-button-font);
+  cursor: pointer;
+}
+
+.todayPill > svg {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
+}
+
+.todayPill:hover { background: var(--color-state-hover); }
+.todayPill:active { background: var(--color-state-press); }
+
+.navButton { margin-left: 8px; }

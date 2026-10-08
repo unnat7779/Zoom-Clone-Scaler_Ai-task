@@ -1,0 +1,33 @@
+/* Invite Link value (PRD §7.8.2): the URL + a 24×18 ghost copy button, 8px after it. */
+.link {
+  color: var(--color-text-link);
+  font-size: 14px;
+}
+.link:hover { text-decoration: underline; }
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+  color: var(--meetings-copy-icon);
+}
+.copy > svg { width: 16px; height: 16px; }
+
+/* phones: the long URL wraps inside the value column */
+@media (max-width: 767px) {
+  .link { overflow-wrap: anywhere; }
+}
+
+/* touch: 44px tap area around the 24×18 copy button, nothing visible */
+@media (pointer: coarse) {
+  .copy { position: relative; }
+  .copy::before {
+    content: "";
+    position: absolute;
+    inset: calc((18px - var(--meetings-touch-target)) / 2) calc((24px - var(--meetings-touch-target)) / 2);
+  }
+}

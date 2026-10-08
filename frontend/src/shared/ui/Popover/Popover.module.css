@@ -1,0 +1,59 @@
+/* Anchored popovers (PRD §5.8.10). Position is written by useAnchoredPosition. */
+.popover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+/* zoom-ui floating (profile menu, calendar "…", selects) */
+.floating {
+  z-index: var(--z-floating);
+  border: var(--menu-border);
+  border-radius: var(--menu-radius);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+}
+
+/* Prism popover (New-meeting options, "Add a calendar") */
+.prism {
+  z-index: var(--z-popover);
+  max-width: var(--popover-prism-max-width);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--popover-prism-radius);
+  background: var(--color-bg-surface);
+  box-shadow: var(--popover-prism-shadow);
+}
+
+/* Meeting-room dark dropdown (PRD §8.6.1) */
+.dark {
+  z-index: var(--z-floating);
+  padding: 8px 0;
+  border: 1px solid var(--mr-menu-border);
+  border-radius: var(--radius-8);
+  background: var(--mr-menu-bg);
+  box-shadow: var(--shadow-room-popover);
+}
+
+.plain {
+  z-index: var(--z-popover);
+}
+
+/* ---- motion ---- */
+.fade { animation: fadeIn var(--dur-300) var(--ease-standard); }
+.fade-linear { animation: fadeIn var(--dur-300) var(--ease-linear); }
+.zoom-in {
+  transform-origin: center top;
+  animation: zoomInTop var(--dur-300) var(--ease-out-quint);
+}
+.zoom-in[data-side="top"] { transform-origin: center bottom; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomInTop {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}

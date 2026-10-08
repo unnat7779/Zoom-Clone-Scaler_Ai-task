@@ -1,0 +1,158 @@
+/* Dialog frames (PRD §5.8.11). */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 32px);
+  outline: none;
+}
+
+.title { margin: 0; }
+.body { min-height: 0; }
+
+/* closing: the leave animation plays while clicks already reach the page */
+.leaving { pointer-events: none; }
+
+/* ---- zoom-dialog ---- */
+/* `.fade-in-linear-enter-active`: overlay `modal-fade-in .3s`, dialog `fade-in-linear-in .3s`, both
+ * with the default `ease`; the leave plays `modal-fade-out` / `fade-in-linear-out` .3s */
+.zoomOverlay {
+  z-index: var(--z-zoom-dialog);
+  background: var(--overlay-dark);
+  animation: fadeIn var(--dur-300) var(--ease);
+}
+.zoom {
+  border-radius: var(--radius-32);
+  background: var(--dialog-bg);
+  box-shadow: var(--dialog-shadow);
+  animation: fadeInLinear var(--dur-300) var(--ease);
+}
+.zoomOverlay.leaving { animation: fadeOut var(--dur-300) var(--ease) forwards; }
+.leaving .zoom { animation: fadeOutLinear var(--dur-300) var(--ease) forwards; }
+.zoom-sm { width: var(--dialog-w-sm); }
+.zoom-md { width: var(--dialog-w-md); }
+.zoom-lg { width: var(--dialog-w-lg); }
+.zoom .title { padding: 32px 72px 24px 32px; color: var(--color-text-primary); font: var(--dialog-title); }
+.zoom .body { padding: 0 32px; color: var(--color-text-primary); font: 400 14px/18px var(--font-app); }
+.zoom .footer { display: flex; justify-content: flex-end; gap: var(--dialog-footer-gap); padding: var(--dialog-footer-padding); }
+.close { position: absolute; top: var(--dialog-close-top); right: var(--dialog-close-right); }
+
+/* ---- Join-modal frame (Prism / PWA) ---- */
+.joinOverlay { z-index: var(--z-pwa-modal); background: var(--overlay-dark); }
+.join {
+  width: min(448px, 100vw - 48px);
+  max-height: min(100vh - 40px, 520px);
+  padding: 32px;
+  border-radius: var(--radius-32);
+  background: var(--dialog-bg);
+  box-shadow: var(--shadow-join-modal);
+}
+.join .title { color: var(--color-text-primary); font: var(--dialog-title); letter-spacing: var(--ls-dialog-title); }
+.join .footer { display: flex; justify-content: flex-end; gap: 16px; margin-top: 32px; }
+
+/* ---- PWA confirm (Delete Meeting) ---- */
+.confirmOverlay { z-index: var(--z-pwa-modal); background: var(--overlay-light); }
+.confirm {
+  width: 560px;
+  min-width: 25vw;
+  max-width: 80vw;
+  margin-top: -4rem;
+  border-radius: var(--radius-8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-pwa-confirm);
+}
+/* `h5` 600 14px/14px (the Workplace reset's line-height 1) */
+.confirm .title { padding: 10px 16px 0; color: var(--color-text-primary); font: 600 14px/14px var(--font-app); }
+.confirm .body { padding: 0 16px; }
+.confirm .footer { display: flex; justify-content: flex-end; gap: 10px; padding: 0 16px 16px; }
+.confirm .footer > * { margin-bottom: 10px; }
+.confirmHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 10px 6px;
+}
+.confirmBrand { display: flex; align-items: center; gap: 6px; color: var(--color-text-black); font: 400 12px/12px var(--font-app); }
+.confirmClose {
+  display: flex;
+  margin-right: 2px;
+  padding: 4px;
+  border-radius: var(--radius-4);
+  color: var(--color-text-primary);
+}
+.confirmClose:hover,
+.confirmClose:active { background: var(--zc-confirm-close-hover); }
+
+/* ---- zoom.us portal dialog ---- */
+/* Element dialog: overlay `v-modal-in .2s ease`, box `dialog-fade-in .3s` (opacity + 20px drop);
+ * leave `v-modal-out .2s ease forwards` + `dialog-fade-out .2s` */
+.portalOverlay {
+  z-index: var(--z-floating);
+  align-items: flex-start;
+  background: var(--overlay-scrim);
+  animation: fadeIn var(--dur-200) var(--portal-dialog-ease);
+}
+.portal {
+  width: 700px;
+  margin-top: 15vh;
+  padding: 24px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-portal-dialog);
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  animation: fadeInLinear var(--dur-300) var(--portal-dialog-ease);
+}
+.portalOverlay.leaving { animation: fadeOut var(--dur-200) var(--portal-dialog-ease) forwards; }
+.leaving .portal { animation: fadeOutLinear var(--dur-200) var(--portal-dialog-ease) forwards; }
+.portal-sm { width: 560px; }
+.portal .title { padding-bottom: 16px; color: var(--portal-detail-label); font: 400 24px/32px var(--font-portal); }
+.portal .footer { display: flex; justify-content: flex-end; gap: 8px; padding-top: 24px; }
+
+/* phones and short screens [D]: the portal dialog fits the viewport (16px around it), its body
+ * scrolls, and the footer buttons may wrap */
+@media (max-width: 767px), (max-height: 600px) {
+  .portalOverlay { padding: 16px 0; }
+  .portal { max-height: calc(100dvh - 32px); margin-top: 0; }
+  .portal .body { overflow-y: auto; }
+  .portal .footer { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  .portal { padding: 20px 16px; }
+  .portal .title { font-size: 20px; line-height: 28px; }
+}
+
+/* ---- bare: overlay only; the body fills the dialog as a flex column ---- */
+.bareOverlay { z-index: var(--z-pwa-modal); background: transparent; }
+.bare .body { display: flex; flex: 1; flex-direction: column; }
+
+@keyframes fadeInLinear {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translate(0); }
+}
+
+@keyframes fadeOutLinear {
+  from { opacity: 1; transform: translate(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

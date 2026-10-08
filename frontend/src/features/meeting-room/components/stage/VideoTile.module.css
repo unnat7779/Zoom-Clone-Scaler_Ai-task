@@ -1,0 +1,42 @@
+/* Video / avatar tile (PRD §8.3.4 [M]): no radius, bg #1A1A1A. */
+.tile {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--mr-tile);
+}
+
+/* active-speaker ring, drawn above the video */
+.active::after {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--room-ring);
+  content: "";
+  pointer-events: none;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  background: var(--mr-tile);
+}
+
+.mirrored { transform: scaleX(-1); }
+
+.name {
+  max-width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--mr-white);
+  font-family: var(--font-app);
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

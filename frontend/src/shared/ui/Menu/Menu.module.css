@@ -1,0 +1,99 @@
+/* Menus: zoom-ui light dropdown (PRD §5.8.10) and room dark dropdown (§8.6.1). */
+.menu {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.light { padding: var(--menu-padding); }
+.dark { padding: 0; }
+
+/* ---- rows ---- */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: none;
+  white-space: nowrap;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lightItem {
+  min-height: var(--menu-item-min-height);
+  padding: var(--menu-item-padding);
+  border-radius: var(--menu-item-radius);
+  background: transparent;
+  color: var(--menu-item-fg);
+  font: 400 14px/18px var(--font-app);
+}
+.lightItem.profile { height: 32px; padding: 7px 8px; }
+.lightItem:hover,
+.lightItem.active { background: var(--menu-item-bg-hover); }
+.lightItem:active { background: var(--menu-item-bg-active); }
+.lightItem.danger { color: var(--menu-item-fg-danger); }
+.lightItem[aria-disabled="true"] { color: var(--menu-item-fg-disabled); background: transparent; cursor: not-allowed; }
+.lightItem:focus-visible { outline: var(--focus-ring); outline-offset: -2px; }
+
+.darkItem {
+  margin: 0 2px;
+  width: calc(100% - 4px);
+  padding: 3px 20px 3px 28px;
+  background: transparent;
+  color: var(--mr-text-80);
+  font: 400 12px/17.14px var(--font-app);
+}
+.darkItem:hover,
+.darkItem.active { background: var(--mr-menu-hover); }
+.darkItem:focus-visible { background: var(--mr-menu-hover); outline: var(--focus-ring-room-menu); outline-offset: 0; }
+.darkItem[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+.icon {
+  display: flex;
+  flex: none;
+  margin-right: 8px;
+}
+.icon > svg { width: 16px; height: 16px; }
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.check {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  color: var(--menu-item-fg);
+}
+
+.darkCheck {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  width: 13px;
+  height: 12px;
+  background: url("/zoom/room-sprite-check@2x.png") center / contain no-repeat;
+}
+
+.trailing {
+  display: flex;
+  flex: none;
+  align-items: center;
+  margin-left: 8px;
+}
+.onHover { opacity: 0; }
+.item:hover .onHover,
+.item:focus-visible .onHover { opacity: 1; }
+
+/* ---- dividers ---- */
+.lightDivider { flex: none; height: 1px; margin: 8px; background: var(--color-border-subtle); }
+.darkDivider { flex: none; height: 1px; margin: 9px 0; background: var(--mr-divider); }
+
+/* ---- group titles ---- */
+.lightGroupTitle { padding: 8px; color: var(--menu-group-title-fg); font: var(--menu-group-title); }
+.darkGroupTitle { padding: 8px 16px; color: var(--mr-text-menu-header); font: 700 12px/18px var(--font-app); }

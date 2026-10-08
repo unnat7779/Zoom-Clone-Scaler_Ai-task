@@ -1,0 +1,56 @@
+/* PWA legacy z-button — Workplace Meetings tab (PRD §5.8.2). */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  white-space: nowrap;
+  font-family: var(--font-app);
+  /* `.z-button` sets no cursor: the Workplace default arrow (R2-F9) */
+  cursor: default;
+}
+
+.button > svg { flex: none; width: 12px; height: 12px; }
+
+.button:focus-visible { outline: var(--focus-ring-zbutton); outline-offset: 2px; }
+.button:disabled { outline: none; cursor: not-allowed; }
+
+.size24 { height: 24px; padding: 0 10px; border-radius: var(--radius-6); font-size: 13px; line-height: 20px; }
+.size32 { height: 32px; padding: 0 20px; border-radius: var(--radius-8); font-size: 14px; line-height: 20px; font-weight: 700; }
+.size40 { height: 40px; padding: 0 24px; border-radius: var(--radius-10); font-size: 16px; line-height: 24px; font-weight: 700; gap: 8px; }
+.size48 { height: 48px; padding: 12px 24px; border-radius: var(--radius-12); font-size: 16px; line-height: 24px; font-weight: 700; gap: 8px; }
+
+/* normal (Start / Join) */
+.normal { background: var(--zbtn-normal-bg); color: var(--color-text-inverse); }
+.normal:hover,
+.normal:active { background: var(--zbtn-normal-bg-hover); }
+
+/* tertiary (Copy Invitation / Edit) and tertiary-danger (Delete) */
+.tertiary {
+  border: 1px solid var(--zbtn-outline-border);
+  background: var(--zbtn-outline-bg);
+  color: var(--zbtn-outline-fg);
+}
+.tertiary:hover { background: var(--zbtn-outline-bg-hover); color: var(--zbtn-outline-fg-hover); }
+/* `.meetings__detail-btn-copy:focus`: any focus, mouse included (only the outline is keyboard-only) */
+.tertiary:focus,
+.tertiary:active { background: var(--zbtn-outline-bg-focus); color: var(--zbtn-outline-fg-hover); }
+.tertiaryDanger:hover,
+.tertiaryDanger:focus,
+.tertiaryDanger:active { color: var(--zbtn-outline-danger-fg-hover); }
+.tertiary:disabled { background: var(--zbtn-outline-bg); color: var(--zbtn-outline-fg-disabled); }
+
+/* secondary (Delete modal Cancel) */
+.secondary { background: var(--zoom-color-fill-subtle-neutral); color: var(--zc-text-dark); }
+.secondary:hover { background: var(--zoom-color-border-subtle-neutral); }
+.secondary:active { background: var(--zoom-color-border-input); }
+.secondary:disabled { background: var(--zoom-color-fill-subtle-neutral); color: var(--zc-text-grey); }
+
+/* destructive (Delete modal Delete) */
+.destructive { background: var(--zc-danger); color: var(--color-text-inverse); }
+.destructive:hover { background: var(--zc-danger-hover); }
+.destructive:active { background: var(--zc-danger-press); }
+
+.normal:disabled,
+.destructive:disabled { background: var(--zc-bg-disabled-legacy); color: var(--zc-text-disabled-legacy); }

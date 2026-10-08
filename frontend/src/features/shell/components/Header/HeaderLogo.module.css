@@ -1,0 +1,36 @@
+.logoBlock {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+}
+
+.wordmark {
+  position: relative;
+  padding-left: 12px;
+  color: var(--shell-wordmark-fg);
+  font: 600 22px/24px var(--font-app);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.wordmark::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 20px;
+  background: var(--shell-header-border);
+  transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  .wordmark { display: none; }
+}

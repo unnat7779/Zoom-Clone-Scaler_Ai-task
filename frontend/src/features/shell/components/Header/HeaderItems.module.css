@@ -1,0 +1,76 @@
+/* Header text items, Download, Upgrade, bell (PRD §6.2). No transitions. */
+.trailing {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.discover {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Admin Center + Discover / Pricing ghost buttons */
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 6px 8px;
+  border-radius: var(--radius-12);
+  color: var(--shell-item-fg);
+  font: 400 14px/20px var(--font-app);
+  letter-spacing: var(--ls-tight);
+  white-space: nowrap;
+}
+.item:hover,
+.item:focus-visible { background: var(--shell-item-bg-hover); color: var(--shell-item-fg-hover); }
+.item:active { background: var(--shell-item-bg-press); color: var(--shell-item-fg-press); }
+
+.download {
+  height: 32px;
+  padding: 6px 14px;
+  border-radius: var(--radius-12);
+  background: var(--color-bg-subtle);
+  color: var(--zc-header-download);
+  font: 400 14px/18px var(--font-app);
+  letter-spacing: var(--ls-tight);
+  white-space: nowrap;
+}
+.download:hover,
+.download:focus-visible { background: var(--shell-item-bg-hover); color: var(--shell-item-fg-hover); }
+.download:active { background: var(--shell-item-bg-press); color: var(--shell-item-fg-press); }
+.download:focus-visible { outline: var(--focus-ring-download); }
+
+.upgrade {
+  height: 32px;
+  padding: 6px 14px;
+  border-radius: var(--radius-12);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  font: 500 14px/18px var(--font-app);
+  white-space: nowrap;
+}
+.upgrade:hover { background: var(--btn-primary-bg-hover); }
+.upgrade:active { background: var(--btn-primary-bg-active); }
+
+/* prism ToggleButton: hover #6E76801F (IconButton); pressed / active #6E76803D [M] — the doubled
+ * class outranks IconButton's own :hover / :active rules. */
+.bell { color: var(--shell-bell-fg); }
+.bell.bell:active,
+.bell.bell[aria-pressed="true"] { background: var(--shell-item-bg-press); }
+
+@media (min-width: 1440px) {
+  .discover { display: flex; }
+}
+
+@media (max-width: 1080px) {
+  .admin { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hideTablet { display: none; }
+}

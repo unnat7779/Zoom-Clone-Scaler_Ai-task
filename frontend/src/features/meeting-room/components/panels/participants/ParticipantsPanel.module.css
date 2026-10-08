@@ -1,0 +1,37 @@
+/* Participants panel (PRD §8.8 [M]). */
+.header {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--mr-panel-border);
+  background: var(--mr-panel);
+}
+
+.miniHeader {
+  height: 100%;
+  border-bottom: none;
+}
+
+.title {
+  flex: 1;
+  margin: 0 auto;
+  color: var(--mr-text);
+  font: 500 14px/21px var(--font-app);
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 9px 0 8px; /* rows start at y 60 (live Zoom dump, R5-20) */
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}

@@ -1,0 +1,46 @@
+/* `.meetings__groups` (PRD §7.4.2): the only part of the list that scrolls (8px Zoom scrollbar). */
+.groups {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 0;
+  overflow: auto;
+  outline: none;
+}
+.groups:focus-visible { outline: var(--meetings-focus-ring); outline-offset: 1px; }
+.groups::-webkit-scrollbar { width: 8px; }
+.groups::-webkit-scrollbar-track {
+  border-radius: var(--meetings-scrollbar-radius);
+  background: var(--meetings-scrollbar-track);
+  box-shadow: var(--meetings-scrollbar-track-shadow);
+}
+.groups::-webkit-scrollbar-thumb {
+  border-radius: var(--meetings-scrollbar-radius);
+  background: var(--meetings-scrollbar-thumb);
+  box-shadow: var(--meetings-scrollbar-thumb-shadow);
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--meetings-empty-fg);
+  font-size: 14px;
+}
+
+.label {
+  margin: 0 16px;
+  padding: 12px 20px;
+  color: var(--meetings-muted-fg);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.divider {
+  height: 1px;
+  margin: 0 36px;
+  background: var(--meetings-divider);
+}

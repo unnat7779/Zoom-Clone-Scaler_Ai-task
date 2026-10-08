@@ -1,0 +1,131 @@
+/* `.mobile-waiting-room.mobile-waiting-room--dark` (wc_meeting.css): full page, padding 0 16px,
+   flex column, #1A1A1A; clear of the notch and the home indicator. */
+.page {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--safe-top) calc(16px + var(--safe-right)) var(--safe-bottom) calc(16px + var(--safe-left));
+  background: var(--join-hold-mobile-bg);
+  color: var(--join-text);
+  font-family: var(--font-app);
+}
+
+/* `.wr-header{text-align:center}`, `.wr-exit-btn{position:absolute;left:24px;top:24px}` (24px icon, #F7F9FA) */
+.header {
+  position: relative;
+  text-align: center;
+}
+
+.exit {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-control-fg);
+}
+.exit:focus-visible { outline: var(--join-focus-ring); outline-offset: -2px; }
+
+.exitIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* `.wr-header-title{font-size:24px;margin-top:24px;font-weight:700}` */
+.title {
+  margin-top: 24px;
+  font: 700 24px/32px var(--font-app);
+}
+
+/* `.wr-main-content-container`: column, space-between (a row in landscape) */
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* `.wr-main-content{height:541px;max-height:50vh;margin-top:23px;border-radius:8px}` — the default
+   background image is not shipped, so it shows the desktop default panel colour [D] */
+.content {
+  height: 541px;
+  max-height: 50vh;
+  margin-top: 23px;
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  background: var(--join-hold-content-bg);
+}
+
+/* `.wr-information{text-align:center;margin-bottom:15px}` */
+.information {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* `.wr-topic{font-size:24px;font-weight:701;margin-top:16px}` */
+.topic {
+  margin-top: 16px;
+  font: 700 24px/32px var(--font-app);
+  word-break: break-word;
+}
+
+/* `.wr-schedule-date{color:#9da5b5;font-size:14px;margin-top:8px}` */
+.date {
+  min-height: 20px;
+  margin-top: 8px;
+  color: var(--join-hold-mobile-date);
+  font: 400 14px/20px var(--font-app);
+}
+
+/* `.wr-indication{font-weight:600;font-size:14px;display:flex;justify-content:center;margin-top:16px}` */
+.indication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  font: 600 14px/20px var(--font-app);
+}
+
+/* prism Button size large, danger, full width, margin-top 16: "Leave" */
+.leave {
+  width: 100%;
+  height: 44px;
+  margin-top: 16px;
+  border: none;
+  border-radius: var(--radius-12);
+  background: var(--join-danger);
+  color: var(--join-btn-fg);
+  font: 600 16px/44px var(--font-app);
+}
+.leave:focus-visible { outline: var(--join-focus-ring); outline-offset: 2px; }
+
+.footer.footer {
+  position: static;
+  padding: 0 0 16px;
+}
+
+/* landscape: the panel and the information side by side (`orientation:landscape`) */
+@media (orientation: landscape) {
+  .main {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .content {
+    flex: 2 1 0;
+    min-width: 30vw;
+    max-width: 60vw;
+    max-height: 70vh;
+    margin-top: 0;
+  }
+  .information { flex: 1 1 0; }
+}

@@ -1,0 +1,27 @@
+/* Passcode rules popover (`.zoom-set-password-rules`, 03-schedule.md §5.12): 200×74, on the info
+ * popover layer */
+.popover {
+  --hover-popover-z: var(--schedule-info-popover-z);
+  width: var(--schedule-width-passcode);
+}
+
+.title {
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 18px;
+}
+.passed { color: var(--schedule-rule-ok); }
+.failed { color: var(--schedule-rule-fail); }
+.ruleIcon { flex: none; width: 16px; height: 16px; }
+.ruleText { margin-left: 4px; }
+
+.rules { white-space: nowrap; }

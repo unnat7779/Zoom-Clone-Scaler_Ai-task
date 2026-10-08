@@ -1,0 +1,35 @@
+/* Device select of Settings › Audio (room-18): 32 tall, 1px #555B62 border, radius 8, chevron at the right. */
+.wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.select {
+  width: 100%;
+  height: 32px;
+  padding: 0 32px 0 8px;
+  overflow: hidden;
+  border: 1px solid var(--room-invite-input-border);
+  border-radius: var(--radius-8);
+  background: var(--mr-panel);
+  color: var(--room-settings-text);
+  font: 400 14px/30px var(--font-app);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  appearance: none;
+  cursor: pointer;
+}
+.select:disabled { color: var(--room-settings-tab-text); cursor: default; }
+.select:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.chevron {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  color: var(--room-settings-text);
+  pointer-events: none;
+}

@@ -1,0 +1,16 @@
+/* `.duration-item-widget`: hr select + "hr" + 8px + minute select + "min" on one line */
+.widget {
+  display: flex;
+  align-items: center;
+}
+
+/* "hr" / "min": 14/14, 8px after their select */
+.unit {
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  line-height: 14px;
+}
+/* "hr" is followed by 8px before the minute select */
+.unitGap { margin-right: 8px; }

@@ -1,0 +1,8 @@
+/* one detail line (time, host, number…): 13px/16px #232333, 16px apart */
+.row {
+  margin: 16px 0;
+  color: var(--meetings-strong-fg);
+  font-size: 13px;
+  line-height: 16px;
+  overflow-wrap: break-word;
+}

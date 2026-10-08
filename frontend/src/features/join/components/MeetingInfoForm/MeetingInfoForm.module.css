@@ -1,0 +1,137 @@
+/* `.preview-meeting-info` (PRD §7.10.2) — rhythm: title 36 → label 20 + 5 → input 40 → 12 → …
+ * The column is vertically centred on the card. Zoom's reCAPTCHA line (16px margin + two
+ * 16px lines) is omitted (DV8) but its space is kept (+1px for Zoom's sub-pixel centring),
+ * so the title stays at card top + 13 exactly as captured (screenshot 18). */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 49px;
+}
+
+.title {
+  align-self: stretch;
+  color: var(--join-text);
+  font: 700 24px/36px var(--font-app);
+  text-align: center;
+}
+
+/* ---- fields ---- */
+.field {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+.field + .field { margin-top: 12px; }
+
+.fieldTitle {
+  margin-bottom: 5px;
+  color: var(--join-text);
+  font: var(--font-weight-sf-medium) 14px/20px var(--font-app);
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 18px;
+  border: 2px solid var(--join-input-border);
+  border-radius: var(--radius-10);
+  outline: none;
+  background: transparent;
+  color: var(--join-text);
+  font: 400 14px/normal var(--font-app);
+}
+.input::placeholder { color: var(--join-input-placeholder); }
+.input:hover { background: var(--join-input-hover-bg); }
+.input:focus,
+.input:focus-visible { border-color: var(--join-input-focus-border); outline: none; }
+.inputError,
+.inputError:focus { border-color: var(--join-input-error-border); }
+
+/* `.preview-meeting-info__field-input--password`: a text input with masked glyphs (no password-manager prompt) */
+.passcode { -webkit-text-security: disc; }
+
+.fieldError,
+.joinError {
+  margin-top: 4px;
+  color: var(--join-error-fg);
+  font: 400 14px/18px var(--font-app);
+}
+
+/* ---- Join (`.preview-join-button`, a `zm-btn`): 400×40, 4px past the inputs on both sides.
+ * No hover colour (`.zm-btn:hover` loses the cascade); keyboard focus ring 2px #0E71EB, offset 1. */
+.join {
+  align-self: stretch;
+  height: 40px;
+  margin: 11px -4px 0;
+  border: none;
+  border-radius: var(--radius-10);
+  background: var(--join-btn-bg);
+  color: var(--join-btn-fg);
+  font: 700 16px/normal var(--font-app);
+  text-align: center;
+  transition: var(--join-btn-transition);
+}
+/* `.zm-btn__outline--blue:focus` also rings mouse focus (beats the global `:focus:not(:focus-visible)`) */
+.join.join:focus,
+.join:focus-visible {
+  outline: var(--join-focus-ring);
+  outline-offset: 1px;
+}
+.joinDisabled {
+  background: var(--join-btn-disabled-bg);
+  color: var(--join-btn-disabled-fg);
+  cursor: default;
+}
+/* `zm-btn--disabled` while the request runs */
+.joining {
+  opacity: var(--join-btn-loading-opacity);
+  cursor: not-allowed;
+}
+
+/* `.zm-btn .loading`: 26px, margin-left 10, rotate 1.5s linear (white sprite) */
+.joinLoading {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin: -2px 0 0 10px;
+  vertical-align: middle;
+  filter: var(--join-loading-white);
+  animation: rotate360 var(--join-spinner-rotate) var(--ease-linear) infinite;
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- agreement ---- */
+.agreement {
+  margin-top: 16px;
+  color: var(--join-text-muted);
+  font: 400 14px/21px var(--font-app);
+}
+
+.agreementLink {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--join-link);
+  font: 500 14px/21px var(--font-app);
+}
+.agreementLink:hover { text-decoration: underline; }
+
+/* stacked layout (≤900): no reCAPTCHA band; on phones Join is as wide as the inputs (R6-21) */
+@container prejoin (max-width: 900px) {
+  .form { padding-bottom: 0; }
+}
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .join { margin-right: 0; margin-left: 0; }
+}
+
+/* touch screens: 44px fields and Join; 16px input text so iOS does not zoom in on focus */
+@media (pointer: coarse) {
+  .input { height: 44px; font-size: 16px; }
+  .join { height: 44px; }
+}

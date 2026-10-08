@@ -1,0 +1,49 @@
+/* Shared dark dropdown of the room (PRD §8.6.1 [M]). Position comes from the caller. */
+.dropdown {
+  position: absolute;
+  z-index: var(--room-z-popover);
+  /* never taller than the room above the toolbar (landscape tablets, many devices) */
+  max-height: calc(100cqh - var(--room-toolbar-height) - 16px);
+  padding: 8px 0;
+  overflow-y: auto;
+  border: 1px solid var(--mr-menu-border);
+  border-radius: var(--radius-8);
+  background: var(--mr-menu-bg);
+  box-shadow: var(--shadow-room-popover);
+  font-family: var(--font-app);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* touch screens (tablets): the 23–25px rows grow to 44px */
+@media (pointer: coarse) {
+  .dropdown [role^="menuitem"] { min-height: 44px; }
+  .dropdown [role="menuitemcheckbox"] > [aria-hidden]:first-child,
+  .dropdown [role^="menuitem"] svg {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* phone sheet [D]: 48px rows, 15px text, the ✓ and the trailing icons centred on the row */
+.sheetMenu.sheetMenu [role^="menuitem"] {
+  min-height: 48px;
+  padding: 12px 48px 12px 44px;
+  font-size: 15px;
+  line-height: 24px;
+  white-space: normal;
+}
+.sheetMenu [role="menuitemcheckbox"] > [aria-hidden]:first-child {
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+}
+.sheetMenu.sheetMenu [role^="menuitem"] svg {
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+}
+.sheetMenu [role="presentation"] {
+  padding: 12px 20px 4px;
+  font-size: 13px;
+}

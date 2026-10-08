@@ -1,0 +1,66 @@
+/* Invalid meeting link (PRD §7.2.8, §7.10.1; 04-join.md §2.9, §5) */
+
+/* ---- top-level page ---- */
+.portalPage {
+  min-height: 100vh;
+  background: var(--join-portal-page-bg);
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+
+/* `#content_container`: white, padding-top under the fixed 104px header */
+.portalContent {
+  padding-top: var(--portal-header-height);
+  background: var(--join-portal-page-bg);
+}
+
+/* ---- in-shell: the `?from=pwa` iframe document (734px tall at 1366×768) scrolls in the panel ---- */
+.pwaDocument {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.pwaBody {
+  display: flow-root; /* keeps the error's 40px top margin inside the 734px */
+  min-height: 734px;
+}
+
+/* ---- `#global-error.mini-layout` ---- */
+.globalError {
+  min-height: 400px;
+  margin-top: 40px;
+}
+
+.box {
+  text-align: center;
+}
+
+.portal .box { padding: 50px; }
+.pwa .box { padding: 100px; }
+
+/* `span.error-message` */
+.message {
+  padding-left: 4px;
+  color: var(--join-invalid-fg);
+  font-family: var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  vertical-align: top;
+}
+
+/* the Helvetica fallback sits 1px lower in its line than zoom.us's glyphs (glyph top 198 at 1366) */
+.portal .message { position: relative; top: -1px; font-size: 18px; font-weight: 400; line-height: 25.71px; }
+.pwa .message { font-size: 20px; font-weight: 600; line-height: 28.57px; }
+
+/* clone-only [D] retry when the backend is unreachable */
+.retry {
+  display: block;
+  margin: 16px auto 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-link);
+  font: 400 14px/20px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+}
+.retry:hover { text-decoration: underline; }

@@ -1,0 +1,25 @@
+/* Zoom AI: `.pt-sm.pb-sm` parent, 8px region with 22px indent, children 36px apart (row 109 tall) */
+.parent { padding: 4px 0 5px; }
+.children {
+  margin-top: 8px;
+  padding-left: 22px;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.desc {
+  display: flex;
+  align-items: center;
+  margin: 4px 0 8px;
+  color: var(--schedule-option-desc-fg);
+  font-size: 14px;
+  line-height: 18px;
+}
+.select { width: 418px !important; }
+
+@media (max-width: 767px) {
+  .select { width: 100% !important; }
+}

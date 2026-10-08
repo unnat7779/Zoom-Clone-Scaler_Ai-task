@@ -1,0 +1,82 @@
+/* .meetings-container__header (02-meetings.md §A.2). */
+.header {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* 21×23, absolute left 16 / vertically centred; hover #0000000F, active #0000004D */
+.refresh {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 23px;
+  padding: 4px;
+  border-radius: var(--radius-4);
+  background: var(--color-bg-surface);
+  color: var(--color-text-black);
+  transform: translateY(-50%);
+}
+.refresh:hover { background: var(--color-state-refresh-hover); }
+.refresh:active { background: var(--color-state-refresh-press); }
+.refreshIcon { width: 13px; height: 13px; }
+
+.tabs {
+  display: flex;
+  gap: 16px;
+}
+
+/* DV3 [D]: active = Zoom's title style (14/14 700 #131619); inactive 400 #747487 */
+.tab {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--meetings-muted-fg);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+.tab:hover { color: var(--meetings-title-fg); }
+.active {
+  color: var(--meetings-title-fg);
+  font-weight: 700;
+  cursor: default;
+}
+/* invisible bold copy: both states keep the bold width, so nothing shifts when switching */
+.boldWidth {
+  height: 0;
+  overflow: hidden;
+  font-weight: 700;
+  visibility: hidden;
+}
+
+/* touch: 44px tap areas around the 21×23 refresh and the 14px-tall segments, nothing visible */
+@media (pointer: coarse) {
+  .refresh::before,
+  .tab::before {
+    content: "";
+    position: absolute;
+  }
+  .refresh::before { inset: calc((23px - var(--meetings-touch-target)) / 2) calc((21px - var(--meetings-touch-target)) / 2); }
+  .tab::before { inset: calc((14px - var(--meetings-touch-target)) / 2) -8px; }
+}
+
+/* 2px bar 6px below the text */
+.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  left: 0;
+  height: 2px;
+  border-radius: var(--radius-2);
+  background: var(--meetings-tab-bar);
+}

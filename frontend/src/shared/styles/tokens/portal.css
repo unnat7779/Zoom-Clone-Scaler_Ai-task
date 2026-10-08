@@ -1,0 +1,64 @@
+/* tokens/portal.css — zoom.us web-portal chrome (104px header, side menu).
+ * Owned by FE-core. PRD §7.5 / docs/requirements/03-schedule.md §3,
+ * 07-responsive.md §2.4. Portal colours themselves live in base.css (7.12).
+ */
+:root {
+  --portal-strip-height: 40px;
+  --portal-nav-height: 64px;
+  --portal-header-height: 104px;          /* strip + nav; 50px at ≤767 */
+  --portal-header-height-mobile: 50px;
+  --portal-sidemenu-width: 300px;
+  --portal-content-padding: 32px;         /* 32px 24px at 1024–1279, 32px 16px at ≤1023 */
+  --portal-floating-z: 105;               /* zoom-ui popups (select menus) count up from 105: under the header (1030) */
+
+  --portal-sidemenu-item-fg: var(--color-text-primary);
+  --portal-sidemenu-item-hover: var(--color-state-hover);
+  --portal-sidemenu-item-press: var(--color-state-press);
+  --portal-sidemenu-item-selected-bg: var(--color-bg-selected);   /* #F2F8FF */
+  --portal-sidemenu-item-selected-fg: var(--zoom-color-fill-global-primary); /* #0D6BDE */
+  --portal-sidemenu-title-fg: var(--color-text-tertiary);         /* #686F79 */
+  --portal-sidemenu-chevron: var(--color-icon-strong);            /* #555B62 */
+  --portal-sidemenu-bar-radius: 4.2px;
+  --portal-nav-tab-radius: 20px 20px 0 0;
+  --portal-hamburger-bar-radius: 1px;
+
+  /* hover-popover arrows (rotated squares): Prism 16px, zoom-ui info 14px (PRD §5.8.9–5.8.10) */
+  --popover-prism-arrow-radius-top: 50% 0 4px 0;
+  --popover-prism-arrow-radius-bottom: 4px 0 50% 0;
+  --popover-info-arrow-radius: 3px;
+
+  --portal-split-divider: rgba(255, 255, 255, 0.5); /* between the halves of a primary zm-button-group */
+
+  /* zm-button :active (02-meetings.md App. 2, R2-F5) */
+  --portal-default-active: #C1C6CE;
+  --portal-primary-active: #033A7D;
+  --portal-plain-active: #F1F4F6;
+  --portal-danger-active: #7A051B;
+  --portal-dialog-ease: ease;             /* Element dialog-fade-in / v-modal-in */
+
+  /* header (03-schedule.md §3.1–3.2) */
+  --portal-header-text-hover: #0E72ED;    /* marketing tabs + Plans & Pricing :hover */
+  --portal-strip-separator: rgba(255, 255, 255, 0.3); /* before "Contact Sales" [D from sch-01] */
+
+  --portal-error-page-height: 446px;      /* header-only error page: footer at y=550 (mtg-18) */
+
+  /* phones / touch (PRD §11.5, MOBILE-MEET) [D] */
+  --portal-touch-target: 44px;            /* minimum tap height on phones */
+  --portal-sticky-bar-room: 96px;         /* scroll-padding-bottom: the pinned Save / Start bar + 16 */
+  --portal-select-menu-max-height-phone: 264px; /* 5½ × 44px rows + the 11px list margins (fits above a keyboard) */
+  /* ≤1024 hamburger menu (top_nav.min.css `.navbar-collapse`, `.tabletWhiteBar`) */
+  --portal-mobile-menu-row: 52px;
+  --portal-mobile-menu-divider: #E1E1E6;
+  --portal-mobile-menu-shadow: 0 16px 64px rgba(0, 0, 0, 0.16);
+  --portal-mobile-menu-pill: var(--zoom-color-text-alternative-primary); /* #0B5CFF */
+
+  /* footer `#footer_container` (03-schedule.md §3.5, 04-join.md §5) — background: --portal-footer-bg */
+  --portal-footer-heading: #EAEAEA;
+  --portal-footer-link: #FFFFFF;
+  --portal-footer-select-border: rgba(255, 255, 255, 0.3);
+  --portal-footer-divider: rgba(255, 255, 255, 0.7);
+  --portal-footer-social-bg: #282655;
+  --portal-footer-social-fg: #FFFFFF;
+  --portal-ccpa-blue: #0066FF;           /* "Your Privacy Choices" toggle */
+  --portal-ccpa-white: #FFFFFF;
+}

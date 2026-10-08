@@ -1,0 +1,48 @@
+/* `._searchTags` (01-shell-home §4): padding 8px 12px; chips h24, padding 4px 8px, radius 100px,
+ * `margin: 2px 12px 2px 0` (last 0), 12px icon + 4px, 13px/16px. Unselected chips take nx-chat's
+ * tertiary hover / active; the selected chip keeps `#0D6BDE` (`!important` fill) [M CSS]. */
+.row {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  margin: 2px 12px 2px 0;
+  padding: 4px 8px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--shell-search-chip-bg);
+  color: var(--shell-search-chip-fg);
+  font: 400 13px/16px var(--font-app);
+  white-space: nowrap;
+}
+.chip:last-child { margin-right: 0; }
+.chip:hover { background: var(--shell-search-button-bg-hover); color: var(--shell-search-button-fg-hover); }
+.chip:active { background: var(--shell-search-button-bg-press); color: var(--shell-search-button-fg-press); }
+
+.selected,
+.selected:hover,
+.selected:active { background: var(--shell-search-chip-bg-selected); color: var(--shell-search-chip-fg-selected); }
+
+.icon { flex: none; }
+
+/* Phones [D]: one row that scrolls sideways (inside the sheet) instead of wrapping */
+@media (max-width: 767px) {
+  .row {
+    flex-wrap: nowrap;
+    margin: 0 calc(-1 * var(--shell-phone-gutter));
+    padding: 8px var(--shell-phone-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .row::-webkit-scrollbar { display: none; }
+
+  .chip { flex: none; }
+}

@@ -1,0 +1,31 @@
+/* Icon-only buttons (zoom-ui icon-only, Prism icon, MUI header icons). PRD §5.8.1, §6.2. */
+.button {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--btn-tertiary-icon-fg);
+  cursor: pointer;
+}
+
+.button > svg { flex: none; }
+
+/* sizes: box / glyph */
+.sm { width: 24px; height: 24px; }
+.sm > svg { width: 14px; height: 14px; }
+.md { width: 32px; height: 32px; }
+.md > svg { width: 16px; height: 16px; }
+
+/* shapes */
+.circle { border-radius: var(--radius-pill); }
+.rounded.sm { border-radius: var(--radius-6); }
+.rounded.md { border-radius: var(--radius-8); }
+
+/* Interactive states only apply to enabled buttons (`disabled` or `aria-disabled`). */
+.button:is(:disabled, [aria-disabled="true"]) { cursor: not-allowed; color: var(--color-text-disabled); }
+.button:not(:disabled, [aria-disabled="true"]):hover { background: var(--color-state-hover); }
+.button:not(:disabled, [aria-disabled="true"]):active { background: var(--color-state-press); }

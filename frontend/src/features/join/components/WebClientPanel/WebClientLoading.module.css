@@ -1,0 +1,28 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--join-webclient-bg);
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: var(--join-webclient-layer-z);
+  display: flex;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: var(--join-webclient-loading-icon) center / 32px 32px no-repeat;
+  animation: rotateInfinite var(--join-webclient-spin) var(--ease-linear) infinite;
+}
+
+@keyframes rotateInfinite {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

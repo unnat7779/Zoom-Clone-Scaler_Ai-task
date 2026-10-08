@@ -1,0 +1,53 @@
+/* Settings › Video (spec 05 §12, rows measured on room-17). */
+.options { margin-top: 16px; }
+
+/* phones only [D]: camera picker under the preview */
+.camera { margin-top: 16px; }
+
+/* "Use hardware acceleration for:" — 400 14px (room-17 width 195px) */
+.text {
+  margin: 8px 0 0;
+  font: 400 14px/25px var(--font-app);
+}
+
+/* "Sending video" starts 254px after "Receiving video" */
+.columns {
+  display: grid;
+  grid-template-columns: 254px auto;
+}
+
+.withInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Zoom's SvgHelp: a 14px circled "?" in rgba(255,255,255,.54) */
+.info {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--room-settings-tab-text);
+}
+
+.rendering { margin-top: 16px; }
+
+/* "Video Rendering Method": regular 14px text (room-17 width 157px), 8px above the select */
+.renderingLabel {
+  margin: 0 0 8px;
+  color: var(--room-settings-text);
+  font: 400 14px/16px var(--font-app);
+}
+
+.select {
+  width: 251px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--room-invite-input-border);
+  border-radius: var(--radius-8);
+  color: var(--room-settings-text);
+  font: 400 14px/30px var(--font-app);
+  text-align: left;
+  cursor: default;
+}
+.select:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }

@@ -1,0 +1,12 @@
+/* Skeleton bar (01-shell-home Appendix A.3/A.4): radius 4, #0000000A, pulse. */
+.bar {
+  border-radius: var(--skeleton-radius);
+  background: var(--skeleton-bg);
+  animation: pulse var(--dur-skeleton) ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.33; transform: scale(0.99); }
+  100% { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,27 @@
+/* Invite segmented tabs (PRD §8.11 [M]): track 342×30, #3A3A3A, radius 8; tabs 114×30. */
+.track {
+  display: flex;
+  flex: none;
+  align-self: center;
+  width: 342px;
+  height: 30px;
+  border-radius: var(--radius-8);
+  background: var(--room-invite-track);
+}
+
+.tab {
+  width: 114px;
+  height: 30px;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  color: var(--mr-text-4);
+  font: 400 13px/26px var(--font-app);
+  text-align: center;
+}
+
+.selected {
+  background: var(--mr-panel-border);
+  box-shadow: var(--room-invite-tab-shadow);
+  color: var(--mr-white);
+}

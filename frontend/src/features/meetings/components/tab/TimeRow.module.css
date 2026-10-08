@@ -1,0 +1,3 @@
+/* time notice (PRD §7.4.4): "Starts in N minutes" / "In Progress" #0E72ED, "NOW" #FD4C4C */
+.notice { color: var(--meetings-link-fg); }
+.now { color: var(--meetings-notice-now); }

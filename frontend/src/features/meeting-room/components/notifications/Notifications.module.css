@@ -1,0 +1,73 @@
+/* Room notification layer and toasts (PRD §8.13 [M]). */
+.layer {
+  position: absolute;
+  top: calc(58px + var(--safe-top));
+  right: 0;
+  left: 0;
+  z-index: var(--z-room-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(750px, calc(100% - 16px));
+  margin: 0 auto;
+  pointer-events: auto;
+}
+.toast + .toast { margin-top: 10px; }
+
+.body {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-14);
+  background: var(--mr-toast-bg);
+  color: var(--mr-text-80);
+  font: 400 14px/21px var(--font-app);
+}
+
+.text {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  margin-right: 10px;
+  overflow-wrap: anywhere;
+}
+
+/* empty buttons slot (padding 0 8px) of plain toasts — matches Zoom's toast widths */
+.buttons {
+  display: flex;
+  padding: 0 8px;
+}
+
+.warning {
+  flex: none;
+  width: 14px;
+  height: 13px;
+  margin-right: 10px;
+  color: var(--mr-warning);
+}
+
+.link {
+  margin: 0 3px;
+  color: var(--mr-link-permission);
+  font: 400 14px/21px var(--font-app);
+  text-decoration: underline;
+}
+
+.close {
+  flex: none;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  padding: 0 0 0 4px;
+  background: url("/zoom/room-sprite-close-x@2x.png") 0 0 / 16px 16px no-repeat;
+  background-origin: content-box;
+}

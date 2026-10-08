@@ -1,0 +1,42 @@
+/* `.meetings__pmi` (PRD §7.4.2): 328×78 card + the 288px divider 10px above the groups. No transitions. */
+.card {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 78px;
+  margin: 0 16px;
+  padding: 1px 6px;
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  text-align: center;
+  /* `.meetings__pmi`, items and z-buttons set no cursor in Zoom: the Workplace default arrow */
+  cursor: default;
+}
+.card:hover { background: var(--meetings-item-hover); }
+.selected,
+.selected:hover { background: var(--meetings-item-selected); }
+.card:focus-visible { outline: var(--meetings-focus-ring); outline-offset: 1px; }
+
+.number {
+  margin-bottom: 4px;
+  color: var(--meetings-strong-fg);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+}
+.label {
+  color: var(--meetings-muted-fg);
+  font-size: 13px;
+  line-height: 16px;
+}
+.selected .number,
+.selected .label { color: var(--color-text-inverse); }
+
+.divider {
+  flex: 0 0 auto;
+  height: 1px;
+  margin: 0 36px 10px;
+  background: var(--meetings-divider);
+}

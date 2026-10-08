@@ -1,0 +1,45 @@
+/* Schedule / Edit form (PRD §7.6.2, 03-schedule.md §4–5): the form root and the few styles several
+ * rows share; everything else lives in each row's own module. */
+
+/* The portal font and 0.42px tracking come from PortalShell. */
+.form {
+  min-height: 600px;
+  color: var(--schedule-label-fg);
+  word-break: break-word;
+}
+
+/* a radio / checkbox label with its icons on one 18px line (the 20px ⓘ overflows it instead of
+ * growing the row): Encryption, Zoom AI */
+.inlineLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 18px;
+}
+
+/* plain values (edit page: Meeting ID / Personal Meeting ID) */
+.plainValue {
+  color: var(--schedule-value-fg);
+  font-size: 14px;
+  line-height: 32px;
+}
+
+/* banners on this page: `<p>` 14px/21px (max-width 810 on each banner's own class) */
+.bannerText {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* text buttons (Add Description, Show/Hide, Workflow): `is-pure-text`; block-level so the row is exactly 18 */
+.textButton {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-text-link);
+  font-size: 14px;
+  line-height: 18px;
+}
+.textButton:hover { color: var(--color-text-link-hover); }
+.textButton:active { color: var(--color-text-link-press); }
+.textButton > svg { flex: none; width: 14px; height: 14px; }

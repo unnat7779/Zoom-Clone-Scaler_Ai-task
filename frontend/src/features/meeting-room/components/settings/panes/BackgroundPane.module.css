@@ -1,0 +1,41 @@
+/* Settings › Background [D layout; spec 05 §12 lists the picker contents only]. */
+.picker {
+  position: relative;
+  margin-top: 16px;
+}
+
+.upload {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-6);
+  color: var(--room-settings-text);
+}
+.upload svg { width: 16px; height: 16px; }
+.upload:hover { background: var(--mr-divider); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 8px;
+}
+
+.thumb {
+  height: 50px;
+  padding: 0 4px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-6);
+  background: var(--room-settings-preview);
+  color: var(--room-settings-muted);
+  font: 400 12px/16px var(--font-app);
+}
+.thumb:hover { border-color: var(--room-invite-input-border); }
+.thumb:focus-visible { outline: var(--room-focus-ring); outline-offset: 1px; }
+
+.selected,
+.selected:hover { border-color: var(--room-settings-tab-active); }

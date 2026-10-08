@@ -1,0 +1,120 @@
+/* Hover popovers with arrows (PRD §5.8.9, §5.8.10). `.popover.<variant>` beats the plain Popover chrome.
+ * Layer: consumers may set `--hover-popover-z` on their class (e.g. under a fixed page header). */
+.body { position: relative; }
+
+/* ---- Prism popover ("Add a calendar", 02-meetings.md §A.4) ---- */
+.popover.prism {
+  z-index: var(--hover-popover-z, var(--z-popover));
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--popover-prism-radius);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-medium);
+  animation: fade var(--dur-300) var(--ease-standard);
+}
+.prism .body {
+  padding: var(--popover-prism-padding);
+  color: var(--color-text-prism);
+  font: 400 14px/18px var(--font-app);
+  text-align: center;
+}
+/* 16×16 rotated square, tip 5.65px outside the box */
+.prism::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 16px;
+  background: var(--color-bg-surface);
+  transform: rotate(45deg);
+}
+.prism[data-side="top"]::after {
+  bottom: -3.35px;
+  border-right: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-radius: var(--popover-prism-arrow-radius-top);
+}
+.prism[data-side="bottom"]::after {
+  top: -3.35px;
+  border-top: 1px solid var(--color-border-subtle);
+  border-left: 1px solid var(--color-border-subtle);
+  border-radius: var(--popover-prism-arrow-radius-bottom);
+}
+
+/* ---- zoom-ui info popover (Schedule ⓘ, passcode rules) ---- */
+.popover.info {
+  z-index: var(--hover-popover-z, var(--z-popover));
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-medium);
+  animation: scaleFade var(--dur-200) var(--ease-standard);
+}
+.info[data-side="top"] { transform-origin: center bottom; }
+.info[data-side="bottom"] { transform-origin: center top; }
+.info .body {
+  max-width: 320px;
+  padding: 16px;
+  border-radius: var(--radius-16);
+  color: var(--color-text-primary);
+  font: 400 14px/18px var(--font-app);
+  overflow-wrap: break-word;
+}
+.info::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  background: var(--color-bg-surface);
+  transform: rotate(45deg);
+}
+.info[data-side="top"]::after {
+  bottom: -8px;
+  border-right: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom-right-radius: var(--popover-info-arrow-radius);
+}
+.info[data-side="bottom"]::after {
+  top: -8px;
+  border-top: 1px solid var(--color-border-subtle);
+  border-left: 1px solid var(--color-border-subtle);
+  border-top-left-radius: var(--popover-info-arrow-radius);
+}
+
+/* ---- zoom.us light tooltip ("Copy the Link"): `.zm-tooltip__popper.is-light`, 1px transparent
+ * border (119×42), 12px from the trigger (callers pass offset 12) ---- */
+.popover.portal {
+  z-index: var(--hover-popover-z, var(--z-floating));
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-portal-dropdown);
+  animation: fade var(--dur-200) var(--ease-linear);
+}
+.portal .body {
+  padding: 8px 12px;
+  color: var(--portal-tooltip-fg);
+  font: 400 14px/24px var(--font-portal);
+  letter-spacing: var(--ls-portal);
+  white-space: nowrap;
+}
+/* `.popper__arrow` (6px, the transparent border colour) + its white 5px `::after` at `bottom:1px` = a
+ * white triangle from 1px inside the box edge to 4px outside it (C4-11) */
+.portal::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 5px);
+  border: 5px solid transparent;
+}
+.portal[data-side="top"]::after { bottom: -10px; border-top-color: var(--color-bg-surface); }
+.portal[data-side="bottom"]::after { top: -10px; border-bottom-color: var(--color-bg-surface); }
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleFade {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}

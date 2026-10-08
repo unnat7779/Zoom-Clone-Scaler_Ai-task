@@ -1,0 +1,23 @@
+/* Caret menus open upward, bottom edge 1px above the toolbar, left = caret − 4 (PRD §8.6.1). */
+.menu {
+  bottom: calc(100% + 2px);
+  left: calc(100% - 28px);
+  max-width: 360px;
+}
+
+/* caret menus keep Zoom's grey `.common-ui-component__dropdown-divider` (#747487); only View uses .09 white */
+.menu [role="separator"] { background: var(--room-caret-menu-divider); }
+
+/* video menu "Blur my background" row: label + switch, space-between */
+.switchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2px;
+  padding: 5px 30px;
+  color: var(--mr-text-80);
+  font: 400 12px/17.14px var(--font-app);
+}
+
+/* `.video-option-menu__label { margin-right: 10px }` → the menu is 221 wide */
+.switchLabel { margin-right: 10px; }

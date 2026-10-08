@@ -1,0 +1,27 @@
+/* readonly `.zm-textarea__inner` 650×380 (PRD §7.8.4) with Zoom's focus ring and border transition */
+.text {
+  display: block;
+  width: 650px;
+  max-width: 100%;
+  height: 380px;
+  padding: 4px 12px;
+  border: 1px solid var(--meetings-invitation-border);
+  border-radius: var(--radius-8);
+  color: var(--portal-detail-label);
+  font: 400 14px/22px var(--font-portal);
+  resize: vertical;
+  outline: none;
+  transition: var(--meetings-textarea-transition);
+}
+.text:hover { border-color: var(--meetings-invitation-border); }
+.text:focus { box-shadow: var(--meetings-textarea-focus-ring); }
+
+/* phones and short screens [D]: the textarea gives up height so the whole dialog fits the viewport */
+@media (max-width: 767px), (max-height: 600px) {
+  .text { height: clamp(120px, calc(100dvh - 232px), 380px); }
+}
+
+/* phones [D]: 44px footer buttons; they wrap to full width when both do not fit */
+@media (max-width: 767px) {
+  .action { flex: 1 0 auto; height: var(--meetings-touch-target); justify-content: center; }
+}

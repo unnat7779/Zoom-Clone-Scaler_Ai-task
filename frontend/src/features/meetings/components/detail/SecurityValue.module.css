@@ -1,0 +1,33 @@
+/* Security value (PRD §7.8.2): the row is 73 tall — passcode line 40 + waiting-room line 33. */
+.passcodeLine {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 4px 0;
+  font-size: 14px;
+  line-height: 21px;
+}
+.check {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  color: var(--meetings-success-check);
+}
+.passcodeValue { margin-left: 8px; }
+/* never squeezed under its text by the flex line (the zm-button min-width is only 32) */
+.showButton { flex: none; padding: 6px 0 6px 8px; }
+
+.waitingRoom {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-top: 4px;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* phones [D]: "✓ Passcode ******** Show" wraps inside the narrow value column */
+@media (max-width: 767px) {
+  .passcodeLine { flex-wrap: wrap; height: auto; }
+}

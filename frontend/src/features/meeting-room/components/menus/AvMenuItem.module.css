@@ -1,0 +1,6 @@
+/* Audio / video caret menus use a lighter hover with #DDD text (spec 05 §6.1 [C]). */
+.item.item:hover,
+.item.item:focus-visible {
+  background: var(--mr-menu-hover-av);
+  color: var(--mr-menu-hover-av-fg);
+}

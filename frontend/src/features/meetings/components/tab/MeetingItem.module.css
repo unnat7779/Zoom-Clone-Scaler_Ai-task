@@ -1,0 +1,32 @@
+/* `.meetings__meeting-item` (PRD §7.4.2): 123px = 8 + 4 × (8 + line + 8, collapsed) + 8. No transitions. */
+.item {
+  margin: 10px 16px;
+  padding: 8px 20px;
+  border-radius: var(--radius-12);
+  color: var(--meetings-muted-fg);
+  font-size: 13px;
+  line-height: 16px;
+  cursor: default;
+}
+.item:hover { background: var(--meetings-item-hover); }
+.selected,
+.selected:hover { background: var(--meetings-item-selected); color: var(--color-text-inverse); }
+.item:focus-visible { outline: var(--meetings-focus-ring); outline-offset: 1px; }
+
+.topic,
+.line { margin: 8px 0; }
+
+.topic {
+  color: var(--meetings-strong-fg);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  overflow-wrap: break-word;
+}
+.selected .topic { color: var(--color-text-inverse); }
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

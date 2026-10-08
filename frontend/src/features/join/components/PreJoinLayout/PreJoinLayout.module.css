@@ -1,0 +1,128 @@
+/* `.preview-root.preview-root--dark` (PRD §7.10.2, 08-prejoin-and-live-media.md) */
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  container: prejoin / inline-size;
+  background: var(--join-prejoin-bg);
+  color: var(--join-text);
+  font-family: var(--font-app);
+}
+
+/* Measured at 1512×827: card top 200 = (827 − 33 − 394) / 2 — the row is centred above
+ * a 33px band that holds the footer. `100dvh` is the visible height on mobile browsers; the
+ * safe-area insets (0 on desktop) keep phones' notch and home indicator clear. */
+.fullViewport {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--safe-top) var(--safe-right) calc(33px + var(--safe-bottom)) var(--safe-left);
+}
+
+/* the shell panel shows Zoom's page footer too (`.page-footer` is always rendered), so the row is
+ * centred above the same 33px band as full viewport */
+.inShell {
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 33px;
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.info {
+  flex: none;
+  width: 392px;
+  margin-left: 40px;
+}
+
+/* ---- footer (`.page-footer{font-size:.75em;margin:0 0 16px}`) ---- */
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+  color: var(--join-text-muted);
+  font: 400 12px/18px var(--font-app);
+  text-align: center;
+}
+
+.footerLink {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--join-footer-underline);
+}
+.footerLink:hover {
+  color: var(--join-footer-link-hover);
+  text-decoration-color: var(--join-text-muted);
+}
+
+.footerDivider {
+  margin: 0 8px;
+  color: var(--join-footer-underline);
+}
+
+/* ≤900px (Zoom's `@media (max-width:900px)`; the panel width in the shell): the card above the form,
+ * the card 448px wide (`.preview-video{width:448px}`), the 392px form centred (`margin:30px 20px`).
+ * Between 900 and 1180px the card shrinks (PreviewCard). Container queries cover the full viewport
+ * and the narrower in-shell panel. */
+@container prejoin (max-width: 900px) {
+  .row {
+    flex-direction: column;
+    padding: 24px;
+  }
+  /* clear the panel's "‹ Back" button (top 32, 26 tall) */
+  .inShell .row { padding-top: 72px; }
+  .info { margin: 30px 20px; }
+  .footer {
+    position: static;
+    padding: 0 16px 16px;
+  }
+}
+
+/* Phones in portrait [D] (PRD §11.5.4, Zoom's mobile `.preview-video--mobile{width:100%}`): card and
+ * form full width with 16–24px side margins, from the top. */
+@media (max-width: 767px) {
+  @container prejoin (max-width: 900px) {
+    .row {
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 24px;
+      width: 100%;
+      max-width: 748px;
+      margin: 0 auto;
+    }
+    .info {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@container prejoin (max-width: 480px) {
+  .row { padding-right: 16px; padding-left: 16px; }
+}
+
+/* Landscape phones [D]: stacked, the 16:9 card alone would be taller than the screen, so card and
+ * form stay side by side (the card takes what the form leaves) and the page scrolls if needed. */
+@media (max-height: 500px) and (max-width: 1023px) {
+  @container prejoin (max-width: 900px) {
+    .row {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      max-width: none;
+      padding: 16px 24px;
+    }
+    .inShell .row { padding-top: 64px; }
+    .info { flex: none; width: min(340px, 46%); margin: 0 0 0 24px; }
+  }
+}

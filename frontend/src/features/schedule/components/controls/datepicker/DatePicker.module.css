@@ -1,0 +1,125 @@
+/* zoom-ui date picker (PRD §7.6.6, 03-schedule.md §6.7, App. A `.zoom-date-*`). The day view is the
+ * shared `DayGrid`; the month and year views below use the same cell states. */
+
+/* `div.` beats the plain Popover chrome (z-index) */
+div.popover {
+  z-index: var(--schedule-datepicker-z);
+  width: var(--schedule-dp-width);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-16);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-small);
+  transform-origin: center top;
+  animation: zoomInTop var(--dur-300) var(--ease-out-quint);
+}
+div.popover[data-side="top"] { transform-origin: center bottom; }
+
+.body {
+  position: relative;
+  width: 278px;
+  padding: 15px;
+  text-align: center;
+}
+
+/* ---- header ---- */
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+}
+.prev,
+.next {
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+.prev { left: 0; }
+.next { right: 0; }
+.navButton { color: var(--color-icon-strong); }
+
+.headerLabel,
+.headerButton {
+  display: inline-block;
+  padding: 0 2px;
+  color: var(--color-text-primary);
+  font: 600 14px/24px var(--font-portal);
+  letter-spacing: inherit;
+}
+.headerButton { border-radius: var(--radius-4); cursor: pointer; }
+.headerButton:hover { background: var(--color-state-hover); }
+
+/* ---- month / year views: 3 × 4 cells 54×32, `margin: 16px 40px 0 0` ---- */
+.wideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 54px);
+  column-gap: 40px;
+}
+.wideCell {
+  position: relative;
+  width: 54px;
+  height: 32px;
+  margin-top: 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-primary);
+  font: 400 14px/30px var(--font-portal);
+  letter-spacing: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.wideCell:hover { background: var(--color-state-hover); }
+
+.outside { color: var(--color-text-tertiary); }
+.past,
+.past:hover { background: transparent; color: var(--color-text-disabled); cursor: not-allowed; }
+.today { background: var(--color-primary); color: var(--color-text-inverse); }
+.today:hover { background: var(--color-primary-hover); }
+.selected,
+.selected:hover {
+  border-color: var(--color-border-selected);
+  background: var(--color-bg-toggle-selected);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.wideCell:focus-visible { outline: none; }
+.wideCell:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--color-border-focus);
+  border-radius: var(--radius-2);
+  pointer-events: none;
+}
+
+/* the day grid is the shared DayGrid: Zoom's 32px cells on a 36×40 pitch (no override above 767) */
+.dayGrid { margin: 0 auto; }
+
+/* phones [D]: the same picker, as wide as the screen allows (≤343), with 40px day cells and 40px
+ * header buttons for touch; it stays anchored to the field and clamped inside the viewport */
+@media (max-width: 767px) {
+  div.popover { width: min(var(--schedule-dp-width-phone), 100vw - 32px); }
+  .body { width: 100%; }
+  .header { height: 40px; }
+  .navButton.navButton { width: 40px; height: 40px; }
+  .headerButton,
+  .headerLabel { line-height: 40px; }
+  .dayGrid { grid-template-columns: repeat(7, 1fr); column-gap: 0; }
+  .dayGrid [role="columnheader"],
+  .dayGrid [role="gridcell"] { justify-self: center; }
+  .dayGrid [role="gridcell"] {
+    width: var(--schedule-dp-cell-phone);
+    height: var(--schedule-dp-cell-phone);
+    margin-top: 4px;
+    line-height: calc(var(--schedule-dp-cell-phone) - 2px);
+  }
+  .wideGrid { grid-template-columns: repeat(3, 1fr); column-gap: 16px; }
+  .wideCell { width: 100%; height: var(--schedule-dp-cell-phone); line-height: calc(var(--schedule-dp-cell-phone) - 2px); }
+}
+
+@keyframes zoomInTop {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}

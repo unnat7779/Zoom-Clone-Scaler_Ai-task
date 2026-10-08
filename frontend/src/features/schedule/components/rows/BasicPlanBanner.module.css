@@ -1,0 +1,16 @@
+/* `.free-tip` (PRD §7.6.4 3b): 810×76 under Duration, aligned with the controls column */
+.banner {
+  max-width: var(--schedule-banner-max);
+  margin: 0 0 24px calc(var(--schedule-label-width) + var(--schedule-row-gap));
+}
+
+/* "Upgrade to Zoom Workplace Pro" (static) on its own line */
+.link {
+  color: var(--color-text-link);
+  cursor: pointer;
+}
+.link:hover { color: var(--color-text-link-hover); text-decoration: underline; }
+
+@media (max-width: 767px) {
+  .banner { margin-left: 0; }
+}

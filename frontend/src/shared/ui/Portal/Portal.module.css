@@ -1,0 +1,2 @@
+/* OverlayScope wrapper: passes inherited styles and variables on, generates no box. */
+.scope { display: contents; }

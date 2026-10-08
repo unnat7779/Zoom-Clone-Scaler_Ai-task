@@ -1,0 +1,33 @@
+/* `.home__header` (PRD §7.1.2): margin 64px 0 28px, centred column. */
+.clock {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  margin: 64px 0 28px;
+  color: var(--home-clock-fg);
+}
+
+.time {
+  min-height: 40px;
+  font: var(--home-clock-font);
+  letter-spacing: var(--ls-clock);
+  white-space: nowrap;
+}
+
+/* Phones [D]: less air above the clock, so the actions and cards come into view */
+@media (max-width: 767px) {
+  .clock { margin: 40px 0 28px; }
+}
+
+@media (max-width: 767px) and (max-height: 540px) {
+  .clock { margin: 24px 0 20px; }
+}
+
+.date {
+  min-height: 20px;
+  margin-top: 8px;
+  color: var(--home-date-fg);
+  font: var(--home-date-font);
+  white-space: nowrap;
+}

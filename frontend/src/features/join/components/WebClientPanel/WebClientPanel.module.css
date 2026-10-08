@@ -1,0 +1,54 @@
+/* `.pwa-webclient` (PRD §7.2.8, 04-join.md §2.9): inline `border-radius:8px` */
+.panel {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--join-webclient-radius);
+  background: var(--join-webclient-bg);
+}
+
+/* Zoom lays the panel over the content card, so its 8px corners show. The shell card clips its
+ * page at 12px, so the card hosting the panel takes the panel's radius while it is mounted
+ * (every other page keeps the 12px card). `div` outranks the shell's `.card` in any order. */
+div:has(> .panel) {
+  border-radius: var(--join-webclient-radius);
+}
+
+.back {
+  position: absolute;
+  top: 32px;
+  left: 38px;
+  z-index: var(--join-webclient-layer-z);
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 1px 6px;
+  border: none;
+  background: transparent;
+  color: var(--join-webclient-back-fg);
+  font: 400 14px/24px var(--font-app);
+}
+
+.backIcon {
+  flex: none;
+}
+
+/* Phones [D] (PRD §11.5): the 304px Workplace card is too narrow for the pre-join, so the panel
+ * covers the viewport, as the room does next (DV10); "‹ Back" still returns to Home. */
+@media (max-width: 767px), (max-height: 500px) and (max-width: 1023px) {
+  .panel {
+    position: fixed;
+    inset: 0;
+    z-index: var(--join-webclient-phone-z);
+    padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+    border-radius: 0;
+  }
+  .back {
+    top: calc(16px + var(--safe-top));
+    left: calc(10px + var(--safe-left));
+    min-height: 44px;
+  }
+}

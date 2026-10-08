@@ -1,0 +1,89 @@
+/* .meetings-container (02-meetings.md App. 1). Workplace reset: line-height = font-size. */
+.container {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  font-family: var(--font-app);
+  line-height: 1;
+}
+
+.left {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: var(--meetings-left-width);
+  height: 100%;
+}
+
+.leftBody {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+.vDivider {
+  flex: 0 0 auto;
+  width: var(--meetings-v-divider-width);
+  height: 100%;
+  background: var(--meetings-v-divider);
+}
+
+.right {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+/* scrolls only when the detail is taller than the pane (phone landscape, pushed phone detail) */
+.rightBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* "‹ Back" of the pushed detail — phones only (DV11): the Join-panel Back (PRD §7.2.8,
+ * 64×26, `padding: 1px 6px`, 14px/24px, 20px chevron) at 16,12 */
+.back {
+  position: relative;
+  display: none;
+  flex: none;
+  align-items: center;
+  align-self: flex-start;
+  height: 26px;
+  margin: 12px 0 0 16px;
+  padding: 1px 6px;
+  color: var(--zc-blue-action);
+  font-size: 14px;
+  line-height: 24px;
+}
+/* 44px tap area around the 26px link, nothing visible */
+.back::before {
+  content: "";
+  position: absolute;
+  inset: calc((26px - var(--meetings-touch-target)) / 2) -10px;
+}
+.backIcon { flex: none; width: 20px; height: 20px; }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* DV11 [D]: on phones the list takes the full width; selecting pushes the detail over it. */
+@media (max-width: 767px) {
+  .left { width: 100%; }
+  .vDivider,
+  .right { display: none; }
+  .container[data-detail-open] .left { display: none; }
+  .container[data-detail-open] .right { display: flex; }
+  .back { display: flex; }
+}

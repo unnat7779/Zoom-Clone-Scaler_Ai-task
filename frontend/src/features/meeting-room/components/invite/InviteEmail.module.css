@@ -1,0 +1,29 @@
+/* Email tab (PRD §8.11 [M]): title 16/22 700, three 165×91 services 40px below. */
+.content {
+  margin: 85px 100px 0;
+  text-align: center;
+}
+
+.title {
+  font: 700 16px/22px var(--font-app);
+}
+
+.services {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 165px;
+  height: 91px;
+  color: var(--mr-text-chat);
+  font: 400 13px/19.5px var(--font-app);
+}
+.service:active img { opacity: 0.8; }
+
+.label { margin-top: 10px; }

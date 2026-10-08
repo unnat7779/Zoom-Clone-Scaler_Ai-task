@@ -1,0 +1,46 @@
+/* Tabs row [D] (`home-03-activity-center.jpg`): labels centred at y≈132, a 2px underline at y≈147
+ * under the selected label, a 1px rule from x≈1046 to 1345; filter / mark-all-read centred at
+ * x≈1289 / 1328. */
+.row {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 33px;
+  margin: 0 15px 0 14px;
+  padding: 0 5px 0 7px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.tabs { display: flex; gap: 21px; height: 100%; }
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: var(--shell-activity-tab-fg);
+  font: 400 14px/20px var(--font-app);
+  white-space: nowrap;
+}
+
+.selected { color: var(--shell-activity-tab-fg-selected); font-weight: 600; }
+.selected::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--shell-activity-tab-bar);
+}
+
+.tools { display: flex; align-items: center; gap: 15px; }
+
+/* filter / mark all read: near-black, heavier glyphs (C1-05) [D] */
+.tool.tool { color: var(--shell-activity-tool-fg); }
+
+/* Phones [D]: 44px touch row */
+@media (max-width: 767px) {
+  .row { height: var(--touch-target-size); }
+}

@@ -1,0 +1,14 @@
+/* Design tokens entry point. Imported once by app/layout.tsx.
+ * base.css   — Zoom's real tokens (verbatim) + the clone's semantic layer.
+ * <area>.css — area-specific tokens, owned by the agent that owns the area.
+ * Rule: component CSS never contains raw colours / shadows / radii / z-index /
+ * durations; add a variable to the right file instead.
+ */
+@import "./tokens/base.css";
+@import "./tokens/shell.css";
+@import "./tokens/portal.css";
+@import "./tokens/home.css";
+@import "./tokens/join.css";
+@import "./tokens/meetings.css";
+@import "./tokens/schedule.css";
+@import "./tokens/room.css";

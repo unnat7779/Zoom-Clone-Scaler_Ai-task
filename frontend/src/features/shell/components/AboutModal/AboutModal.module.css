@@ -1,0 +1,78 @@
+/* `.modal-about` (01-shell-home §7.4). Doubled selectors win over the bare Modal frame. */
+.overlay.overlay { background: var(--shell-about-overlay); }
+
+/* 480×305 at (443, 231.5): padding 64 + wordmark 24 (+2 [D], Zoom's inline image line box)
+ * + 24/24/24 version + 40 copyright + 54/24 link + 24 + the .5px borders. */
+.card.card {
+  position: relative;
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  padding: 64px 46px 24px;
+  border: var(--shell-about-border);
+  border-radius: var(--radius-12);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shell-about-shadow);
+  text-align: center;
+}
+
+/* ✕ 20×20 at (883, 252): top 20 / right 20, 12px icon, radius 30%, padding 4 */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  border-radius: var(--shell-about-close-radius);
+  color: var(--color-text-primary);
+}
+/* `.about-close:hover{background-color:#eee8e8}`, no :active rule, focus ring 4px out [M CSS] */
+.close:hover { background: var(--shell-about-close-bg-hover); }
+.close:focus-visible { outline-offset: 4px; }
+
+/* a column flex: no margin collapsing between the stacked lines */
+.content { display: flex; flex-direction: column; align-items: center; }
+
+.logo { flex: none; margin-bottom: 2px; }
+
+.version {
+  margin: 24px 0;
+  color: var(--shell-about-version-fg);
+  font: 400 14px/24px var(--font-app);
+}
+
+.copyright { color: var(--shell-about-copyright-fg); font: 400 14px/20px var(--font-app); }
+
+/* `.about__open-source-link`: no hover rule; icon 12×12, `margin-left:6px` [M CSS] */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 54px;
+  color: var(--shell-about-link-fg);
+  font: 400 14px/24px var(--font-app);
+}
+
+/* Phones [D]: a full-screen white sheet, the content centred, ✕ in the top-right corner. */
+@media (max-width: 767px) {
+  .card.card {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    padding: var(--shell-safe-top) calc(var(--shell-phone-gutter) + var(--shell-safe-right)) var(--shell-safe-bottom)
+      calc(var(--shell-phone-gutter) + var(--shell-safe-left));
+    overflow-y: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .close {
+    top: calc(18px + var(--shell-safe-top));
+    right: calc(18px + var(--shell-safe-right));
+  }
+
+  /* the dialog body is a flex column filling the sheet */
+  .content { flex: 1; justify-content: center; padding: 48px 0; }
+}

@@ -1,0 +1,39 @@
+/* 16px/20px info buttons after labels and radio / checkbox labels */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-4);
+  color: var(--color-icon-info);
+}
+.button:hover { background: var(--color-state-hover); }
+.button > svg { width: 14px; height: 14px; }
+.suffix {
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  color: var(--color-text-tertiary);
+}
+/* 24×24 round tertiary icon button (zoom-button--sm) after an option description */
+.description {
+  width: 24px;
+  height: 24px;
+  margin: -3px 0 -3px 4px;
+  border-radius: var(--radius-round);
+  color: var(--color-icon-strong);
+  vertical-align: middle;
+}
+.description:active { background: var(--color-state-press); }
+/* touch: an 8px larger tap area on every side (the glyph does not move); a tap toggles the popover */
+@media (pointer: coarse) {
+  .button { position: relative; }
+  .button::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
+}
+/* info popovers are appended to <body>: the page layer (font and tracking: PortalShell's OverlayScope) */
+.popover { --hover-popover-z: var(--schedule-info-popover-z); }

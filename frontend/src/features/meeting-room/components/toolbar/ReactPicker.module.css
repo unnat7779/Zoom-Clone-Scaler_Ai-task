@@ -1,0 +1,90 @@
+/* React picker (PRD §8.6.6 [M]): 290×170 centred over React, bottom on the toolbar top. */
+.picker {
+  position: absolute;
+  bottom: calc(100% + 1px);
+  left: 50%;
+  z-index: var(--room-z-popover);
+  width: 290px;
+  padding: 8px;
+  border: 1px solid var(--mr-menu-border);
+  border-radius: var(--radius-12);
+  background: var(--room-react-bg);
+  box-shadow: var(--room-react-shadow);
+  backdrop-filter: var(--room-react-blur);
+  transform: translateX(-50%);
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+.row:last-child { margin-bottom: 0; }
+
+.block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin-left: 8px;
+  border-radius: var(--radius-8);
+  background: var(--room-react-btn);
+  color: var(--mr-white);
+  font: 700 13px/19.5px var(--font-app);
+}
+.block:first-child { margin-left: 0; }
+.block:hover,
+.block:focus-visible { background: var(--room-react-btn-hover); outline: none; }
+.block:active { background: var(--room-react-btn-active); }
+
+.reaction { width: 32px; background: transparent; }
+.reaction:hover,
+.reaction:focus-visible { background: var(--room-react-btn); }
+.reaction:active { background: var(--room-react-btn-hover); }
+
+.feedback { width: 50px; margin-left: 4px; }
+
+.wide { width: 272px; margin-left: 0; }
+
+/* data-tooltip bubbles above each button */
+.block[data-tooltip]::after,
+.block[data-tooltip]::before {
+  position: absolute;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--dur-150) var(--ease);
+}
+.block[data-tooltip]::after {
+  bottom: calc(100% + 9px);
+  min-height: 24px;
+  padding: 4px 8px;
+  border: var(--room-react-tooltip-border);
+  border-radius: var(--radius-6);
+  background: var(--mr-panel);
+  color: var(--mr-white);
+  font: 400 13px/16px var(--font-app);
+  white-space: nowrap;
+  content: attr(data-tooltip);
+  transform: translateX(-50%);
+}
+.block[data-tooltip]::before {
+  bottom: 100%;
+  margin-left: -9px;
+  border-top: 9px solid var(--mr-panel);
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+  content: "";
+}
+/* The extracted emoji SVGs lost their gradient stop colours (Zoom sets them in CSS):
+ * give the gradients a skin / red ramp so the reactions are not black. */
+.block stop { stop-color: var(--room-emoji-skin); }
+.block stop:last-child { stop-color: var(--room-emoji-skin-shade); }
+.block[aria-label="Heart"] stop { stop-color: var(--room-emoji-heart); }
+.block[aria-label="Heart"] stop:last-child { stop-color: var(--room-emoji-heart-shade); }
+
+.block[data-tooltip]:hover::after,
+.block[data-tooltip]:hover::before,
+.block[data-tooltip]:focus-visible::after,
+.block[data-tooltip]:focus-visible::before { opacity: 1; }

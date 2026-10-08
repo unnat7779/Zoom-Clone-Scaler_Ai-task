@@ -1,0 +1,75 @@
+/* Room confirm dialog `.zm-modal--dark` (PRD §8.12 [M]), centred in the room. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-room-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay-scrim);
+  animation: fadeIn var(--dur-150) var(--ease-out);
+}
+
+.dialog {
+  width: 480px;
+  max-width: calc(100% - 32px);
+  padding: 32px 32px 24px;
+  border: 1px solid var(--mr-window-border);
+  border-radius: var(--radius-12);
+  background: var(--mr-panel);
+  box-shadow: var(--shadow-room-dialog);
+  color: var(--mr-white);
+  font-family: var(--font-app);
+  overflow-wrap: break-word;
+  outline: none;
+}
+
+.big { width: 580px; }
+/* room-19 (the only big dialog, Show Captions): the title sits 9px lower than in the 480 dialogs */
+.big .title { margin-top: 9px; }
+
+.title {
+  min-height: 16px;
+  font: 700 20px/30px var(--font-app);
+}
+
+.body {
+  min-height: 38px;
+  padding-top: 8px;
+  font: 400 14px/21px var(--font-app);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 26px;
+}
+
+.button {
+  height: 32px;
+  padding: 6px 20px;
+  border: 1px solid var(--mr-secondary);
+  border-radius: var(--radius-8);
+  background: var(--mr-secondary);
+  color: var(--mr-white);
+  font: 400 14px/18px var(--font-app);
+}
+.button:hover { border-color: var(--mr-secondary-hover); background: var(--mr-secondary-hover); }
+
+.primary { border-color: var(--mr-primary); background: var(--mr-primary); font-weight: 700; }
+.primary:hover { border-color: var(--mr-primary-hover); background: var(--mr-primary-hover); }
+
+.danger { border-color: var(--mr-danger); background: var(--mr-danger); font-weight: 700; }
+.danger:hover { border-color: var(--mr-danger-hover); background: var(--mr-danger-hover); }
+
+/* touch screens: 44px buttons */
+@media (pointer: coarse) {
+  .button { height: 44px; padding: 0 20px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

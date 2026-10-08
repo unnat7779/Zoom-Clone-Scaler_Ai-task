@@ -1,0 +1,1 @@
+export { StaticButton } from "./StaticButton";

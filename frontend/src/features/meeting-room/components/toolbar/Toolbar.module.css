@@ -1,0 +1,42 @@
+/* Room toolbar (PRD §8.5.1 [M]): 52px, rgba(0,0,0,.7), three sections spaced apart.
+   On notched phones it grows by the home-indicator inset and keeps clear of the side insets
+   (env() is 0 everywhere else, so desktop is unchanged). */
+.toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-room-bars);
+  width: 100%;
+  height: calc(var(--room-toolbar-height) + var(--safe-bottom));
+  padding: 0 var(--safe-right) var(--safe-bottom) var(--safe-left);
+  background: var(--room-toolbar-bg);
+  font-size: 12px;
+  transition: var(--room-bars-transition);
+}
+
+.hidden {
+  transform: translateY(100%);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+}
+
+/* Compact bar (DV10): six equal buttons (ToolbarButton: min(90px, a sixth of the bar)). Start and end
+   columns share what the middle leaves, so a wide landscape phone keeps the middle group centred
+   with Audio / Video at the left and End / Leave at the right, as in Zoom. */
+.toolbar[data-compact] { container: toolbar / inline-size; }
+.toolbar[data-compact] .inner {
+  display: grid;
+  grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
+}
+.toolbar[data-compact] .end { justify-content: flex-end; }
