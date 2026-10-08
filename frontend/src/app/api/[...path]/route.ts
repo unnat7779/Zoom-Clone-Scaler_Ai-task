@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 // Fallback to the live Render backend
-const BACKEND_BASE = (process.env.BACKEND_API_URL || "https://zoom-clone-api-gk6q.onrender.com").replace(/\/+$/, "");
+const BACKEND_BASE = (process.env.BACKEND_API_URL || "https://zoom-clone-backend-zwie.onrender.com").replace(/\/+$/, "");
 // The origin allowed by Render's CORS configuration
-const ALLOWED_ORIGIN = "https://zoom-workplace-clone-tau.vercel.app";
+const ALLOWED_ORIGIN = "https://frontend-bay-beta-22.vercel.app";
 
 async function handler(
   request: NextRequest,
